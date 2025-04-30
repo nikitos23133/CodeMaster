@@ -1,0 +1,376 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Урок 1: Установка Python и первая программа - CodeMaster</title>
+    <link rel="stylesheet" href="../styles.css">
+    <script src="https://cdn.jsdelivr.net/pyodide/v0.23.4/full/pyodide.js"></script>
+    <style>
+        /* Контейнер для содержимого урока */
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 40px 20px;
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Заголовки */
+        h1 {
+            color: #333;
+            font-size: 2.5em;
+            margin-bottom: 20px;
+            text-align: center;
+            border-bottom: 2px solid #8a9635;
+            padding-bottom: 10px;
+        }
+
+        h2 {
+            color: #8a9635;
+            font-size: 1.8em;
+            margin: 30px 0 15px;
+        }
+
+        h3 {
+            color: #555;
+            font-size: 1.5em;
+            margin: 20px 0 10px;
+        }
+
+        /* Параграфы */
+        p {
+            line-height: 1.6;
+            font-size: 1.1em;
+            color: #555;
+            margin-bottom: 15px;
+        }
+
+        /* Ссылки внутри текста */
+        p a, li a {
+            color: #8a9635;
+            text-decoration: none;
+            font-weight: 500;
+        }
+
+        p a:hover, li a:hover {
+            text-decoration: underline;
+        }
+
+        /* Блоки кода */
+        pre {
+            background-color: #f5f5f5;
+            padding: 15px;
+            border-radius: 5px;
+            overflow-x: auto;
+            margin: 15px 0;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+        }
+
+        code {
+            font-family: 'Courier New', Courier, monospace;
+            color: #333;
+        }
+
+        /* Списки */
+        ul {
+            margin-bottom: 15px;
+            padding-left: 20px;
+        }
+
+        li {
+            line-height: 1.6;
+            font-size: 1.1em;
+            color: #555;
+        }
+
+        /* Редактор кода и вывод */
+        .code-editor {
+            width: 100%;
+            height: 200px;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-family: monospace;
+            font-size: 16px;
+            resize: vertical;
+            box-sizing: border-box;
+        }
+
+        .output, .fix-suggestion {
+            margin-top: 20px;
+            padding: 10px;
+            border: 1px solid #eee;
+            border-radius: 5px;
+            background-color: #f5f5f5;
+            min-height: 50px;
+            white-space: pre-wrap;
+            word-wrap: break-word;
+        }
+
+        .fix-suggestion h3 {
+            margin: 0 0 10px;
+            color: #8a9635;
+        }
+
+        /* Адаптивность */
+        @media (max-width: 768px) {
+            .container {
+                padding: 20px 15px;
+            }
+
+            h1 {
+                font-size: 2em;
+            }
+
+            h2 {
+                font-size: 1.5em;
+            }
+
+            h3 {
+                font-size: 1.3em;
+            }
+
+            p, li {
+                font-size: 1em;
+            }
+
+            .code-editor {
+                height: 150px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container container-header-container">
+            <a href="../index.html" class="logo">
+                <img src="../logo.png" alt="CodeMaster Logo" class="logo-img">
+                <span class="logo-text">CodeMaster</span>
+            </a>
+            <nav class="nav-menu" id="nav-menu">
+                <a href="../index.html" class="nav-link">Главная</a>
+                <a href="../intro.html" class="nav-link">Введение</a>
+                <a href="../languages.html" class="nav-link">Языки</a>
+                <a href="../tutorials.html" class="nav-link">Уроки</a>
+                <a href="../resources.html" class="nav-link">Ресурсы</a>
+                <a href="../register.html" class="nav-link">Регистрация</a>
+                <a href="../login.html" class="nav-link">Вход</a>
+                <a href="#" class="nav-link" onclick="logout()">Выход</a>
+                
+            </nav>
+        </div>
+    </header>
+
+    <div id="content" style="display: none;">
+        <section class="container">
+            <h1>Урок 1: Установка Python и первая программа</h1>
+
+            <h2>Что такое Python?</h2>
+            <p>Python — это высокоуровневый язык программирования, известный своей простотой и читаемостью. Созданный в конце 1980-х годов Гуидо ван Россумом, он стал одним из самых популярных языков программирования в мире.</p>
+            <p>Python применяется в веб-разработке, научных вычислениях, анализе данных, искусственном интеллекте и многих других областях. Его простой синтаксис делает его идеальным выбором для начинающих программистов.</p>
+
+            <h2>Установка Python</h2>
+            <p>Для начала установите Python на ваш компьютер. Перейдите на официальный сайт <a href="https://www.python.org/downloads/">Python</a>, чтобы скачать последнюю версию.</p>
+            <p>Выберите версию, подходящую для вашей операционной системы (Windows, macOS, Linux), и следуйте инструкциям по установке. Для Windows убедитесь, что вы добавили Python в PATH во время установки.</p>
+            <p>После установки проверьте, что Python работает, открыв терминал (или командную строку) и введя <code>python --version</code>. Если установка прошла успешно, вы увидите текущую версию Python.</p>
+
+            <h2>Первая программа на Python</h2>
+            <p>Попробуйте написать свою первую программу. Введите код ниже в редакторе и нажмите "Запустить код".</p>
+            <textarea id="code-editor-1" class="code-editor">
+print("Hello, World!")
+            </textarea>
+            <button id="run-code-1" class="btn btn-hero-primary" style="margin: 10px 0;">Запустить код</button>
+            <div id="output-1" class="output"></div>
+            <div id="fix-suggestion-1" class="fix-suggestion" style="display: none;">
+                <h3>Предложенное исправление:</h3>
+                <p id="fix-text-1"></p>
+            </div>
+            <p>Если код выполнится успешно, вы увидите вывод <code>Hello, World!</code>. Попробуйте изменить текст в <code>print</code>, например, на <code>print("Привет, Python!")</code>, и запустите снова. Если возникнет ошибка, наш AI-помощник предложит исправление.</p>
+
+            <h2>Как запустить Python-код</h2>
+            <p>Существует несколько способов запустить Python-код, в зависимости от ваших предпочтений и инструментов.</p>
+
+            <h3>1. Через командную строку</h3>
+            <p>Сохраните код в файл с расширением <code>.py</code>, например, <code>hello.py</code>, и запустите его командой <code>python hello.py</code> в терминале.</p>
+            <pre><code>print("Hello, World!")</code></pre>
+            <p>Вывод:</p>
+            <pre><code>Hello, World!</code></pre>
+
+            <h3>2. Используя IDE</h3>
+            <p>Интегрированные среды разработки (IDE) упрощают написание и запуск кода. Популярные IDE для Python:</p>
+            <ul>
+                <li><a href="https://code.visualstudio.com/">Visual Studio Code</a> — бесплатный редактор с поддержкой Python.</li>
+                <li><a href="https://www.jetbrains.com/pycharm/">PyCharm</a> — мощная IDE для профессиональной разработки.</li>
+                <li><a href="https://www.spyder-ide.org/">Spyder</a> — IDE для научных вычислений и анализа данных.</li>
+            </ul>
+            <p>Эти IDE позволяют создавать проекты, запускать код и отлаживать его с помощью встроенных инструментов.</p>
+
+            <h3>3. Онлайн-интерпретаторы</h3>
+            <p>Если установка Python невозможна, используйте онлайн-интерпретаторы для запуска кода в браузере:</p>
+            <ul>
+                <li><a href="https://replit.com/">Replit</a> — онлайн-редактор, поддерживающий Python и другие языки.</li>
+                <li><a href="https://jupyter.org/try">Jupyter Notebook</a> — интерактивная среда для кода и визуализации данных.</li>
+            </ul>
+            <p>Эти инструменты позволяют тестировать код без локальной установки Python.</p>
+
+            <h2>Пример простой программы</h2>
+            <p>Попробуем написать программу для сложения двух чисел. Введите код ниже в редактор или измените значения <code>a</code> и <code>b</code>, затем запустите его.</p>
+            <textarea id="code-editor-2" class="code-editor">
+a = 5
+b = 3
+sum = a + b
+print("Сумма:", sum)
+            </textarea>
+            <button id="run-code-2" class="btn btn-hero-primary" style="margin: 10px 0;">Запустить код</button>
+            <div id="output-2" class="output"></div>
+            <div id="fix-suggestion-2" class="fix-suggestion" style="display: none;">
+                <h3>Предложенное исправление:</h3>
+                <p id="fix-text-2"></p>
+            </div>
+            <p>Ожидаемый вывод для <code>a = 5</code> и <code>b = 3</code>:</p>
+            <pre><code>Сумма: 8</code></pre>
+            <p>Попробуйте изменить <code>a</code> и <code>b</code>, например, на <code>a = 10</code> и <code>b = 20</code>, и проверьте результат.</p>
+            <a href="lesson2.html" class="btn btn-hero-primary">Следующий урок</a>               
+     </section>
+    </div>
+
+    <div id="restricted" style="display: none; text-align: center; padding: 80px 20px;">
+        <div class="container">
+            <h1>Доступ ограничен</h1>
+            <p>Пожалуйста, зарегистрируйтесь или войдите, чтобы получить доступ к содержимому сайта.</p>
+            <div class="hero-buttons">
+                <a href="../register.html" class="btn btn-hero-primary">Регистрация</a>
+                <a href="../login.html" class="btn btn-hero-secondary">Вход</a>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <div class="container footer-bottom">
+            <p>© 2025 <a href="https://nikitos23133.github.io">CodeMaster</a>. Все права защищены.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Initialize Pyodide
+        let pyodide;
+        async function loadPyodideAndRun() {
+            pyodide = await loadPyodide();
+        }
+        loadPyodideAndRun();
+
+        function checkAuth() {
+            const isAuthenticated = localStorage.getItem('isAuthenticated') === 'true';
+            const content = document.getElementById('content');
+            const restricted = document.getElementById('restricted');
+            const navMenu = document.getElementById('nav-menu');
+
+            if (isAuthenticated) {
+                content.style.display = 'block';
+                restricted.style.display = 'none';
+                navMenu.innerHTML = `
+                    <a href="../index.html" class="nav-link">Главная</a>
+                    <a href="../intro.html" class="nav-link">Введение</a>
+                    <a href="../languages.html" class="nav-link">Языки</a>
+                    <a href="../tutorials.html" class="nav-link">Уроки</a>
+                    <a href="../resources.html" class="nav-link">Ресурсы</a>
+                    <a href="#" class="nav-link" onclick="logout()">Выход</a>
+                `;
+            } else {
+                content.style.display = 'none';
+                restricted.style.display = 'block';
+            }
+        }
+
+        function logout() {
+            localStorage.removeItem('isAuthenticated');
+            window.location.href = '../index.html';
+        }
+
+        async function runCode(code, outputElement, fixSuggestionElement, fixTextElement) {
+            if (!localStorage.getItem('isAuthenticated')) {
+                outputElement.textContent = 'Пожалуйста, войдите, чтобы использовать редактор кода.';
+                return;
+            }
+
+            if (!pyodide) {
+                outputElement.textContent = 'Pyodide ещё загружается, попробуйте снова через несколько секунд.';
+                return;
+            }
+
+            outputElement.textContent = ''; // Clear previous output
+            fixSuggestionElement.style.display = 'none'; // Hide previous fix
+
+            // Redirect console output
+            let output = '';
+            pyodide.globals.set('print', (...args) => {
+                output += args.join(' ') + '\n';
+            });
+
+            try {
+                await pyodide.runPythonAsync(`
+import sys
+import io
+sys.stdout = io.StringIO()
+${code}
+sys.stdout.getvalue()
+                `);
+                outputElement.textContent = output || 'Код выполнен, но вывода нет.';
+            } catch (error) {
+                console.error('Python Error:', error);
+                outputElement.textContent = `Ошибка: ${error.message}`;
+                const sanitizedMessage = error.message.replace(/sensitiveInfo|apiKey|token/gi, '***');
+
+                try {
+                    const response = await fetch('https://your-server.com/fix-error', {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify({
+                            errorMessage: sanitizedMessage,
+                            isAuthenticated: localStorage.getItem('isAuthenticated') === 'true',
+                        }),
+                    });
+                    const data = await response.json();
+                    if (data.fix) {
+                        fixTextElement.textContent = data.fix;
+                        fixSuggestionElement.style.display = 'block';
+                    } else {
+                        fixTextElement.textContent = 'Не удалось получить исправление.';
+                        fixSuggestionElement.style.display = 'block';
+                    }
+                } catch (apiError) {
+                    console.error('Failed to get fix from server:', apiError);
+                    fixTextElement.textContent = 'Ошибка связи с сервером.';
+                    fixSuggestionElement.style.display = 'block';
+                }
+            }
+        }
+
+        // Attach event listeners to run code buttons
+        document.getElementById('run-code-1').addEventListener('click', () => {
+            const code = document.getElementById('code-editor-1').value;
+            runCode(
+                code,
+                document.getElementById('output-1'),
+                document.getElementById('fix-suggestion-1'),
+                document.getElementById('fix-text-1')
+            );
+        });
+
+        document.getElementById('run-code-2').addEventListener('click', () => {
+            const code = document.getElementById('code-editor-2').value;
+            runCode(
+                code,
+                document.getElementById('output-2'),
+                document.getElementById('fix-suggestion-2'),
+                document.getElementById('fix-text-2')
+            );
+        });
+
+        // Check authentication on page load
+        window.onload = checkAuth;
+    </script>
+</body>
+</html>

@@ -1,0 +1,427 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Урок 2: Переменные, типы данных и операторы - CodeMaster</title>
+    <link rel="stylesheet" href="../styles.css">
+    <style>
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 40px 20px;
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+        h1 {
+            color: #333;
+            font-size: 2.5em;
+            margin-bottom: 20px;
+            text-align: center;
+            border-bottom: 2px solid #8a9635;
+            padding-bottom: 10px;
+        }
+        h2 {
+            color: #8a9635;
+            font-size: 1.8em;
+            margin: 30px 0 15px;
+        }
+        h3 {
+            color: #555;
+            font-size: 1.5em;
+            margin: 20px 0 10px;
+        }
+        p {
+            line-height: 1.6;
+            font-size: 1.1em;
+            color: #555;
+            margin-bottom: 15px;
+        }
+        p a, li a {
+            color: #8a9635;
+            text-decoration: none;
+            font-weight: 500;
+        }
+        p a:hover, li a:hover {
+            text-decoration: underline;
+        }
+        pre {
+            background-color: #f5f5f5;
+            padding: 15px;
+            border-radius: 5px;
+            overflow-x: auto;
+            margin: 15px 0;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+        }
+        code {
+            font-family: 'Courier New', Courier, monospace;
+            color: #333;
+        }
+        ul {
+            margin-bottom: 15px;
+            padding-left: 20px;
+        }
+        li {
+            line-height: 1.6;
+            font-size: 1.1em;
+            color: #555;
+        }
+        @media (max-width: 768px) {
+            .container {
+                padding: 20px 15px;
+            }
+            h1 {
+                font-size: 2em;
+            }
+            h2 {
+                font-size: 1.5em;
+            }
+            h3 {
+                font-size: 1.3em;
+            }
+            p, li {
+                font-size: 1em;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container container-header-container">
+            <a href="../index.html" class="logo">
+                <img src="../logo.png" alt="CodeMaster Logo" class="logo-img">
+                <span class="logo-text">CodeMaster</span>
+            </a>
+            <nav class="nav-menu">
+                <a href="../index.html" class="nav-link">Главная</a>
+                <a href="../intro.html" class="nav-link">Введение</a>
+                <a href="../languages.html" class="nav-link">Языки</a>
+                <a href="../tutorials.html" class="nav-link">Уроки</a>
+                <a href="../resources.html" class="nav-link">Ресурсы</a>
+                <a href="#" class="nav-link" onclick="logout()">Выход</a>
+            
+            </nav>
+        </div>
+    </header>
+
+    <section class="container">
+        <h1>Урок 2: Переменные, типы данных и операторы</h1>
+
+        <h2>Введение</h2>
+        <p>Переменные, типы данных и операторы — это основа программирования в JavaScript. Переменные используются для хранения данных, типы данных определяют, какие значения могут быть сохранены, а операторы позволяют выполнять операции с этими данными. В этом уроке вы научитесь объявлять переменные, работать с различными типами данных и использовать операторы.</p>
+
+        <h2>Переменные</h2>
+        <p>В JavaScript переменные объявляются с помощью ключевых слов <code>var</code>, <code>let</code> или <code>const</code>. Переменные хранят данные, которые можно использовать и изменять в программе.</p>
+        <pre>
+let name = "Алиса";
+const age = 25;
+var city = "Страна чудес";
+
+console.log(name);  // Вывод: Алиса
+console.log(age);   // Вывод: 25
+console.log(city);  // Вывод: Страна чудес
+        </pre>
+        <p><code>let</code> используется для переменных, которые могут изменяться. <code>const</code> — для неизменяемых значений. <code>var</code> — устаревший способ, но всё ещё встречается в старом коде.</p>
+        <p>Изменение переменной:</p>
+        <pre>
+let score = 10;
+score = 20;
+console.log(score);  // Вывод: 20
+
+const pi = 3.14;
+// pi = 3.14159;  // Ошибка: нельзя изменить const
+        </pre>
+
+        <h2>Типы данных</h2>
+        <p>JavaScript — это динамически типизированный язык, где тип данных определяется автоматически. Основные типы данных:</p>
+        <ul>
+            <li><code>number</code>: Числа (целые или дробные).</li>
+            <li><code>string</code>: Строки (текст).</li>
+            <li><code>boolean</code>: Логические значения (<code>true</code>, <code>false</code>).</li>
+            <li><code>null</code>: Отсутствие значения.</li>
+            <li><code>undefined</code>: Переменная объявлена, но не имеет значения.</li>
+            <li><code>object</code>: Объекты (включая массивы).</li>
+        </ul>
+        <pre>
+let num = 42;               // number
+let text = "Привет";        // string
+let isStudent = true;       // boolean
+let nothing = null;         // null
+let notAssigned;            // undefined
+let person = { name: "Боб", age: 30 };  // object
+let numbers = [1, 2, 3];    // array (тип object)
+
+console.log(typeof num);    // Вывод: number
+console.log(typeof text);   // Вывод: string
+console.log(typeof person); // Вывод: object
+        </pre>
+        <p>Оператор <code>typeof</code> возвращает тип данных переменной.</p>
+
+        <h3>Числа (number)</h3>
+        <p>Числа могут быть целыми или дробными. JavaScript поддерживает арифметические операции:</p>
+        <pre>
+let x = 10;
+let y = 3.14;
+console.log(x + y);  // Вывод: 13.14
+        </pre>
+
+        <h3>Строки (string)</h3>
+        <p>Строки заключаются в одинарные или двойные кавычки. Их можно конкатенировать с помощью <code>+</code>:</p>
+        <pre>
+let greeting = "Привет, ";
+let name = "Алиса";
+console.log(greeting + name);  // Вывод: Привет, Алиса
+        </pre>
+        <p>Шаблонные строки (с использованием <code>`</code>) позволяют вставлять выражения:</p>
+        <pre>
+let age = 25;
+console.log(`Мне ${age} лет`);  // Вывод: Мне 25 лет
+        </pre>
+
+        <h3>Объекты и массивы</h3>
+        <p>Объекты — это коллекции пар ключ-значение, а массивы — упорядоченные списки:</p>
+        <pre>
+let person = { name: "Алиса", age: 25 };
+console.log(person.name);  // Вывод: Алиса
+
+let fruits = ["яблоко", "банан", "вишня"];
+console.log(fruits[1]);  // Вывод: банан
+        </pre>
+
+        <h2>Операторы</h2>
+        <p>Операторы позволяют выполнять операции с данными. Основные категории:</p>
+
+        <h3>Арифметические операторы</h3>
+        <p>Используются для математических вычислений:</p>
+        <pre>
+let a = 10;
+let b = 3;
+console.log(a + b);  // Вывод: 13 (сложение)
+console.log(a - b);  // Вывод: 7 (вычитание)
+console.log(a * b);  // Вывод: 30 (умножение)
+console.log(a / b);  // Вывод: 3.333... (деление)
+console.log(a % b);  // Вывод: 1 (остаток)
+console.log(a ** b); // Вывод: 1000 (возведение в степень)
+        </pre>
+
+        <h3>Операторы сравнения</h3>
+        <p>Сравнивают значения и возвращают <code>true</code> или <code>false</code>:</p>
+        <pre>
+let x = 5;
+let y = "5";
+console.log(x == y);   // Вывод: true (нестрогое сравнение)
+console.log(x === y);  // Вывод: false (строгое сравнение)
+console.log(x != y);   // Вывод: false (нестрогое неравенство)
+console.log(x !== y);  // Вывод: true (строгое неравенство)
+console.log(x > 3);    // Вывод: true
+console.log(x <= 5);   // Вывод: true
+        </pre>
+        <p><code>===</code> проверяет значение и тип, в отличие от <code>==</code>.</p>
+
+        <h3>Логические операторы</h3>
+        <p>Используются для комбинирования условий:</p>
+        <pre>
+let isAdult = true;
+let hasTicket = false;
+console.log(isAdult && hasTicket);  // Вывод: false (И)
+console.log(isAdult || hasTicket);  // Вывод: true (ИЛИ)
+console.log(!isAdult);              // Вывод: false (НЕ)
+        </pre>
+
+        <h3>Операторы присваивания</h3>
+        <p>Присваивают значения переменным:</p>
+        <pre>
+let x = 10;
+x += 5;  // То же, что x = x + 5
+console.log(x);  // Вывод: 15
+x *= 2;  // То же, что x = x * 2
+console.log(x);  // Вывод: 30
+        </pre>
+
+        <h2>Практика</h2>
+        <p>1. Создайте переменные с вашим именем, возрастом и городом, используя <code>let</code> и <code>const</code>. Выведите их в консоль.</p>
+        <p>2. Создайте массив из трёх ваших любимых блюд и выведите второй элемент.</p>
+        <p>3. Создайте объект с информацией о книге (название, автор, год) и выведите название книги.</p>
+        <p>4. Напишите программу, которая выполняет арифметические операции с двумя числами (сложение, вычитание, умножение).</p>
+        <p>5. Используйте <code>typeof</code>, чтобы проверить типы переменных: числа, строки, объекта и неопределённой переменной.</p>
+   <!-- Добавьте этот код в раздел "Попробуйте сами" перед закрывающим </section> -->
+
+<h2>Интерактивный терминал (демо)</h2>
+<div class="terminal">
+    <div class="terminal-header">
+        <div class="terminal-controls">
+            <span class="terminal-circle red"></span>
+            <span class="terminal-circle yellow"></span>
+            <span class="terminal-circle green"></span>
+        </div>
+    </div>
+    <div class="terminal-body" id="terminal-output">
+        <div class="terminal-line">Добро пожаловать в CodeMaster JavaScript терминал!</div>
+        <div class="terminal-line">Введите код и нажмите "Выполнить".</div>
+        <div class="terminal-line">Пример: console.log("Hello World");</div>
+    </div>
+    <div class="terminal-input">
+        <textarea id="code-input" rows="4" placeholder="Введите ваш JavaScript код здесь..."></textarea>
+        <button onclick="executeJSCode()">Выполнить</button>
+    </div>
+</div>
+
+<style>
+    .terminal {
+        background: #1e1e1e;
+        border-radius: 5px;
+        margin: 20px 0;
+        color: #fff;
+        font-family: 'Courier New', monospace;
+    }
+    
+    .terminal-header {
+        padding: 10px;
+        background: #323233;
+        border-radius: 5px 5px 0 0;
+    }
+    
+    .terminal-controls {
+        display: flex;
+        gap: 5px;
+    }
+    
+    .terminal-circle {
+        width: 12px;
+        height: 12px;
+        border-radius: 50%;
+    }
+    
+    .red { background: #ff5f56; }
+    .yellow { background: #ffbd2e; }
+    .green { background: #27c93f; }
+    
+    .terminal-body {
+        padding: 15px;
+        min-height: 100px;
+        max-height: 300px;
+        overflow-y: auto;
+    }
+    
+    .terminal-line {
+        white-space: pre-wrap;
+        margin: 5px 0;
+        color: #d4d4d4;
+    }
+    
+    .terminal-input {
+        border-top: 1px solid #333;
+        padding: 10px;
+    }
+    
+    #code-input {
+        width: 100%;
+        background: #252526;
+        border: none;
+        color: #fff;
+        padding: 10px;
+        margin-bottom: 10px;
+        resize: vertical;
+    }
+    
+    .terminal-input button {
+        background: #8a9635;
+        color: white;
+        border: none;
+        padding: 8px 20px;
+        border-radius: 3px;
+        cursor: pointer;
+    }
+    
+    .terminal-input button:hover {
+        background: #6e7a25;
+    }
+</style>
+
+<script>
+function executeJSCode() {
+    const codeInput = document.getElementById('code-input').value;
+    const outputDiv = document.getElementById('terminal-output');
+    
+    // Очистка предыдущего вывода
+    outputDiv.innerHTML = '';
+    
+    // Эмуляция выполнения кода
+    const addOutput = (text) => {
+        const line = document.createElement('div');
+        line.className = 'terminal-line';
+        line.textContent = text;
+        outputDiv.appendChild(line);
+    };
+
+    try {
+        // Примеры для демонстрации
+        if (codeInput.includes('console.log("Hello, World!")')) {
+            addOutput('Hello, World!');
+        }
+        else if (codeInput.includes('a + b')) {
+            addOutput('Сумма: 15');
+            addOutput('Разность: -5');
+            addOutput('Произведение: 50');
+        }
+        else if (codeInput.includes('Привет, [ваше имя]!')) {
+            addOutput('Привет, Алиса!');
+        }
+        else if (codeInput.includes('node -v')) {
+            addOutput('v18.12.1');
+        }
+        else if (codeInput.includes('let name =')) {
+            addOutput('Алиса');
+        }
+        else {
+            addOutput('Результат выполнения:');
+            addOutput('(Для реального выполнения используйте консоль браузера или Node.js)');
+        }
+    } catch (error) {
+        addOutput(`Ошибка: ${error.message}`);
+    }
+    
+    // Прокрутка к последнему выводу
+    outputDiv.scrollTop = outputDiv.scrollHeight;
+}
+</script>
+<div class="lesson-navigation">
+    <a href="lesson1.html" class="nav-button">← Предыдущий урок</a>
+    <a href="lesson3.html" class="nav-button">Следующий урок →</a>
+</div>
+
+<style>
+    .lesson-navigation {
+        display: flex;
+        justify-content: space-between;
+        margin-top: 40px;
+        padding-top: 20px;
+        border-top: 1px solid #eee;
+    }
+    
+    .nav-button {
+        background-color: #8a9635;
+        color: white;
+        padding: 10px 20px;
+        border-radius: 5px;
+        text-decoration: none;
+        font-weight: bold;
+        transition: background-color 0.3s;
+    }
+    
+    .nav-button:hover {
+        background-color: #6e7a25;
+    }
+</style>
+</section>
+
+    <footer>
+        <div class="container footer-bottom">
+            <p>© 2025 <a href="https://nikitos23133.github.io">CodeMaster</a>. Все права защищены.</p>
+        </div>
+    </footer>
+
+    <script src="../script.js"></script>
+</body>
+</html>

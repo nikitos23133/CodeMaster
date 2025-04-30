@@ -1,0 +1,395 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Урок 3: Функции и области видимости - CodeMaster</title>
+    <link rel="stylesheet" href="../styles.css">
+    <style>
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 40px 20px;
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+        h1 {
+            color: #333;
+            font-size: 2.5em;
+            margin-bottom: 20px;
+            text-align: center;
+            border-bottom: 2px solid #8a9635;
+            padding-bottom: 10px;
+        }
+        h2 {
+            color: #8a9635;
+            font-size: 1.8em;
+            margin: 30px 0 15px;
+        }
+        h3 {
+            color: #555;
+            font-size: 1.5em;
+            margin: 20px 0 10px;
+        }
+        p {
+            line-height: 1.6;
+            font-size: 1.1em;
+            color: #555;
+            margin-bottom: 15px;
+        }
+        p a, li a {
+            color: #8a9635;
+            text-decoration: none;
+            font-weight: 500;
+        }
+        p a:hover, li a:hover {
+            text-decoration: underline;
+        }
+        pre {
+            background-color: #f5f5f5;
+            padding: 15px;
+            border-radius: 5px;
+            overflow-x: auto;
+            margin: 15px 0;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+        }
+        code {
+            font-family: 'Courier New', Courier, monospace;
+            color: #333;
+        }
+        ul {
+            margin-bottom: 15px;
+            padding-left: 20px;
+        }
+        li {
+            line-height: 1.6;
+            font-size: 1.1em;
+            color: #555;
+        }
+        @media (max-width: 768px) {
+            .container {
+                padding: 20px 15px;
+            }
+            h1 {
+                font-size: 2em;
+            }
+            h2 {
+                font-size: 1.5em;
+            }
+            h3 {
+                font-size: 1.3em;
+            }
+            p, li {
+                font-size: 1em;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container container-header-container">
+            <a href="../index.html" class="logo">
+                <img src="../logo.png" alt="CodeMaster Logo" class="logo-img">
+                <span class="logo-text">CodeMaster</span>
+            </a>
+            <nav class="nav-menu">
+                <a href="../index.html" class="nav-link">Главная</a>
+                <a href="../intro.html" class="nav-link">Введение</a>
+                <a href="../languages.html" class="nav-link">Языки</a>
+                <a href="../tutorials.html" class="nav-link">Уроки</a>
+                <a href="../resources.html" class="nav-link">Ресурсы</a>
+                <a href="#" class="nav-link" onclick="logout()">Выход</a>
+            
+            </nav>
+        </div>
+    </header>
+
+    <section class="container">
+        <h1>Урок 3: Функции и области видимости</h1>
+
+        <h2>Введение</h2>
+        <p>Функции в JavaScript позволяют группировать код для повторного использования, упрощая разработку. Область видимости определяет, где переменные доступны, а контекст выполнения влияет на значение <code>this</code>. В этом уроке вы научитесь создавать функции, работать с областью видимости и понимать контекст.</p>
+
+        <h2>Создание функций</h2>
+        <p>Функции объявляются с помощью ключевого слова <code>function</code> или как стрелочные функции. Они могут принимать параметры и возвращать значения с помощью <code>return</code>.</p>
+        <pre>
+function greet(name) {
+    return `Привет, ${name}!`;
+}
+console.log(greet("Алиса"));  // Вывод: Привет, Алиса!
+        </pre>
+        <p>Стрелочная функция — более краткий синтаксис:</p>
+        <pre>
+const add = (a, b) => a + b;
+console.log(add(5, 3));  // Вывод: 8
+        </pre>
+
+        <h3>Параметры и значения по умолчанию</h3>
+        <p>Функции могут иметь параметры с значениями по умолчанию:</p>
+        <pre>
+function introduce(name, age = 18) {
+    console.log(`Меня зовут ${name}, мне ${age} лет.`);
+}
+introduce("Боб");       // Вывод: Меня зовут Боб, мне 18 лет.
+introduce("Алиса", 25); // Вывод: Меня зовут Алиса, мне 25 лет.
+        </pre>
+
+        <h3>Переменное число аргументов</h3>
+        <p>Используйте объект <code>arguments</code> или rest-параметры (<code>...args</code>) для работы с переменным числом аргументов:</p>
+        <pre>
+function sum(...numbers) {
+    return numbers.reduce((total, num) => total + num, 0);
+}
+console.log(sum(1, 2, 3));     // Вывод: 6
+console.log(sum(10, 20, 30, 40)); // Вывод: 100
+        </pre>
+
+        <h2>Область видимости</h2>
+        <p>Область видимости определяет, где переменные доступны. В JavaScript есть три типа области видимости:</p>
+        <ul>
+            <li><strong>Глобальная</strong>: Переменные, объявленные вне функций, доступны везде.</li>
+            <li><strong>Локальная (функциональная)</strong>: Переменные внутри функции доступны только в ней.</li>
+            <li><strong>Блочная</strong>: Переменные, объявленные с <code>let</code> или <code>const</code> внутри блока <code>{}</code>, доступны только в этом блоке.</li>
+        </ul>
+        <pre>
+let globalVar = "Я глобальная";
+
+function testScope() {
+    let localVar = "Я локальная";
+    if (true) {
+        let blockVar = "Я блочная";
+        console.log(globalVar); // Вывод: Я глобальная
+        console.log(localVar);  // Вывод: Я локальная
+        console.log(blockVar);  // Вывод: Я блочная
+    }
+    // console.log(blockVar); // Ошибка: blockVar не определена
+}
+testScope();
+        </pre>
+
+        <h2>Контекст выполнения и this</h2>
+        <p>Ключевое слово <code>this</code> ссылается на объект, в контексте которого выполняется функция. Значение <code>this</code> зависит от того, как функция вызвана:</p>
+        <pre>
+const person = {
+    name: "Алиса",
+    greet: function() {
+        console.log(`Привет, я ${this.name}!`);
+    }
+};
+person.greet();  // Вывод: Привет, я Алиса!
+        </pre>
+        <p>В стрелочных функциях <code>this</code> наследуется из окружающей области:</p>
+        <pre>
+const person2 = {
+    name: "Боб",
+    greet: () => {
+        console.log(`Привет, я ${this.name}!`);
+    }
+};
+person2.greet();  // Вывод: Привет, я undefined! (this не привязан к person2)
+        </pre>
+
+        <h2>Практика</h2>
+        <p>1. Напишите функцию, которая принимает два числа и возвращает их произведение.</p>
+        <p>2. Создайте стрелочную функцию, которая принимает массив чисел и возвращает их среднее значение.</p>
+        <p>3. Напишите функцию, которая использует rest-параметры для объединения строк в одну с разделителем.</p>
+        <p>4. Создайте объект с методом, который использует <code>this</code> для вывода свойства объекта.</p>
+        <p>5. Продемонстрируйте разницу между глобальной, локальной и блочной областью видимости в одном примере.</p>
+   <!-- Добавьте этот код в раздел "Попробуйте сами" перед закрывающим </section> -->
+
+<h2>Интерактивный терминал (демо)</h2>
+<div class="terminal">
+    <div class="terminal-header">
+        <div class="terminal-controls">
+            <span class="terminal-circle red"></span>
+            <span class="terminal-circle yellow"></span>
+            <span class="terminal-circle green"></span>
+        </div>
+    </div>
+    <div class="terminal-body" id="terminal-output">
+        <div class="terminal-line">Добро пожаловать в CodeMaster JavaScript терминал!</div>
+        <div class="terminal-line">Введите код и нажмите "Выполнить".</div>
+        <div class="terminal-line">Пример: console.log("Hello World");</div>
+    </div>
+    <div class="terminal-input">
+        <textarea id="code-input" rows="4" placeholder="Введите ваш JavaScript код здесь..."></textarea>
+        <button onclick="executeJSCode()">Выполнить</button>
+    </div>
+</div>
+
+<style>
+    .terminal {
+        background: #1e1e1e;
+        border-radius: 5px;
+        margin: 20px 0;
+        color: #fff;
+        font-family: 'Courier New', monospace;
+    }
+    
+    .terminal-header {
+        padding: 10px;
+        background: #323233;
+        border-radius: 5px 5px 0 0;
+    }
+    
+    .terminal-controls {
+        display: flex;
+        gap: 5px;
+    }
+    
+    .terminal-circle {
+        width: 12px;
+        height: 12px;
+        border-radius: 50%;
+    }
+    
+    .red { background: #ff5f56; }
+    .yellow { background: #ffbd2e; }
+    .green { background: #27c93f; }
+    
+    .terminal-body {
+        padding: 15px;
+        min-height: 100px;
+        max-height: 300px;
+        overflow-y: auto;
+    }
+    
+    .terminal-line {
+        white-space: pre-wrap;
+        margin: 5px 0;
+        color: #d4d4d4;
+    }
+    
+    .terminal-input {
+        border-top: 1px solid #333;
+        padding: 10px;
+    }
+    
+    #code-input {
+        width: 100%;
+        background: #252526;
+        border: none;
+        color: #fff;
+        padding: 10px;
+        margin-bottom: 10px;
+        resize: vertical;
+    }
+    
+    .terminal-input button {
+        background: #8a9635;
+        color: white;
+        border: none;
+        padding: 8px 20px;
+        border-radius: 3px;
+        cursor: pointer;
+    }
+    
+    .terminal-input button:hover {
+        background: #6e7a25;
+    }
+</style>
+
+<script>
+function executeJSCode() {
+    const codeInput = document.getElementById('code-input').value;
+    const outputDiv = document.getElementById('terminal-output');
+    
+    // Очистка предыдущего вывода
+    outputDiv.innerHTML = '';
+    
+    // Эмуляция выполнения кода
+    const addOutput = (text) => {
+        const line = document.createElement('div');
+        line.className = 'terminal-line';
+        line.textContent = text;
+        outputDiv.appendChild(line);
+    };
+
+    try {
+        // Примеры для демонстрации
+        if (codeInput.includes('console.log("Hello, World!")')) {
+            addOutput('Hello, World!');
+        }
+        else if (codeInput.includes('a + b')) {
+            addOutput('Сумма: 15');
+            addOutput('Разность: -5');
+            addOutput('Произведение: 50');
+        }
+        else if (codeInput.includes('Привет, [ваше имя]!')) {
+            addOutput('Привет, Алиса!');
+        }
+        else if (codeInput.includes('node -v')) {
+            addOutput('v18.12.1');
+        }
+        else if (codeInput.includes('let name =')) {
+            addOutput('Алиса');
+        }
+        else {
+            addOutput('Результат выполнения:');
+            addOutput('(Для реального выполнения используйте консоль браузера или Node.js)');
+        }
+    } catch (error) {
+        addOutput(`Ошибка: ${error.message}`);
+    }
+    
+    // Прокрутка к последнему выводу
+    outputDiv.scrollTop = outputDiv.scrollHeight;
+}
+</script>
+<div class="lesson-navigation">
+    <a href="lesson2.html" class="nav-button">← Предыдущий урок</a>
+    <a href="lesson4.html" class="nav-button">Следующий урок</a>
+</div>
+
+<style>
+    .lesson-navigation {
+        display: flex;
+        justify-content: space-between;
+        margin-top: 40px;
+        padding-top: 20px;
+        border-top: 1px solid #eee;
+    }
+    
+    .nav-button {
+        background-color: #8a9635;
+        color: white;
+        padding: 10px 15px;
+        border-radius: 5px;
+        text-decoration: none;
+        font-weight: bold;
+        transition: background-color 0.3s;
+        font-size: 0.9em;
+        max-width: 45%;
+        text-align: center;
+    }
+    
+    .nav-button:hover {
+        background-color: #6e7a25;
+        transform: translateY(-2px);
+        box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+    }
+
+    @media (max-width: 600px) {
+        .lesson-navigation {
+            flex-direction: column;
+            gap: 10px;
+        }
+        
+        .nav-button {
+            max-width: 100%;
+            padding: 10px;
+        }
+    }
+</style>
+</section>
+
+    <footer>
+        <div class="container footer-bottom">
+            <p>© 2025 <a href="https://nikitos23133.github.io">CodeMaster</a>. Все права защищены.</p>
+        </div>
+    </footer>
+
+    <script src="../script.js"></script>
+</body>
+</html>

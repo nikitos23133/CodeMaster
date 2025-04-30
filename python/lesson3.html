@@ -1,0 +1,448 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Урок 3: Условные операторы и циклы - CodeMaster</title>
+    <link rel="stylesheet" href="../styles.css">
+    <script src="https://cdn.jsdelivr.net/pyodide/v0.23.4/full/pyodide.js"></script>
+    <style>
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 40px 20px;
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+        h1 {
+            color: #333;
+            font-size: 2.5em;
+            margin-bottom: 20px;
+            text-align: center;
+            border-bottom: 2px solid #8a9635;
+            padding-bottom: 10px;
+        }
+        h2 {
+            color: #8a9635;
+            font-size: 1.8em;
+            margin: 30px 0 15px;
+        }
+        h3 {
+            color: #555;
+            font-size: 1.5em;
+            margin: 20px 0 10px;
+        }
+        p {
+            line-height: 1.6;
+            font-size: 1.1em;
+            color: #555;
+            margin-bottom: 15px;
+        }
+        p a, li a {
+            color: #8a9635;
+            text-decoration: none;
+            font-weight: 500;
+        }
+        p a:hover, li a:hover {
+            text-decoration: underline;
+        }
+        pre {
+            background-color: #f5f5f5;
+            padding: 15px;
+            border-radius: 5px;
+            overflow-x: auto;
+            margin: 15px 0;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+        }
+        code {
+            font-family: 'Courier New', Courier, monospace;
+            color: #333;
+        }
+        ul, ol {
+            margin-bottom: 15px;
+            padding-left: 20px;
+        }
+        li {
+            line-height: 1.6;
+            font-size: 1.1em;
+            color: #555;
+        }
+        .code-editor {
+            width: 100%;
+            height: 200px;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-family: monospace;
+            font-size: 16px;
+            resize: vertical;
+            box-sizing: border-box;
+        }
+        .output, .fix-suggestion {
+            margin-top: 20px;
+            padding: 10px;
+            border: 1px solid #eee;
+            border-radius: 5px;
+            background-color: #f5f5f5;
+            min-height: 50px;
+            white-space: pre-wrap;
+            word-wrap: break-word;
+        }
+        .fix-suggestion h3 {
+            margin: 0 0 10px;
+            color: #8a9635;
+        }
+        @media (max-width: 768px) {
+            .container {
+                padding: 20px 15px;
+            }
+            h1 {
+                font-size: 2em;
+            }
+            h2 {
+                font-size: 1.5em;
+            }
+            h3 {
+                font-size: 1.3em;
+            }
+            p, li {
+                font-size: 1em;
+            }
+            .code-editor {
+                height: 150px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container container-header-container">
+            <a href="../index.html" class="logo">
+                <img src="../logo.png" alt="CodeMaster Logo" class="logo-img">
+                <span class="logo-text">CodeMaster</span>
+            </a>
+            <nav class="nav-menu" id="nav-menu">
+                <a href="../index.html" class="nav-link">Главная</a>
+                <a href="../intro.html" class="nav-link">Введение</a>
+                <a href="../languages.html" class="nav-link">Языки</a>
+                <a href="../tutorials.html" class="nav-link">Уроки</a>
+                <a href="../resources.html" class="nav-link">Ресурсы</a>
+                <a href="../register.html" class="nav-link">Регистрация</a>
+                <a href="../login.html" class="nav-link">Вход</a>
+                <a href="#" class="nav-link" onclick="logout()">Выход</a>
+                
+            </nav>
+        </div>
+    </header>
+
+    <div id="content" style="display: none;">
+        <section class="container">
+            <h1>Урок 3: Условные операторы и циклы</h1>
+
+            <h2>Введение</h2>
+            <p>Условные операторы и циклы — это основные конструкции для управления логикой программы. Условные операторы позволяют выполнять код в зависимости от условий, а циклы — повторять действия. В этом уроке вы научитесь использовать <code>if</code>, <code>elif</code>, <code>else</code>, а также циклы <code>for</code> и <code>while</code>.</p>
+
+            <h2>Условные операторы</h2>
+            <p>Условные операторы позволяют выполнять определённый код, если выполняется заданное условие. В Python используются <code>if</code>, <code>elif</code> и <code>else</code>.</p>
+            <pre><code>
+age = 18
+if age >= 18:
+    print("Вы совершеннолетний!")
+else:
+    print("Вы несовершеннолетний!")
+            </code></pre>
+            <p>В этом примере программа проверяет, больше или равно <code>age</code> 18, и выводит соответствующее сообщение.</p>
+
+            <h3>Использование elif</h3>
+            <p>Для проверки нескольких условий используйте <code>elif</code> (сокращение от "else if"):</p>
+            <pre><code>
+score = 85
+if score >= 90:
+    print("Оценка: A")
+elif score >= 80:
+    print("Оценка: B")
+elif score >= 70:
+    print("Оценка: C")
+else:
+    print("Оценка: D или ниже")
+            </code></pre>
+            <p>Этот код определяет оценку на основе значения <code>score</code>.</p>
+
+            <h3>Сложные условия</h3>
+            <p>Вы можете комбинировать условия с помощью логических операторов <code>and</code>, <code>or</code>, <code>not</code>:</p>
+            <pre><code>
+temperature = 25
+is_sunny = True
+if temperature > 20 and is_sunny:
+    print("Идём на прогулку!")
+else:
+    print("Остаёмся дома.")
+            </code></pre>
+            <p>Здесь прогулка возможна, если температура выше 20 и погода солнечная.</p>
+
+            <h2>Циклы</h2>
+            <p>Циклы позволяют выполнять код многократно. Python поддерживает два основных типа циклов: <code>for</code> и <code>while</code>.</p>
+
+            <h3>Цикл for</h3>
+            <p>Цикл <code>for</code> используется для итерации по последовательности, такой как список или диапазон чисел:</p>
+            <pre><code>
+for i in range(5):
+    print(f"Итерация {i}")
+            </code></pre>
+            <p>Этот код выведет числа от 0 до 4. Функция <code>range(5)</code> создаёт последовательность от 0 до 4.</p>
+            <p>Пример с списком:</p>
+            <pre><code>
+fruits = ["яблоко", "банан", "вишня"]
+for fruit in fruits:
+    print(f"Фрукт: {fruit}")
+            </code></pre>
+            <p>Этот код выведет каждый фрукт из списка.</p>
+
+            <h3>Цикл while</h3>
+            <p>Цикл <code>while</code> выполняется, пока выполняется условие:</p>
+            <pre><code>
+count = 1
+while count <= 5:
+    print(f"Счёт: {count}")
+    count += 1
+            </code></pre>
+            <p>Этот код выведет числа от 1 до 5. Без <code>count += 1</code> цикл будет бесконечным!</p>
+
+            <h3>Операторы break и continue</h3>
+            <p>Оператор <code>break</code> прерывает цикл, а <code>continue</code> пропускает текущую итерацию и переходит к следующей.</p>
+            <pre><code>
+for i in range(10):
+    if i == 5:
+        break  # Прерываем цикл, когда i равно 5
+    print(i)
+            </code></pre>
+            <p>Этот код выведет числа от 0 до 4.</p>
+            <pre><code>
+for i in range(5):
+    if i % 2 == 0:
+        continue  # Пропускаем чётные числа
+    print(f"Нечётное: {i}")
+            </code></pre>
+            <p>Этот код выведет только нечётные числа (1, 3).</p>
+
+            <h3>Вложенные циклы</h3>
+            <p>Циклы можно вкладывать друг в друга для обработки сложных данных:</p>
+            <pre><code>
+for i in range(3):
+    for j in range(2):
+        print(f"i={i}, j={j}")
+            </code></pre>
+            <p>Этот код выведет все комбинации <code>i</code> и <code>j</code>, например, <code>i=0, j=0</code>, <code>i=0, j=1</code>, и т.д.</p>
+
+            <h2>Практика</h2>
+            <p>Попробуйте выполнить следующие задания в редакторе кода ниже:</p>
+            <ol>
+                <li>Напишите программу, которая запрашивает число у пользователя и проверяет, является ли оно положительным, отрицательным или нулём.</li>
+                <li>Создайте программу, которая определяет, к какому времени года относится введённый пользователем месяц (например, "январь" → "зима").</li>
+                <li>Напишите цикл <code>for</code>, который выводит чётные числа от 1 до 20.</li>
+                <li>Используйте цикл <code>while</code>, чтобы найти сумму чисел от 1 до 10.</li>
+                <li>Напишите программу, которая выводит таблицу умножения для числа, введённого пользователем.</li>
+                <li>Создайте цикл, который прерывается, если пользователь вводит слово "стоп".</li>
+            </ol>
+            <p>Введите код в редактор, нажмите "Запустить код" и проверьте результат. Если возникнет ошибка, наш AI-помощник предложит исправление.</p>
+            <textarea id="code-editor-1" class="code-editor">
+# Пример для заданий
+# Задание 1: Проверка числа
+number = int(input("Введите число: "))
+if number > 0:
+    print("Число положительное")
+elif number < 0:
+    print("Число отрицательное")
+else:
+    print("Число равно нулю")
+
+# Задание 3: Чётные числа
+for i in range(2, 21, 2):
+    print(f"Чётное: {i}")
+            </textarea>
+            <button id="run-code-1" class="btn btn-hero-primary" style="margin: 10px 0;">Запустить код</button>
+            <div id="output-1" class="output"></div>
+            <div id="fix-suggestion-1" class="fix-suggestion" style="display: none;">
+                <h3>Предложенное исправление:</h3>
+                <p id="fix-text-1"></p>
+            </div>
+            <p>Попробуйте изменить код для других заданий (например, таблица умножения или проверка месяца) или введите свои варианты. Для ввода данных используйте <code>input()</code>, и результат появится в выводе.</p>
+            <div class="lesson-navigation">
+                <a href="lesson2.html" class="nav-button">← Предыдущий урок</a>
+                <a href="lesson4.html" class="nav-button">Следующий урок</a>
+            </div>
+            
+            <style>
+                .lesson-navigation {
+                    display: flex;
+                    justify-content: space-between;
+                    margin-top: 40px;
+                    padding-top: 20px;
+                    border-top: 1px solid #eee;
+                }
+                
+                .nav-button {
+                    background-color: #8a9635;
+                    color: white;
+                    padding: 10px 15px;
+                    border-radius: 5px;
+                    text-decoration: none;
+                    font-weight: bold;
+                    transition: background-color 0.3s;
+                    font-size: 0.9em;
+                    max-width: 45%;
+                    text-align: center;
+                }
+                
+                .nav-button:hover {
+                    background-color: #6e7a25;
+                    transform: translateY(-2px);
+                    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+                }
+            
+                @media (max-width: 600px) {
+                    .lesson-navigation {
+                        flex-direction: column;
+                        gap: 10px;
+                    }
+                    
+                    .nav-button {
+                        max-width: 100%;
+                        padding: 10px;
+                    }
+                }
+            </style>
+        </section>
+    </div>
+
+    <div id="restricted" style="display: none; text-align: center; padding: 80px 20px;">
+        <div class="container">
+            <h1>Доступ ограничен</h1>
+            <p>Пожалуйста, зарегистрируйтесь или войдите, чтобы получить доступ к содержимому сайта.</p>
+            <div class="hero-buttons">
+                <a href="../register.html" class="btn btn-hero-primary">Регистрация</a>
+                <a href="../login.html" class="btn btn-hero-secondary">Вход</a>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <div class="container footer-bottom">
+            <p>© 2025 <a href="https://nikitos23133.github.io">CodeMaster</a>. Все права защищены.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Initialize Pyodide
+        let pyodide;
+        async function loadPyodideAndRun() {
+            pyodide = await loadPyodide();
+            // Mock input() for browser environment
+            pyodide.globals.set('input', prompt);
+        }
+        loadPyodideAndRun();
+
+        function checkAuth() {
+            const isAuthenticated = localStorage.getItem('isAuthenticated') === 'true';
+            const content = document.getElementById('content');
+            const restricted = document.getElementById('restricted');
+            const navMenu = document.getElementById('nav-menu');
+
+            if (isAuthenticated) {
+                content.style.display = 'block';
+                restricted.style.display = 'none';
+                navMenu.innerHTML = `
+                    <a href="../index.html" class="nav-link">Главная</a>
+                    <a href="../intro.html" class="nav-link">Введение</a>
+                    <a href="../languages.html" class="nav-link">Языки</a>
+                    <a href="../tutorials.html" class="nav-link">Уроки</a>
+                    <a href="../resources.html" class="nav-link">Ресурсы</a>
+                    <a href="#" class="nav-link" onclick="logout()">Выход</a>
+                `;
+            } else {
+                content.style.display = 'none';
+                restricted.style.display = 'block';
+            }
+        }
+
+        function logout() {
+            localStorage.removeItem('isAuthenticated');
+            window.location.href = '../index.html';
+        }
+
+        async function runCode(code, outputElement, fixSuggestionElement, fixTextElement) {
+            if (!localStorage.getItem('isAuthenticated')) {
+                outputElement.textContent = 'Пожалуйста, войдите, чтобы использовать редактор кода.';
+                return;
+            }
+
+            if (!pyodide) {
+                outputElement.textContent = 'Pyodide ещё загружается, попробуйте снова через несколько секунд.';
+                return;
+            }
+
+            outputElement.textContent = ''; // Clear previous output
+            fixSuggestionElement.style.display = 'none'; // Hide previous fix
+
+            // Redirect console output
+            let output = '';
+            pyodide.globals.set('print', (...args) => {
+                output += args.join(' ') + '\n';
+            });
+
+            try {
+                await pyodide.runPythonAsync(`
+import sys
+import io
+sys.stdout = io.StringIO()
+${code}
+sys.stdout.getvalue()
+                `);
+                outputElement.textContent = output || 'Код выполнен, но вывода нет.';
+            } catch (error) {
+                console.error('Python Error:', error);
+                outputElement.textContent = `Ошибка: ${error.message}`;
+                const sanitizedMessage = error.message.replace(/sensitiveInfo|apiKey|token/gi, '***');
+
+                try {
+                    const response = await fetch('https://your-server.com/fix-error', {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify({
+                            errorMessage: sanitizedMessage,
+                            isAuthenticated: localStorage.getItem('isAuthenticated') === 'true',
+                        }),
+                    });
+                    const data = await response.json();
+                    if (data.fix) {
+                        fixTextElement.textContent = data.fix;
+                        fixSuggestionElement.style.display = 'block';
+                    } else {
+                        fixTextElement.textContent = 'Не удалось получить исправление.';
+                        fixSuggestionElement.style.display = 'block';
+                    }
+                } catch (apiError) {
+                    console.error('Failed to get fix from server:', apiError);
+                    fixTextElement.textContent = 'Ошибка связи с сервером.';
+                    fixSuggestionElement.style.display = 'block';
+                }
+            }
+        }
+
+        // Attach event listener to run code button
+        document.getElementById('run-code-1').addEventListener('click', () => {
+            const code = document.getElementById('code-editor-1').value;
+            runCode(
+                code,
+                document.getElementById('output-1'),
+                document.getElementById('fix-suggestion-1'),
+                document.getElementById('fix-text-1')
+            );
+        });
+
+        // Check authentication on page load
+        window.onload = checkAuth;
+    </script>
+</body>
+</html>

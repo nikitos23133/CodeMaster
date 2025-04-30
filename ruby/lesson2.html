@@ -1,0 +1,389 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Урок 2: Переменные, типы данных и операторы - Ruby - CodeMaster</title>
+    <link rel="stylesheet" href="../styles.css">
+    <style>
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 40px 20px;
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+        h1 {
+            color: #333;
+            font-size: 2.5em;
+            margin-bottom: 20px;
+            text-align: center;
+            border-bottom: 2px solid #8a9635;
+            padding-bottom: 10px;
+        }
+        h2 {
+            color: #8a9635;
+            font-size: 1.8em;
+            margin: 30px 0 15px;
+        }
+        h3 {
+            color: #555;
+            font-size: 1.5em;
+            margin: 20px 0 10px;
+        }
+        p {
+            line-height: 1.6;
+            font-size: 1.1em;
+            color: #555;
+            margin-bottom: 15px;
+        }
+        p a, li a {
+            color: #8a9635;
+            text-decoration: none;
+            font-weight: 500;
+        }
+        p a:hover, li a:hover {
+            text-decoration: underline;
+        }
+        pre {
+            background-color: #f5f5f5;
+            padding: 15px;
+            border-radius: 5px;
+            overflow-x: auto;
+            margin: 15px 0;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+        }
+        code {
+            font-family: 'Courier New', Courier, monospace;
+            color: #333;
+        }
+        ul, ol {
+            margin-bottom: 15px;
+            padding-left: 20px;
+        }
+        li {
+            line-height: 1.6;
+            font-size: 1.1em;
+            color: #555;
+        }
+        @media (max-width: 768px) {
+            .container {
+                padding: 20px 15px;
+            }
+            h1 {
+                font-size: 2em;
+            }
+            h2 {
+                font-size: 1.5em;
+            }
+            h3 {
+                font-size: 1.3em;
+            }
+            p, li {
+                font-size: 1em;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container container-header-container">
+            <a href="../index.html" class="logo">
+                <img src="../logo.png" alt="CodeMaster Logo" class="logo-img">
+                <span class="logo-text">CodeMaster</span>
+            </a>
+            <nav class="nav-menu">
+                <a href="../index.html" class="nav-link">Главная</a>
+                <a href="../intro.html" class="nav-link">Введение</a>
+                <a href="../languages.html" class="nav-link">Языки</a>
+                <a href="../tutorials.html" class="nav-link">Уроки</a>
+                <a href="../resources.html" class="nav-link">Ресурсы</a>
+                <a href="../login.html" class="nav-link">Вход</a>
+                <a href="#" class="nav-link" onclick="logout()">Выход</a>
+            </nav>
+        </div>
+    </header>
+
+    <section class="container">
+        <h1>Урок 2: Переменные, типы данных и операторы - Ruby</h1>
+
+        <h2>Введение</h2>
+        <p>Ruby — это динамически типизированный язык, в котором переменные не требуют явного объявления типов. В этом уроке вы изучите переменные, основные типы данных и операторы в Ruby, которые позволяют выполнять вычисления и манипуляции с данными.</p>
+
+        <h2>Переменные</h2>
+        <p>В Ruby переменные создаются простым присваиванием значения. Тип данных определяется автоматически.</p>
+        <pre>
+name = "Алиса"
+age = 25
+puts "Имя: #{name}, Возраст: #{age}"
+        </pre>
+        <p>В этом примере переменные <code>name</code> (строка) и <code>age</code> (целое число) используются для вывода текста.</p>
+
+        <h2>Типы данных</h2>
+        <p>Ruby поддерживает несколько основных типов данных:</p>
+        <ul>
+            <li><code>Integer</code>: Целые числа (например, <code>42</code>).</li>
+            <li><code>Float</code>: Числа с плавающей точкой (например, <code>3.14</code>).</li>
+            <li><code>String</code>: Строки (например, <code>"Hello"</code>).</li>
+            <li><code>Boolean</code>: Логические значения (<code>true</code>, <code>false</code>).</li>
+            <li><code>Array</code>: Массивы (например, <code>[1, 2, 3]</code>).</li>
+            <li><code>Hash</code>: Ассоциативные массивы (например, <code>{ name: "Алиса", age: 25 }</code>).</li>
+        </ul>
+        <pre>
+number = 42
+pi = 3.14
+greeting = "Привет!"
+is_active = true
+numbers = [1, 2, 3]
+person = { name: "Боб", age: 30 }
+
+puts number, pi, greeting, is_active, numbers, person
+        </pre>
+
+        <h2>Операторы</h2>
+        <p>Операторы в Ruby позволяют выполнять вычисления и сравнения.</p>
+
+        <h3>Арифметические операторы</h3>
+        <pre>
+a = 10
+b = 3
+puts a + b  # 13
+puts a - b  # 7
+puts a * b  # 30
+puts a / b  # 3
+puts a % b  # 1
+puts a ** 2 # 100
+        </pre>
+
+        <h3>Операторы сравнения</h3>
+        <pre>
+x = 5
+y = 3
+puts x == y  # false
+puts x != y  # true
+puts x > y   # true
+puts x <= y  # false
+        </pre>
+
+        <h3>Логические операторы</h3>
+        <pre>
+is_adult = true
+has_ticket = false
+puts is_adult && has_ticket  # false
+puts is_adult || has_ticket  # true
+puts !is_adult               # false
+        </pre>
+
+        <h2>Практика</h2>
+        <p>1. Создайте программу, которая объявляет переменные для имени, возраста и города, и выводит их.</p>
+        <p>2. Напишите программу, выполняющую арифметические операции с двумя числами (сложение, деление).</p>
+        <p>3. Создайте массив чисел и выведите его элементы.</p>
+        <p>4. Напишите программу, использующую хэш для хранения данных о человеке и выводящую их.</p>
+        <p>5. Проверьте, является ли число положительным, используя операторы сравнения.</p>
+    <!-- Добавьте этот код в раздел "Практика" перед закрывающим </section> -->
+
+<h2>Интерактивный терминал Ruby (демо)</h2>
+<div class="terminal">
+    <div class="terminal-header">
+        <div class="terminal-controls">
+            <span class="terminal-circle red"></span>
+            <span class="terminal-circle yellow"></span>
+            <span class="terminal-circle green"></span>
+        </div>
+        <span class="terminal-title">IRB - Interactive Ruby</span>
+    </div>
+    <div class="terminal-body" id="terminal-output">
+        <div class="terminal-line">Добро пожаловать в CodeMaster Ruby терминал!</div>
+        <div class="terminal-line">Введите код и нажмите "Выполнить".</div>
+        <div class="terminal-line">Пример: puts "Hello World"</div>
+    </div>
+    <div class="terminal-input">
+        <textarea id="code-input" rows="4" placeholder="Введите ваш Ruby код здесь..."></textarea>
+        <button onclick="executeRubyCode()">Выполнить</button>
+    </div>
+</div>
+
+<style>
+    .terminal {
+        background: #1e1e1e;
+        border-radius: 5px;
+        margin: 20px 0;
+        color: #fff;
+        font-family: 'Courier New', monospace;
+    }
+    
+    .terminal-header {
+        padding: 10px;
+        background: #323233;
+        border-radius: 5px 5px 0 0;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+    }
+    
+    .terminal-controls {
+        display: flex;
+        gap: 5px;
+    }
+    
+    .terminal-circle {
+        width: 12px;
+        height: 12px;
+        border-radius: 50%;
+    }
+    
+    .red { background: #ff5f56; }
+    .yellow { background: #ffbd2e; }
+    .green { background: #27c93f; }
+    
+    .terminal-title {
+        color: #aaa;
+        font-size: 0.9em;
+    }
+    
+    .terminal-body {
+        padding: 15px;
+        min-height: 100px;
+        max-height: 300px;
+        overflow-y: auto;
+    }
+    
+    .terminal-line {
+        white-space: pre-wrap;
+        margin: 5px 0;
+        color: #d4d4d4;
+    }
+    
+    .terminal-input {
+        border-top: 1px solid #333;
+        padding: 10px;
+    }
+    
+    #code-input {
+        width: 100%;
+        background: #252526;
+        border: none;
+        color: #fff;
+        padding: 10px;
+        margin-bottom: 10px;
+        resize: vertical;
+        font-family: 'Courier New', monospace;
+    }
+    
+    .terminal-input button {
+        background: #8a9635;
+        color: white;
+        border: none;
+        padding: 8px 20px;
+        border-radius: 3px;
+        cursor: pointer;
+    }
+    
+    .terminal-input button:hover {
+        background: #6e7a25;
+    }
+    
+    .irb-prompt {
+        color: #8a9635;
+    }
+    
+    .irb-output {
+        color: #d4d4d4;
+    }
+</style>
+
+<script>
+function executeRubyCode() {
+    const codeInput = document.getElementById('code-input').value;
+    const outputDiv = document.getElementById('terminal-output');
+    
+    // Очистка предыдущего вывода
+    outputDiv.innerHTML = '';
+    
+    // Эмуляция выполнения кода
+    const addOutput = (text, isPrompt = false) => {
+        const line = document.createElement('div');
+        line.className = isPrompt ? 'terminal-line irb-prompt' : 'terminal-line irb-output';
+        line.textContent = text;
+        outputDiv.appendChild(line);
+    };
+
+    try {
+        // Добавляем приглашение IRB
+        addOutput('irb(main):001:0> ' + codeInput, true);
+        
+        // Примеры для демонстрации
+        if (codeInput.includes('puts "Hello, World!"')) {
+            addOutput('Hello, World!');
+            addOutput('=> nil');
+        }
+        else if (codeInput.includes('name = "Программист"')) {
+            addOutput('=> "Программист"');
+        }
+        else if (codeInput.includes('puts "Привет, #{name}!"')) {
+            addOutput('Привет, Программист!');
+            addOutput('=> nil');
+        }
+        else if (codeInput.includes('a = 10') && codeInput.includes('b = 5') && codeInput.includes('sum = a + b')) {
+            addOutput('=> 15');
+        }
+        else if (codeInput.includes('print "Введите ваше имя: "') || codeInput.includes('name = gets.chomp')) {
+            addOutput('Введите ваше имя: Алексей');
+            addOutput('Привет, Алексей!');
+            addOutput('=> nil');
+        }
+        else if (codeInput.includes('ruby -v')) {
+            addOutput('ruby 3.2.2 (2023-03-30 revision e51014f9c0) [x86_64-linux]');
+        }
+        else {
+            addOutput('(Вывод эмуляции IRB)');
+            addOutput('=> nil');
+        }
+    } catch (error) {
+        addOutput(`Ошибка: ${error.message}`);
+    }
+    
+    // Прокрутка к последнему выводу
+    outputDiv.scrollTop = outputDiv.scrollHeight;
+}
+</script>
+<div class="lesson-navigation">
+    <a href="lesson1.html" class="nav-button">← Предыдущий урок</a>
+    <a href="lesson3.html" class="nav-button">Следующий урок →</a>
+</div>
+
+<style>
+    .lesson-navigation {
+        display: flex;
+        justify-content: space-between;
+        margin-top: 40px;
+        padding-top: 20px;
+        border-top: 1px solid #eee;
+    }
+    
+    .nav-button {
+        background-color: #8a9635;
+        color: white;
+        padding: 10px 20px;
+        border-radius: 5px;
+        text-decoration: none;
+        font-weight: bold;
+        transition: background-color 0.3s;
+    }
+    
+    .nav-button:hover {
+        background-color: #6e7a25;
+    }
+</style>
+</section>
+
+    <footer>
+        <div class="container footer-bottom">
+            <p>© 2023 <a href="https://nikitos23133.github.io">CodeMaster</a>. Все права защищены.</p>
+        </div>
+    </footer>
+
+    <script src="../script.js"></script>
+</body>
+</html>

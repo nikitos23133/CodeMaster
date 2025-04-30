@@ -1,0 +1,401 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Урок 2: Переменные и типы данных в Python - CodeMaster</title>
+    <link rel="stylesheet" href="../styles.css">
+    <script src="https://cdn.jsdelivr.net/pyodide/v0.23.4/full/pyodide.js"></script>
+    <style>
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 40px 20px;
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+        h1 {
+            color: #333;
+            font-size: 2.5em;
+            margin-bottom: 20px;
+            text-align: center;
+            border-bottom: 2px solid #8a9635;
+            padding-bottom: 10px;
+        }
+        h2 {
+            color: #8a9635;
+            font-size: 1.8em;
+            margin: 30px 0 15px;
+        }
+        h3 {
+            color: #555;
+            font-size: 1.5em;
+            margin: 20px 0 10px;
+        }
+        p {
+            line-height: 1.6;
+            font-size: 1.1em;
+            color: #555;
+            margin-bottom: 15px;
+        }
+        p a, li a {
+            color: #8a9635;
+            text-decoration: none;
+            font-weight: 500;
+        }
+        p a:hover, li a:hover {
+            text-decoration: underline;
+        }
+        pre {
+            background-color: #f5f5f5;
+            padding: 15px;
+            border-radius: 5px;
+            overflow-x: auto;
+            margin: 15px 0;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+        }
+        code {
+            font-family: 'Courier New', Courier, monospace;
+            color: #333;
+        }
+        ul {
+            margin-bottom: 15px;
+            padding-left: 20px;
+        }
+        li {
+            line-height: 1.6;
+            font-size: 1.1em;
+            color: #555;
+        }
+        .code-editor {
+            width: 100%;
+            height: 200px;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-family: monospace;
+            font-size: 16px;
+            resize: vertical;
+            box-sizing: border-box;
+        }
+        .output, .fix-suggestion {
+            margin-top: 20px;
+            padding: 10px;
+            border: 1px solid #eee;
+            border-radius: 5px;
+            background-color: #f5f5f5;
+            min-height: 50px;
+            white-space: pre-wrap;
+            word-wrap: break-word;
+        }
+        .fix-suggestion h3 {
+            margin: 0 0 10px;
+            color: #8a9635;
+        }
+        @media (max-width: 768px) {
+            .container {
+                padding: 20px 15px;
+            }
+            h1 {
+                font-size: 2em;
+            }
+            h2 {
+                font-size: 1.5em;
+            }
+            h3 {
+                font-size: 1.3em;
+            }
+            p, li {
+                font-size: 1em;
+            }
+            .code-editor {
+                height: 150px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container container-header-container">
+            <a href="../index.html" class="logo">
+                <img src="../logo.png" alt="CodeMaster Logo" class="logo-img">
+                <span class="logo-text">CodeMaster</span>
+            </a>
+            <nav class="nav-menu" id="nav-menu">
+                <a href="../index.html" class="nav-link">Главная</a>
+                <a href="../intro.html" class="nav-link">Введение</a>
+                <a href="../languages.html" class="nav-link">Языки</a>
+                <a href="../tutorials.html" class="nav-link">Уроки</a>
+                <a href="../resources.html" class="nav-link">Ресурсы</a>
+                <a href="../register.html" class="nav-link">Регистрация</a>
+                <a href="../login.html" class="nav-link">Вход</a>    
+                <a href="#" class="nav-link" onclick="logout()">Выход</a>
+                     
+            </nav>
+        </div>
+    </header>
+
+    <div id="content" style="display: none;">
+        <section class="container">
+            <h1>Урок 2: Переменные и типы данных в Python</h1>
+
+            <h2>Что такое переменные?</h2>
+            <p>Переменные в Python — это имена, которые используются для хранения данных. Они создаются при присвоении значения с помощью знака <code>=</code>. В Python не нужно заранее объявлять тип переменной, так как он определяется автоматически.</p>
+            <p>Пример создания переменных:</p>
+            <pre><code>
+x = 5
+y = "Привет"
+z = 3.14
+print(x, y, z)
+            </code></pre>
+            <p>Имена переменных могут содержать буквы, цифры и символ подчеркивания (_), но не могут начинаться с цифры. Например, <code>my_var</code> — допустимое имя, а <code>2var</code> — нет.</p>
+
+            <h2>Основные типы данных</h2>
+            <p>Python поддерживает множество типов данных. В этом уроке мы рассмотрим наиболее распространенные:</p>
+
+            <h3>Целые числа (int)</h3>
+            <p>Целые числа — это числа без дробной части, положительные или отрицательные.</p>
+            <pre><code>
+x = 5
+y = -10
+print(x, y)  # Вывод: 5 -10
+            </code></pre>
+
+            <h3>Вещественные числа (float)</h3>
+            <p>Вещественные числа содержат дробную часть.</p>
+            <pre><code>
+x = 3.14
+y = -0.5
+print(x, y)  # Вывод: 3.14 -0.5
+            </code></pre>
+
+            <h3>Строки (str)</h3>
+            <p>Строки — это последовательности символов, заключенные в одинарные или двойные кавычки.</p>
+            <pre><code>
+name = "Алиса"
+message = 'Привет, мир!'
+print(name, message)  # Вывод: Алиса Привет, мир!
+            </code></pre>
+
+            <h3>Булевы значения (bool)</h3>
+            <p>Булевы значения представляют логические значения: <code>True</code> или <code>False</code>.</p>
+            <pre><code>
+is_student = True
+has_pet = False
+print(is_student, has_pet)  # Вывод: True False
+            </code></pre>
+
+            <h3>Списки (list)</h3>
+            <p>Списки — это упорядоченные изменяемые коллекции элементов, которые могут быть разных типов.</p>
+            <pre><code>
+numbers = [1, 2, 3, 4]
+fruits = ["яблоко", "банан", "вишня"]
+print(numbers, fruits)  # Вывод: [1, 2, 3, 4] ['яблоко', 'банан', 'вишня']
+            </code></pre>
+
+            <h3>Словари (dict)</h3>
+            <p>Словари — это неупорядоченные коллекции пар ключ-значение, где ключи уникальны.</p>
+            <pre><code>
+person = {"name": "Алиса", "age": 25, "city": "Страна чудес"}
+print(person)  # Вывод: {'name': 'Алиса', 'age': 25, 'city': 'Страна чудес'}
+            </code></pre>
+
+            <h2>Определение типа данных</h2>
+            <p>Функция <code>type()</code> позволяет узнать тип переменной.</p>
+            <pre><code>
+x = 5
+print(type(x))  # Вывод: <class 'int'>
+y = "Привет"
+print(type(y))  # Вывод: <class 'str'>
+            </code></pre>
+
+            <h2>Практика</h2>
+            <p>Попробуйте выполнить следующие задания в редакторе кода ниже:</p>
+            <ol>
+                <li>Создайте переменные для хранения вашего имени, возраста и роста.</li>
+                <li>Создайте список из трех ваших любимых блюд.</li>
+                <li>Создайте словарь с информацией о книге (название, автор, год издания).</li>
+                <li>Используйте <code>type()</code>, чтобы проверить типы созданных переменных.</li>
+            </ol>
+            <p>Введите код в редактор, нажмите "Запустить код" и проверьте результат. Если возникнет ошибка, наш AI-помощник предложит исправление.</p>
+            <textarea id="code-editor-1" class="code-editor">
+# Пример для заданий
+name = "Ваше_имя"
+age = 25
+height = 1.75
+foods = ["пицца", "суши", "борщ"]
+book = {"title": "Название книги", "author": "Автор", "year": 2020}
+print("Имя:", name, "Тип:", type(name))
+print("Возраст:", age, "Тип:", type(age))
+print("Рост:", height, "Тип:", type(height))
+print("Любимые блюда:", foods, "Тип:", type(foods))
+print("Книга:", book, "Тип:", type(book))
+            </textarea>
+            <button id="run-code-1" class="btn btn-hero-primary" style="margin: 10px 0;">Запустить код</button>
+            <div id="output-1" class="output"></div>
+            <div id="fix-suggestion-1" class="fix-suggestion" style="display: none;">
+                <h3>Предложенное исправление:</h3>
+                <p id="fix-text-1"></p>
+            </div>
+            <p>Попробуйте изменить значения переменных (например, ваше имя, другие блюда) или добавить новые, затем запустите код снова.</p>
+        </script>
+        <div class="lesson-navigation">
+            <a href="lesson1.html" class="nav-button">Предыдущий урок</a>
+            <a href="lesson3.html" class="nav-button">Следующий урок</a>
+        </div>
+        
+        <style>
+            .lesson-navigation {
+                display: flex;
+                justify-content: space-between;
+                margin-top: 40px;
+                padding-top: 20px;
+                border-top: 1px solid #eee;
+            }
+            
+            .nav-button {
+                background-color: #8a9635;
+                color: white;
+                padding: 10px 20px;
+                border-radius: 5px;
+                text-decoration: none;
+                font-weight: bold;
+                transition: background-color 0.3s;
+            }
+            
+            .nav-button:hover {
+                background-color: #6e7a25;
+            }
+        </style>
+        </section>
+    </div>
+
+    <div id="restricted" style="display: none; text-align: center; padding: 80px 20px;">
+        <div class="container">
+            <h1>Доступ ограничен</h1>
+            <p>Пожалуйста, зарегистрируйтесь или войдите, чтобы получить доступ к содержимому сайта.</p>
+            <div class="hero-buttons">
+                <a href="../register.html" class="btn btn-hero-primary">Регистрация</a>
+                <a href="../login.html" class="btn btn-hero-secondary">Вход</a>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <div class="container footer-bottom">
+            <p>© 2025 <a href="https://nikitos23133.github.io">CodeMaster</a>. Все права защищены.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Initialize Pyodide
+        let pyodide;
+        async function loadPyodideAndRun() {
+            pyodide = await loadPyodide();
+        }
+        loadPyodideAndRun();
+
+        function checkAuth() {
+            const isAuthenticated = localStorage.getItem('isAuthenticated') === 'true';
+            const content = document.getElementById('content');
+            const restricted = document.getElementById('restricted');
+            const navMenu = document.getElementById('nav-menu');
+
+            if (isAuthenticated) {
+                content.style.display = 'block';
+                restricted.style.display = 'none';
+                navMenu.innerHTML = `
+                    <a href="../index.html" class="nav-link">Главная</a>
+                    <a href="../intro.html" class="nav-link">Введение</a>
+                    <a href="../languages.html" class="nav-link">Языки</a>
+                    <a href="../tutorials.html" class="nav-link">Уроки</a>
+                    <a href="../resources.html" class="nav-link">Ресурсы</a>
+                    <a href="#" class="nav-link" onclick="logout()">Выход</a>
+                `;
+            } else {
+                content.style.display = 'none';
+                restricted.style.display = 'block';
+            }
+        }
+
+        function logout() {
+            localStorage.removeItem('isAuthenticated');
+            window.location.href = '../index.html';
+        }
+
+        async function runCode(code, outputElement, fixSuggestionElement, fixTextElement) {
+            if (!localStorage.getItem('isAuthenticated')) {
+                outputElement.textContent = 'Пожалуйста, войдите, чтобы использовать редактор кода.';
+                return;
+            }
+
+            if (!pyodide) {
+                outputElement.textContent = 'Pyodide ещё загружается, попробуйте снова через несколько секунд.';
+                return;
+            }
+
+            outputElement.textContent = ''; // Clear previous output
+            fixSuggestionElement.style.display = 'none'; // Hide previous fix
+
+            // Redirect console output
+            let output = '';
+            pyodide.globals.set('print', (...args) => {
+                output += args.join(' ') + '\n';
+            });
+
+            try {
+                await pyodide.runPythonAsync(`
+import sys
+import io
+sys.stdout = io.StringIO()
+${code}
+sys.stdout.getvalue()
+                `);
+                outputElement.textContent = output || 'Код выполнен, но вывода нет.';
+            } catch (error) {
+                console.error('Python Error:', error);
+                outputElement.textContent = `Ошибка: ${error.message}`;
+                const sanitizedMessage = error.message.replace(/sensitiveInfo|apiKey|token/gi, '***');
+
+                try {
+                    const response = await fetch('https://your-server.com/fix-error', {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify({
+                            errorMessage: sanitizedMessage,
+                            isAuthenticated: localStorage.getItem('isAuthenticated') === 'true',
+                        }),
+                    });
+                    const data = await response.json();
+                    if (data.fix) {
+                        fixTextElement.textContent = data.fix;
+                        fixSuggestionElement.style.display = 'block';
+                    } else {
+                        fixTextElement.textContent = 'Не удалось получить исправление.';
+                        fixSuggestionElement.style.display = 'block';
+                    }
+                } catch (apiError) {
+                    console.error('Failed to get fix from server:', apiError);
+                    fixTextElement.textContent = 'Ошибка связи с сервером.';
+                    fixSuggestionElement.style.display = 'block';
+                }
+            }
+        }
+
+        // Attach event listener to run code button
+        document.getElementById('run-code-1').addEventListener('click', () => {
+            const code = document.getElementById('code-editor-1').value;
+            runCode(
+                code,
+                document.getElementById('output-1'),
+                document.getElementById('fix-suggestion-1'),
+                document.getElementById('fix-text-1')
+            );
+        });
+
+        // Check authentication on page load
+        window.onload = checkAuth;
+    </script>
+</body>
+</html>

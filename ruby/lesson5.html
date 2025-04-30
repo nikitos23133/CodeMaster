@@ -1,0 +1,472 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Урок 5: Модули и классы - Ruby - CodeMaster</title>
+    <link rel="stylesheet" href="../styles.css">
+    <style>
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 40px 20px;
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+        h1 {
+            color: #333;
+            font-size: 2.5em;
+            margin-bottom: 20px;
+            text-align: center;
+            border-bottom: 2px solid #8a9635;
+            padding-bottom: 10px;
+        }
+        h2 {
+            color: #8a9635;
+            font-size: 1.8em;
+            margin: 30px 0 15px;
+        }
+        h3 {
+            color: #555;
+            font-size: 1.5em;
+            margin: 20px 0 10px;
+        }
+        p {
+            line-height: 1.6;
+            font-size: 1.1em;
+            color: #555;
+            margin-bottom: 15px;
+        }
+        p a, li a {
+            color: #8a9635;
+            text-decoration: none;
+            font-weight: 500;
+        }
+        p a:hover, li a:hover {
+            text-decoration: underline;
+        }
+        pre {
+            background-color: #f5f5f5;
+            padding: 15px;
+            border-radius: 5px;
+            overflow-x: auto;
+            margin: 15px 0;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+        }
+        code {
+            font-family: 'Courier New', Courier, monospace;
+            color: #333;
+        }
+        ul, ol {
+            margin-bottom: 15px;
+            padding-left: 20px;
+        }
+        li {
+            line-height: 1.6;
+            font-size: 1.1em;
+            color: #555;
+        }
+        @media (max-width: 768px) {
+            .container {
+                padding: 20px 15px;
+            }
+            h1 {
+                font-size: 2em;
+            }
+            h2 {
+                font-size: 1.5em;
+            }
+            h3 {
+                font-size: 1.3em;
+            }
+            p, li {
+                font-size: 1em;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container container-header-container">
+            <a href="../index.html" class="logo">
+                <img src="../logo.png" alt="CodeMaster Logo" class="logo-img">
+                <span class="logo-text">CodeMaster</span>
+            </a>
+            <nav class="nav-menu">
+                <a href="../index.html" class="nav-link">Главная</a>
+                <a href="../intro.html" class="nav-link">Введение</a>
+                <a href="../languages.html" class="nav-link">Языки</a>
+                <a href="../tutorials.html" class="nav-link">Уроки</a>
+                <a href="../resources.html" class="nav-link">Ресурсы</a>
+                <a href="../login.html" class="nav-link">Вход</a>
+                <a href="#" class="nav-link" onclick="logout()">Выход</a>
+            </nav>
+        </div>
+    </header>
+
+    <section class="container">
+        <h1>Урок 5: Модули и классы - Ruby</h1>
+
+        <h2>Введение</h2>
+        <p>Модули и классы в Ruby позволяют организовывать код и реализовывать объектно-ориентированное программирование (ООП). Модули группируют методы и константы для повторного использования, а классы определяют объекты с данными и поведением. В этом уроке вы научитесь создавать модули для общей функциональности и классы для моделирования сущностей, таких как студенты или книги.</p>
+
+        <h2>Работа с модулями</h2>
+        <p>Модули используются для группировки методов или как примеси (mixins) для добавления функциональности в классы. Создайте файл <code>modules.rb</code> с кодом:</p>
+        <pre>
+module Greeter
+  def greet
+    "Привет, #{self.name}!"
+  end
+end
+
+class Person
+  include Greeter
+  attr_accessor :name
+
+  def initialize(name)
+    @name = name
+  end
+end
+
+person = Person.new("Алексей")
+puts person.name      # Вывод: Алексей
+puts person.greet     # Вывод: Привет, Алексей!
+        </pre>
+        <p>Разберём код:</p>
+        <ul>
+            <li><code>module Greeter</code>: Определение модуля с методом <code>greet</code>.</li>
+            <li><code>include Greeter</code>: Включение модуля в класс, добавляя его методы.</li>
+            <li><code>attr_accessor :name</code>: Создание геттера и сеттера для атрибута <code>name</code>.</li>
+            <li><code>initialize</code>: Конструктор для инициализации объекта.</li>
+        </ul>
+        <p>Модули также могут содержать константы:</p>
+        <pre>
+module Constants
+  PI = 3.14159
+end
+
+puts Constants::PI    # Вывод: 3.14159
+        </pre>
+
+        <h2>Работа с классами</h2>
+        <p>Классы определяют шаблон для объектов. Попробуйте код в <code>classes.rb</code>:</p>
+        <pre>
+class Student
+  attr_accessor :name, :grades
+
+  def initialize(name, grades)
+    @name = name
+    @grades = grades
+  end
+
+  def average_grade
+    @grades.sum / @grades.length.to_f
+  end
+end
+
+student = Student.new("Мария", [85, 90, 78])
+puts student.name           # Вывод: Мария
+puts student.average_grade  # Вывод: 84.33333333333333
+student.grades << 95
+puts student.grades         # Вывод: [85, 90, 78, 95]
+        </pre>
+        <p>Разберём код:</p>
+        <ul>
+            <li><code>class Student</code>: Определение класса.</li>
+            <li><code>attr_accessor</code>: Автоматическое создание методов для чтения/записи атрибутов.</li>
+            <li><code>initialize</code>: Инициализация объекта с именем и оценками.</li>
+            <li><code>average_grade</code>: Метод для вычисления среднего балла.</li>
+        </ul>
+
+        <h2>Запуск кода</h2>
+        <p>Для выполнения кода:</p>
+        <ol>
+            <li>Создайте файл (<code>modules.rb</code> или <code>classes.rb</code>).</li>
+            <li>Откройте терминал в папке с файлом.</li>
+            <li>Выполните:
+                <pre>
+ruby modules.rb
+                </pre>
+            </li>
+            <li>Или используйте IRB для тестирования:
+                <pre>
+irb
+                </pre>
+                Скопируйте код и проверьте вывод.
+            </li>
+        </ol>
+        <p>Убедитесь, что Ruby установлен (<code>ruby -v</code>).</p>
+
+        <h2>Практика</h2>
+        <p>Выполните следующие задания для закрепления:</p>
+        <ol>
+            <li>Создайте модуль <code>MathUtils</code> с методом для вычисления квадрата числа. Используйте его в классе.</li>
+            <li>Создайте класс <code>Book</code> с атрибутами <code>title</code> и <code>year</code>. Добавьте метод <code>description</code> для вывода информации о книге.</li>
+            <li>Создайте экземпляр <code>Book</code> и выведите его описание.</li>
+            <li>Создайте модуль <code>Speed</code> с методом <code>accelerate</code>, увеличивающим скорость. Включите его в класс <code>Car</code>.</li>
+            <li>Создайте класс <code>Team</code> с атрибутом <code>members</code> (массив имён) и методом для вывода их количества.</li>
+            <li>Напишите программу, использующую модуль и класс для моделирования сотрудника с именем и зарплатой, включая метод для повышения зарплаты.</li>
+            <li>Создайте класс <code>Rectangle</code> с атрибутами <code>width</code> и <code>height</code>. Добавьте метод <code>area</code> для вычисления площади.</li>
+        </ol>
+        <p>Подробности о модулях и классах читайте в <a href="https://ruby-doc.org/">документации Ruby</a>.</p>
+    <!-- Добавьте этот код в раздел "Практика" перед закрывающим </section> -->
+
+<h2>Интерактивный терминал Ruby (демо)</h2>
+<div class="terminal">
+    <div class="terminal-header">
+        <div class="terminal-controls">
+            <span class="terminal-circle red"></span>
+            <span class="terminal-circle yellow"></span>
+            <span class="terminal-circle green"></span>
+        </div>
+        <span class="terminal-title">IRB - Interactive Ruby</span>
+    </div>
+    <div class="terminal-body" id="terminal-output">
+        <div class="terminal-line">Добро пожаловать в CodeMaster Ruby терминал!</div>
+        <div class="terminal-line">Введите код и нажмите "Выполнить".</div>
+        <div class="terminal-line">Пример: puts "Hello World"</div>
+    </div>
+    <div class="terminal-input">
+        <textarea id="code-input" rows="4" placeholder="Введите ваш Ruby код здесь..."></textarea>
+        <button onclick="executeRubyCode()">Выполнить</button>
+    </div>
+</div>
+
+<style>
+    .terminal {
+        background: #1e1e1e;
+        border-radius: 5px;
+        margin: 20px 0;
+        color: #fff;
+        font-family: 'Courier New', monospace;
+    }
+    
+    .terminal-header {
+        padding: 10px;
+        background: #323233;
+        border-radius: 5px 5px 0 0;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+    }
+    
+    .terminal-controls {
+        display: flex;
+        gap: 5px;
+    }
+    
+    .terminal-circle {
+        width: 12px;
+        height: 12px;
+        border-radius: 50%;
+    }
+    
+    .red { background: #ff5f56; }
+    .yellow { background: #ffbd2e; }
+    .green { background: #27c93f; }
+    
+    .terminal-title {
+        color: #aaa;
+        font-size: 0.9em;
+    }
+    
+    .terminal-body {
+        padding: 15px;
+        min-height: 100px;
+        max-height: 300px;
+        overflow-y: auto;
+    }
+    
+    .terminal-line {
+        white-space: pre-wrap;
+        margin: 5px 0;
+        color: #d4d4d4;
+    }
+    
+    .terminal-input {
+        border-top: 1px solid #333;
+        padding: 10px;
+    }
+    
+    #code-input {
+        width: 100%;
+        background: #252526;
+        border: none;
+        color: #fff;
+        padding: 10px;
+        margin-bottom: 10px;
+        resize: vertical;
+        font-family: 'Courier New', monospace;
+    }
+    
+    .terminal-input button {
+        background: #8a9635;
+        color: white;
+        border: none;
+        padding: 8px 20px;
+        border-radius: 3px;
+        cursor: pointer;
+    }
+    
+    .terminal-input button:hover {
+        background: #6e7a25;
+    }
+    
+    .irb-prompt {
+        color: #8a9635;
+    }
+    
+    .irb-output {
+        color: #d4d4d4;
+    }
+</style>
+
+<script>
+function executeRubyCode() {
+    const codeInput = document.getElementById('code-input').value;
+    const outputDiv = document.getElementById('terminal-output');
+    
+    // Очистка предыдущего вывода
+    outputDiv.innerHTML = '';
+    
+    // Эмуляция выполнения кода
+    const addOutput = (text, isPrompt = false) => {
+        const line = document.createElement('div');
+        line.className = isPrompt ? 'terminal-line irb-prompt' : 'terminal-line irb-output';
+        line.textContent = text;
+        outputDiv.appendChild(line);
+    };
+
+    try {
+        // Добавляем приглашение IRB
+        addOutput('irb(main):001:0> ' + codeInput, true);
+        
+        // Примеры для демонстрации
+        if (codeInput.includes('puts "Hello, World!"')) {
+            addOutput('Hello, World!');
+            addOutput('=> nil');
+        }
+        else if (codeInput.includes('name = "Программист"')) {
+            addOutput('=> "Программист"');
+        }
+        else if (codeInput.includes('puts "Привет, #{name}!"')) {
+            addOutput('Привет, Программист!');
+            addOutput('=> nil');
+        }
+        else if (codeInput.includes('a = 10') && codeInput.includes('b = 5') && codeInput.includes('sum = a + b')) {
+            addOutput('=> 15');
+        }
+        else if (codeInput.includes('print "Введите ваше имя: "') || codeInput.includes('name = gets.chomp')) {
+            addOutput('Введите ваше имя: Алексей');
+            addOutput('Привет, Алексей!');
+            addOutput('=> nil');
+        }
+        else if (codeInput.includes('ruby -v')) {
+            addOutput('ruby 3.2.2 (2023-03-30 revision e51014f9c0) [x86_64-linux]');
+        }
+        else {
+            addOutput('(Вывод эмуляции IRB)');
+            addOutput('=> nil');
+        }
+    } catch (error) {
+        addOutput(`Ошибка: ${error.message}`);
+    }
+    
+    // Прокрутка к последнему выводу
+    outputDiv.scrollTop = outputDiv.scrollHeight;
+}
+</script>
+<div class="lesson-navigation">
+    <a href="lesson4.html" class="nav-button">Предыдущий урок</a>
+</div>
+
+<style>
+    .lesson-navigation {
+        display: flex;
+        justify-content: space-between;
+        margin: 50px 0 20px;
+        padding: 20px 0;
+        border-top: 1px solid #eaeaea;
+        border-bottom: 1px solid #eaeaea;
+    }
+    
+    .nav-button {
+        display: inline-flex;
+        align-items: center;
+        background-color: #8a9635;
+        color: white;
+        padding: 12px 20px;
+        border-radius: 6px;
+        text-decoration: none;
+        font-weight: 600;
+        transition: all 0.3s ease;
+        font-size: 0.95em;
+        max-width: 48%;
+        text-align: center;
+        box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    }
+    
+    .nav-button:hover {
+        background-color: #6e7a25;
+        transform: translateY(-2px);
+        box-shadow: 0 4px 8px rgba(0,0,0,0.15);
+    }
+    
+    .nav-button::before,
+    .nav-button::after {
+        content: "";
+        display: inline-block;
+        width: 8px;
+        height: 8px;
+        border: 2px solid white;
+        margin: 0 5px;
+    }
+    
+    .nav-button::before {
+        border-right: 0;
+        border-top: 0;
+        transform: rotate(45deg);
+    }
+    
+    .nav-button::after {
+        border-left: 0;
+        border-bottom: 0;
+        transform: rotate(45deg);
+    }
+    
+    .nav-button:first-child::before {
+        margin-right: 10px;
+    }
+    
+    .nav-button:last-child::after {
+        margin-left: 10px;
+    }
+
+    @media (max-width: 768px) {
+        .lesson-navigation {
+            flex-direction: column;
+            gap: 15px;
+        }
+        
+        .nav-button {
+            max-width: 100%;
+            justify-content: center;
+        }
+        
+        .nav-button:first-child {
+            margin-bottom: 10px;
+        }
+    }
+</style>      
+</section>
+
+    <footer>
+        <div class="container footer-bottom">
+            <p>© 2025 <a href="https://nikitos23133.github.io">CodeMaster</a>. Все права защищены.</p>
+        </div>
+    </footer>
+
+    <script src="../script.js"></script>
+</body>
+</html>

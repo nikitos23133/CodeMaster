@@ -1,0 +1,406 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Урок 2: Переменные, типы данных и операторы - CodeMaster</title>
+    <link rel="stylesheet" href="../styles.css">
+    <style>
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 40px 20px;
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+        h1 {
+            color: #333;
+            font-size: 2.5em;
+            margin-bottom: 20px;
+            text-align: center;
+            border-bottom: 2px solid #8a9635;
+            padding-bottom: 10px;
+        }
+        h2 {
+            color: #8a9635;
+            font-size: 1.8em;
+            margin: 30px 0 15px;
+        }
+        h3 {
+            color: #555;
+            font-size: 1.5em;
+            margin: 20px 0 10px;
+        }
+        p {
+            line-height: 1.6;
+            font-size: 1.1em;
+            color: #555;
+            margin-bottom: 15px;
+        }
+        p a, li a {
+            color: #8a9635;
+            text-decoration: none;
+            font-weight: 500;
+        }
+        p a:hover, li a:hover {
+            text-decoration: underline;
+        }
+        pre {
+            background-color: #f5f5f5;
+            padding: 15px;
+            border-radius: 5px;
+            overflow-x: auto;
+            margin: 15px 0;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+        }
+        code {
+            font-family: 'Courier New', Courier, monospace;
+            color: #333;
+        }
+        ul {
+            margin-bottom: 15px;
+            padding-left: 20px;
+        }
+        li {
+            line-height: 1.6;
+            font-size: 1.1em;
+            color: #555;
+        }
+        @media (max-width: 768px) {
+            .container {
+                padding: 20px 15px;
+            }
+            h1 {
+                font-size: 2em;
+            }
+            h2 {
+                font-size: 1.5em;
+            }
+            h3 {
+                font-size: 1.3em;
+            }
+            p, li {
+                font-size: 1em;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container container-header-container">
+            <a href="../index.html" class="logo">
+                <img src="../logo.png" alt="CodeMaster Logo" class="logo-img">
+                <span class="logo-text">CodeMaster</span>
+            </a>
+            <nav class="nav-menu">
+                <a href="../index.html" class="nav-link">Главная</a>
+                <a href="../intro.html" class="nav-link">Введение</a>
+                <a href="../languages.html" class="nav-link">Языки</a>
+                <a href="../tutorials.html" class="nav-link">Уроки</a>
+                <a href="../resources.html" class="nav-link">Ресурсы</a>
+                <a href="#" class="nav-link" onclick="logout()">Выход</a>
+            
+            </nav>
+        </div>
+    </header>
+
+    <section class="container">
+        <h1>Урок 2: Переменные, типы данных и операторы</h1>
+
+        <h2>Введение</h2>
+        <p>Переменные, типы данных и операторы — основа программирования на Java. Переменные хранят данные, типы данных определяют, какие значения могут быть использованы, а операторы позволяют выполнять операции. В этом уроке вы научитесь объявлять переменные, работать с типами данных и использовать операторы.</p>
+
+        <h2>Переменные</h2>
+        <p>В Java переменные объявляются с указанием типа данных. Они должны быть инициализированы перед использованием.</p>
+        <pre>
+public class Variables {
+    public static void main(String[] args) {
+        int age = 25;
+        String name = "Алиса";
+        System.out.println("Имя: " + name + ", Возраст: " + age);
+    }
+}
+        </pre>
+        <p>В этом примере объявлены переменные <code>age</code> (тип <code>int</code>) и <code>name</code> (тип <code>String</code>).</p>
+
+        <h2>Типы данных</h2>
+        <p>Java — строго типизированный язык, где каждая переменная имеет определённый тип. Основные типы данных делятся на примитивные и ссылочные.</p>
+        <h3>Примитивные типы</h3>
+        <ul>
+            <li><code>byte</code>: 8-битное целое число (-128 до 127).</li>
+            <li><code>short</code>: 16-битное целое число (-32,768 до 32,767).</li>
+            <li><code>int</code>: 32-битное целое число (-2^31 до 2^31-1).</li>
+            <li><code>long</code>: 64-битное целое число (добавьте <code>L</code>, например, <code>100L</code>).</li>
+            <li><code>float</code>: 32-битное число с плавающей точкой (добавьте <code>f</code>, например, <code>3.14f</code>).</li>
+            <li><code>double</code>: 64-битное число с плавающей точкой (например, <code>3.14</code>).</li>
+            <li><code>char</code>: 16-битный символ Unicode (например, <code>'A'</code>).</li>
+            <li><code>boolean</code>: Логическое значение (<code>true</code>, <code>false</code>).</li>
+        </ul>
+        <pre>
+public class DataTypes {
+    public static void main(String[] args) {
+        int number = 42;
+        double pi = 3.14;
+        char letter = 'A';
+        boolean isActive = true;
+        System.out.println(number + ", " + pi + ", " + letter + ", " + isActive);
+    }
+}
+        </pre>
+
+        <h3>Ссылочные типы</h3>
+        <p>Ссылочные типы включают классы, массивы и интерфейсы. Наиболее распространённый пример — <code>String</code>:</p>
+        <pre>
+String greeting = "Привет, Java!";
+System.out.println(greeting);
+        </pre>
+
+        <h2>Операторы</h2>
+        <p>Операторы позволяют выполнять операции с данными. Основные категории:</p>
+
+        <h3>Арифметические операторы</h3>
+        <p>Используются для математических вычислений:</p>
+        <pre>
+public class Arithmetic {
+    public static void main(String[] args) {
+        int a = 10;
+        int b = 3;
+        System.out.println(a + b); // 13
+        System.out.println(a - b); // 7
+        System.out.println(a * b); // 30
+        System.out.println(a / b); // 3
+        System.out.println(a % b); // 1
+    }
+}
+        </pre>
+
+        <h3>Операторы сравнения</h3>
+        <p>Сравнивают значения и возвращают <code>true</code> или <code>false</code>:</p>
+        <pre>
+public class Comparison {
+    public static void main(String[] args) {
+        int x = 5;
+        int y = 3;
+        System.out.println(x == y); // false
+        System.out.println(x != y); // true
+        System.out.println(x > y);  // true
+        System.out.println(x <= y); // false
+    }
+}
+        </pre>
+
+        <h3>Логические операторы</h3>
+        <p>Комбинируют условия:</p>
+        <pre>
+public class Logical {
+    public static void main(String[] args) {
+        boolean isAdult = true;
+        boolean hasTicket = false;
+        System.out.println(isAdult && hasTicket); // false
+        System.out.println(isAdult || hasTicket); // true
+        System.out.println(!isAdult);            // false
+    }
+}
+        </pre>
+
+        <h3>Операторы присваивания</h3>
+        <p>Присваивают значения:</p>
+        <pre>
+public class Assignment {
+    public static void main(String[] args) {
+        int x = 10;
+        x += 5; // x = x + 5
+        System.out.println(x); // 15
+        x *= 2; // x = x * 2
+        System.out.println(x); // 30
+    }
+}
+        </pre>
+
+        <h2>Практика</h2>
+        <p>1. Создайте программу, которая объявляет переменные для имени, возраста и роста, и выводит их.</p>
+        <p>2. Напишите программу, которая выполняет арифметические операции с двумя числами (сложение, умножение, деление).</p>
+        <p>3. Создайте программу, которая проверяет, является ли число чётным, используя оператор <code>%</code>.</p>
+        <p>4. Напишите программу, которая использует логические операторы для проверки, находится ли число в диапазоне от 1 до 100.</p>
+        <p>5. Объявите переменные разных примитивных типов и выведите их значения.</p>
+   <!-- Добавьте этот код в раздел "Попробуйте сами" перед закрывающим </section> -->
+
+<h2>Интерактивный терминал (демо)</h2>
+<div class="terminal">
+    <div class="terminal-header">
+        <div class="terminal-controls">
+            <span class="terminal-circle red"></span>
+            <span class="terminal-circle yellow"></span>
+            <span class="terminal-circle green"></span>
+        </div>
+    </div>
+    <div class="terminal-body" id="terminal-output">
+        <div class="terminal-line">Добро пожаловать в CodeMaster Java терминал!</div>
+        <div class="terminal-line">Введите код и нажмите "Выполнить".</div>
+        <div class="terminal-line">Пример: System.out.println("Hello World");</div>
+    </div>
+    <div class="terminal-input">
+        <textarea id="code-input" rows="4" placeholder="Введите ваш Java код здесь..."></textarea>
+        <button onclick="executeJavaCode()">Выполнить</button>
+    </div>
+</div>
+
+<style>
+    .terminal {
+        background: #1e1e1e;
+        border-radius: 5px;
+        margin: 20px 0;
+        color: #fff;
+        font-family: 'Courier New', monospace;
+    }
+    
+    .terminal-header {
+        padding: 10px;
+        background: #323233;
+        border-radius: 5px 5px 0 0;
+    }
+    
+    .terminal-controls {
+        display: flex;
+        gap: 5px;
+    }
+    
+    .terminal-circle {
+        width: 12px;
+        height: 12px;
+        border-radius: 50%;
+    }
+    
+    .red { background: #ff5f56; }
+    .yellow { background: #ffbd2e; }
+    .green { background: #27c93f; }
+    
+    .terminal-body {
+        padding: 15px;
+        min-height: 100px;
+        max-height: 300px;
+        overflow-y: auto;
+    }
+    
+    .terminal-line {
+        white-space: pre-wrap;
+        margin: 5px 0;
+        color: #d4d4d4;
+    }
+    
+    .terminal-input {
+        border-top: 1px solid #333;
+        padding: 10px;
+    }
+    
+    #code-input {
+        width: 100%;
+        background: #252526;
+        border: none;
+        color: #fff;
+        padding: 10px;
+        margin-bottom: 10px;
+        resize: vertical;
+    }
+    
+    .terminal-input button {
+        background: #8a9635;
+        color: white;
+        border: none;
+        padding: 8px 20px;
+        border-radius: 3px;
+        cursor: pointer;
+    }
+    
+    .terminal-input button:hover {
+        background: #6e7a25;
+    }
+</style>
+
+<script>
+function executeJavaCode() {
+    const codeInput = document.getElementById('code-input').value;
+    const outputDiv = document.getElementById('terminal-output');
+    
+    // Очистка предыдущего вывода
+    outputDiv.innerHTML = '';
+    
+    // Эмуляция выполнения кода
+    const addOutput = (text) => {
+        const line = document.createElement('div');
+        line.className = 'terminal-line';
+        line.textContent = text;
+        outputDiv.appendChild(line);
+    };
+
+    try {
+        // Примеры для демонстрации
+        if (codeInput.includes('System.out.println("Hello, World!")')) {
+            addOutput('Hello, World!');
+        }
+        else if (codeInput.includes('"Имя: " + name + ", Возраст: " + age')) {
+            addOutput('Имя: Боб, Возраст: 25');
+        }
+        else if (codeInput.includes('x + y')) {
+            addOutput('Сумма: 15.7');
+            addOutput('Разность: 5.3');
+            addOutput('Произведение: 54.6');
+        }
+        else if (codeInput.includes('javac -version')) {
+            addOutput('javac 17.0.5');
+        }
+        else if (codeInput.includes('boolean')) {
+            addOutput('true');
+        }
+        else {
+            addOutput('Результат выполнения:');
+            addOutput('(Для реального выполнения Java кода требуется установленный JDK)');
+        }
+    } catch (error) {
+        addOutput(`Ошибка: ${error.message}`);
+    }
+    
+    // Прокрутка к последнему выводу
+    outputDiv.scrollTop = outputDiv.scrollHeight;
+}
+</script>
+<div class="lesson-navigation">
+    <a href="lesson1.html" class="nav-button">← Предыдущий урок</a>
+    <a href="lesson3.html" class="nav-button">Следующий урок →</a>
+</div>
+
+<style>
+    .lesson-navigation {
+        display: flex;
+        justify-content: space-between;
+        margin-top: 40px;
+        padding-top: 20px;
+        border-top: 1px solid #eee;
+    }
+    
+    .nav-button {
+        background-color: #8a9635;
+        color: white;
+        padding: 10px 20px;
+        border-radius: 5px;
+        text-decoration: none;
+        font-weight: bold;
+        transition: background-color 0.3s;
+    }
+    
+    .nav-button:hover {
+        background-color: #6e7a25;
+    }
+</style>
+</section>
+
+    <footer>
+        <div class="container footer-bottom">
+            <p>© 2025 <a href="https://nikitos23133.github.io">CodeMaster</a>. Все права защищены.</p>
+        </div>
+    </footer>
+
+    <script src="../script.js"></script>
+</body>
+</html>

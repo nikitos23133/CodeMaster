@@ -1,0 +1,521 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Урок 5: Работа со списками и словарями - CodeMaster</title>
+    <link rel="stylesheet" href="../styles.css">
+    <script src="https://cdn.jsdelivr.net/pyodide/v0.23.4/full/pyodide.js"></script>
+    <style>
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 40px 20px;
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+        h1 {
+            color: #333;
+            font-size: 2.5em;
+            margin-bottom: 20px;
+            text-align: center;
+            border-bottom: 2px solid #8a9635;
+            padding-bottom: 10px;
+        }
+        h2 {
+            color: #8a9635;
+            font-size: 1.8em;
+            margin: 30px 0 15px;
+        }
+        h3 {
+            color: #555;
+            font-size: 1.5em;
+            margin: 20px 0 10px;
+        }
+        p {
+            line-height: 1.6;
+            font-size: 1.1em;
+            color: #555;
+            margin-bottom: 15px;
+        }
+        p a, li a {
+            color: #8a9635;
+            text-decoration: none;
+            font-weight: 500;
+        }
+        p a:hover, li a:hover {
+            text-decoration: underline;
+        }
+        pre {
+            background-color: #f5f5f5;
+            padding: 15px;
+            border-radius: 5px;
+            overflow-x: auto;
+            margin: 15px 0;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+        }
+        code {
+            font-family: 'Courier New', Courier, monospace;
+            color: #333;
+        }
+        ul, ol {
+            margin-bottom: 15px;
+            padding-left: 20px;
+        }
+        li {
+            line-height: 1.6;
+            font-size: 1.1em;
+            color: #555;
+        }
+        .code-editor {
+            width: 100%;
+            height: 200px;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-family: monospace;
+            font-size: 16px;
+            resize: vertical;
+            box-sizing: border-box;
+        }
+        .output, .fix-suggestion {
+            margin-top: 20px;
+            padding: 10px;
+            border: 1px solid #eee;
+            border-radius: 5px;
+            background-color: #f5f5f5;
+            min-height: 50px;
+            white-space: pre-wrap;
+            word-wrap: break-word;
+        }
+        .fix-suggestion h3 {
+            margin: 0 0 10px;
+            color: #8a9635;
+        }
+        @media (max-width: 768px) {
+            .container {
+                padding: 20px 15px;
+            }
+            h1 {
+                font-size: 2em;
+            }
+            h2 {
+                font-size: 1.5em;
+            }
+            h3 {
+                font-size: 1.3em;
+            }
+            p, li {
+                font-size: 1em;
+            }
+            .code-editor {
+                height: 150px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container container-header-container">
+            <a href="../index.html" class="logo">
+                <img src="../logo.png" alt="CodeMaster Logo" class="logo-img">
+                <span class="logo-text">CodeMaster</span>
+            </a>
+            <nav class="nav-menu" id="nav-menu">
+                <a href="../index.html" class="nav-link">Главная</a>
+                <a href="../intro.html" class="nav-link">Введение</a>
+                <a href="../languages.html" class="nav-link">Языки</a>
+                <a href="../tutorials.html" class="nav-link">Уроки</a>
+                <a href="../resources.html" class="nav-link">Ресурсы</a>
+                <a href="../register.html" class="nav-link">Регистрация</a>
+                <a href="../login.html" class="nav-link">Вход</a>
+                <a href="#" class="nav-link" onclick="logout()">Выход</a>
+                
+            </nav>
+        </div>
+    </header>
+
+    <div id="content" style="display: none;">
+        <section class="container">
+            <h1>Урок 5: Работа со списками и словарями</h1>
+
+            <h2>Введение</h2>
+            <p>Списки и словари — это мощные структуры данных в Python, которые позволяют эффективно хранить и обрабатывать информацию. Списки подходят для упорядоченных коллекций, а словари — для данных, организованных в виде пар ключ-значение. В этом уроке вы научитесь создавать, изменять и использовать списки и словари.</p>
+
+            <h2>Списки</h2>
+            <p>Список — это упорядоченная изменяемая коллекция элементов, которая может содержать данные разных типов. Списки создаются с помощью квадратных скобок <code>[]</code>.</p>
+            <pre><code>
+numbers = [1, 2, 3, 4]
+fruits = ["яблоко", "банан", "вишня"]
+mixed = [1, "два", 3.0]
+print(numbers)  # Вывод: [1, 2, 3, 4]
+print(fruits)   # Вывод: ['яблоко', 'банан', 'вишня']
+print(mixed)    # Вывод: [1, 'два', 3.0]
+            </code></pre>
+
+            <h3>Доступ к элементам и срезы</h3>
+            <p>Элементы списка доступны по индексам (начиная с 0). Отрицательные индексы используются для доступа с конца:</p>
+            <pre><code>
+fruits = ["яблоко", "банан", "вишня"]
+print(fruits[0])   # Вывод: яблоко
+print(fruits[-1])  # Вывод: вишня
+            </code></pre>
+            <p>Срезы позволяют получить часть списка:</p>
+            <pre><code>
+print(fruits[1:3])  # Вывод: ['банан', 'вишня']
+print(fruits[:2])   # Вывод: ['яблоко', 'банан']
+print(fruits[::2])  # Вывод: ['яблоко', 'вишня'] (каждый второй элемент)
+            </code></pre>
+
+            <h3>Изменение списков</h3>
+            <p>Списки изменяемы, вы можете заменять элементы или добавлять новые:</p>
+            <pre><code>
+fruits = ["яблоко", "банан", "вишня"]
+fruits[1] = "апельсин"
+print(fruits)  # Вывод: ['яблоко', 'апельсин', 'вишня']
+
+fruits.append("груша")  # Добавление в конец
+print(fruits)  # Вывод: ['яблоко', 'апельсин', 'вишня', 'груша']
+
+fruits.remove("вишня")  # Удаление элемента
+print(fruits)  # Вывод: ['яблоко', 'апельсин', 'груша']
+            </code></pre>
+
+            <h3>Методы списков</h3>
+            <p>Вот несколько полезных методов списков:</p>
+            <ul>
+                <li><code>pop(index)</code>: Удаляет и возвращает элемент по индексу.</li>
+                <li><code>sort()</code>: Сортирует список.</li>
+                <li><code>index(item)</code>: Возвращает индекс первого вхождения элемента.</li>
+            </ul>
+            <pre><code>
+numbers = [3, 1, 4, 1, 5]
+numbers.sort()
+print(numbers)  # Вывод: [1, 1, 3, 4, 5]
+
+print(numbers.pop(2))  # Вывод: 3
+print(numbers)  # Вывод: [1, 1, 4, 5]
+
+print(numbers.index(4))  # Вывод: 2
+            </code></pre>
+
+            <h3>Вложенные списки</h3>
+            <p>Списки могут содержать другие списки, создавая вложенные структуры:</p>
+            <pre><code>
+matrix = [[1, 2, 3], [4, 5, 6], [7, 8, 9]]
+print(matrix[1])     # Вывод: [4, 5, 6]
+print(matrix[1][2])  # Вывод: 6
+            </code></pre>
+
+            <h2>Словари</h2>
+            <p>Словарь — это неупорядоченная коллекция пар ключ-значение, где ключи уникальны. Словари создаются с помощью фигурных скобок <code>{}</code>.</p>
+            <pre><code>
+person = {"name": "Алиса", "age": 25, "city": "Страна чудес"}
+print(person)  # Вывод: {'name': 'Алиса', 'age': 25, 'city': 'Страна чудес'}
+            </code></pre>
+
+            <h3>Доступ к значениям</h3>
+            <p>Значения доступны по ключам. Метод <code>get</code> позволяет избежать ошибок при отсутствии ключа:</p>
+            <pre><code>
+person = {"name": "Алиса", "age": 25}
+print(person["name"])  # Вывод: Алиса
+print(person.get("city", "Не указано"))  # Вывод: Не указано
+            </code></pre>
+
+            <h3>Изменение словарей</h3>
+            <p>Вы можете добавлять, изменять или удалять пары ключ-значение:</p>
+            <pre><code>
+person = {"name": "Алиса", "age": 25}
+person["city"] = "Страна чудес"  # Добавление
+print(person)  # Вывод: {'name': 'Алиса', 'age': 25, 'city': 'Страна чудес'}
+
+person["age"] = 26  # Изменение
+print(person)  # Вывод: {'name': 'Алиса', 'age': 26, 'city': 'Страна чудес'}
+
+del person["city"]  # Удаление
+print(person)  # Вывод: {'name': 'Алиса', 'age': 26}
+            </code></pre>
+
+            <h3>Методы словарей</h3>
+            <p>Полезные методы словарей:</p>
+            <ul>
+                <li><code>keys()</code>: Возвращает все ключи.</li>
+                <li><code>values()</code>: Возвращает все значения.</li>
+                <li><code>items()</code>: Возвращает пары ключ-значение.</li>
+            </ul>
+            <pre><code>
+person = {"name": "Алиса", "age": 25, "city": "Страна чудес"}
+print(person.keys())   # Вывод: dict_keys(['name', 'age', 'city'])
+print(person.values()) # Вывод: dict_values(['Алиса', 25, 'Страна чудес'])
+print(person.items())  # Вывод: dict_items([('name', 'Алиса'), ('age', 25), ('city', 'Страна чудес')])
+            </code></pre>
+            <p>Итерация по словарю с <code>items()</code>:</p>
+            <pre><code>
+for key, value in person.items():
+    print(f"{key}: {value}")
+# Вывод:
+# name: Алиса
+# age: 25
+# city: Страна чудес
+            </code></pre>
+
+            <h3>Вложенные словари</h3>
+            <p>Словари могут содержать другие словари или списки:</p>
+            <pre><code>
+students = {
+    "Алиса": {"age": 25, "grades": [90, 85, 88]},
+    "Боб": {"age": 30, "grades": [75, 80, 82]}
+}
+print(students["Алиса"]["grades"])  # Вывод: [90, 85, 88]
+print(students["Боб"]["age"])       # Вывод: 30
+            </code></pre>
+
+            <h2>Практика</h2>
+            <p>Попробуйте выполнить следующие задания в редакторе кода ниже:</p>
+            <ol>
+                <li>Создайте список чисел и отсортируйте его в порядке убывания.</li>
+                <li>Напишите программу, которая запрашивает у пользователя слова и добавляет их в список, пока не введено слово "стоп".</li>
+                <li>Создайте словарь с информацией о трёх книгах (название, автор, год) и выведите все названия.</li>
+                <li>Напишите программу, которая фильтрует список чисел, оставляя только те, что больше 10.</li>
+                <li>Создайте вложенный словарь с данными о двух студентах (имя, курс, оценки) и выведите средний балл каждого студента.</li>
+            </ol>
+            <p>Введите код в редактор, нажмите "Запустить код" и проверьте результат. Если возникнет ошибка, наш AI-помощник предложит исправление.</p>
+            <textarea id="code-editor-1" class="code-editor">
+# Пример для заданий
+# Задание 1: Сортировка списка
+numbers = [5, 2, 8, 1, 9]
+numbers.sort(reverse=True)
+print(numbers)  # Вывод: [9, 8, 5, 2, 1]
+
+# Задание 3: Словарь книг
+books = {
+    "book1": {"title": "1984", "author": "Оруэлл", "year": 1949},
+    "book2": {"title": "Гарри Поттер", "author": "Роулинг", "year": 1997},
+    "book3": {"title": "Война и мир", "author": "Толстой", "year": 1865}
+}
+for book in books.values():
+    print(book["title"])
+            </textarea>
+            <button id="run-code-1" class="btn btn-hero-primary" style="margin: 10px 0;">Запустить код</button>
+            <div id="output-1" class="output"></div>
+            <div id="fix-suggestion-1" class="fix-suggestion" style="display: none;">
+                <h3>Предложенное исправление:</h3>
+                <p id="fix-text-1"></p>
+            </div>
+            <p>Попробуйте изменить код для других заданий (например, фильтрация чисел или средний балл студентов) или введите свои варианты. Для ввода данных используйте <code>input()</code>, и результат появится в выводе.</p>
+            <div class="lesson-navigation">
+                <a href="lesson4.html" class="nav-button">Предыдущий урок </a>
+            </div>
+            
+            <style>
+                .lesson-navigation {
+                    display: flex;
+                    justify-content: space-between;
+                    margin: 50px 0 20px;
+                    padding: 20px 0;
+                    border-top: 1px solid #eaeaea;
+                    border-bottom: 1px solid #eaeaea;
+                }
+                
+                .nav-button {
+                    display: inline-flex;
+                    align-items: center;
+                    background-color: #8a9635;
+                    color: white;
+                    padding: 12px 20px;
+                    border-radius: 6px;
+                    text-decoration: none;
+                    font-weight: 600;
+                    transition: all 0.3s ease;
+                    font-size: 0.95em;
+                    max-width: 48%;
+                    text-align: center;
+                    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+                }
+                
+                .nav-button:hover {
+                    background-color: #6e7a25;
+                    transform: translateY(-2px);
+                    box-shadow: 0 4px 8px rgba(0,0,0,0.15);
+                }
+                
+                .nav-button::before,
+                .nav-button::after {
+                    content: "";
+                    display: inline-block;
+                    width: 8px;
+                    height: 8px;
+                    border: 2px solid white;
+                    margin: 0 5px;
+                }
+                
+                .nav-button::before {
+                    border-right: 0;
+                    border-top: 0;
+                    transform: rotate(45deg);
+                }
+                
+                .nav-button::after {
+                    border-left: 0;
+                    border-bottom: 0;
+                    transform: rotate(45deg);
+                }
+                
+                .nav-button:first-child::before {
+                    margin-right: 10px;
+                }
+                
+                .nav-button:last-child::after {
+                    margin-left: 10px;
+                }
+            
+                @media (max-width: 768px) {
+                    .lesson-navigation {
+                        flex-direction: column;
+                        gap: 15px;
+                    }
+                    
+                    .nav-button {
+                        max-width: 100%;
+                        justify-content: center;
+                    }
+                    
+                    .nav-button:first-child {
+                        margin-bottom: 10px;
+                    }
+                }
+            </style>      
+        </section>
+    </div>
+
+    <div id="restricted" style="display: none; text-align: center; padding: 80px 20px;">
+        <div class="container">
+            <h1>Доступ ограничен</h1>
+            <p>Пожалуйста, зарегистрируйтесь или войдите, чтобы получить доступ к содержимому сайта.</p>
+            <div class="hero-buttons">
+                <a href="../register.html" class="btn btn-hero-primary">Регистрация</a>
+                <a href="../login.html" class="btn btn-hero-secondary">Вход</a>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <div class="container footer-bottom">
+            <p>© 2025 <a href="https://nikitos23133.github.io">CodeMaster</a>. Все права защищены.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Initialize Pyodide
+        let pyodide;
+        async function loadPyodideAndRun() {
+            pyodide = await loadPyodide();
+            // Mock input() for browser environment
+            pyodide.globals.set('input', prompt);
+        }
+        loadPyodideAndRun();
+
+        function checkAuth() {
+            const isAuthenticated = localStorage.getItem('isAuthenticated') === 'true';
+            const content = document.getElementById('content');
+            const restricted = document.getElementById('restricted');
+            const navMenu = document.getElementById('nav-menu');
+
+            if (isAuthenticated) {
+                content.style.display = 'block';
+                restricted.style.display = 'none';
+                navMenu.innerHTML = `
+                    <a href="../index.html" class="nav-link">Главная</a>
+                    <a href="../intro.html" class="nav-link">Введение</a>
+                    <a href="../languages.html" class="nav-link">Языки</a>
+                    <a href="../tutorials.html" class="nav-link">Уроки</a>
+                    <a href="../resources.html" class="nav-link">Ресурсы</a>
+                    <a href="#" class="nav-link" onclick="logout()">Выход</a>
+                `;
+            } else {
+                content.style.display = 'none';
+                restricted.style.display = 'block';
+            }
+        }
+
+        function logout() {
+            localStorage.removeItem('isAuthenticated');
+            window.location.href = '../index.html';
+        }
+
+        async function runCode(code, outputElement, fixSuggestionElement, fixTextElement) {
+            if (!localStorage.getItem('isAuthenticated')) {
+                outputElement.textContent = 'Пожалуйста, войдите, чтобы использовать редактор кода.';
+                return;
+            }
+
+            if (!pyodide) {
+                outputElement.textContent = 'Pyodide ещё загружается, попробуйте снова через несколько секунд.';
+                return;
+            }
+
+            outputElement.textContent = ''; // Clear previous output
+            fixSuggestionElement.style.display = 'none'; // Hide previous fix
+
+            // Redirect console output
+            let output = '';
+            pyodide.globals.set('print', (...args) => {
+                output += args.join(' ') + '\n';
+            });
+
+            try {
+                await pyodide.runPythonAsync(`
+import sys
+import io
+sys.stdout = io.StringIO()
+${code}
+sys.stdout.getvalue()
+                `);
+                outputElement.textContent = output || 'Код выполнен, но вывода нет.';
+            } catch (error) {
+                console.error('Python Error:', error);
+                outputElement.textContent = `Ошибка: ${error.message}`;
+                const sanitizedMessage = error.message.replace(/sensitiveInfo|apiKey|token/gi, '***');
+
+                try {
+                    const response = await fetch('https://your-server.com/fix-error', {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify({
+                            errorMessage: sanitizedMessage,
+                            isAuthenticated: localStorage.getItem('isAuthenticated') === 'true',
+                        }),
+                    });
+                    const data = await response.json();
+                    if (data.fix) {
+                        fixTextElement.textContent = data.fix;
+                        fixSuggestionElement.style.display = 'block';
+                    } else {
+                        fixTextElement.textContent = 'Не удалось получить исправление.';
+                        fixSuggestionElement.style.display = 'block';
+                    }
+                } catch (apiError) {
+                    console.error('Failed to get fix from server:', apiError);
+                    fixTextElement.textContent = 'Ошибка связи с сервером.';
+                    fixSuggestionElement.style.display = 'block';
+                }
+            }
+        }
+
+        // Attach event listener to run code button
+        document.getElementById('run-code-1').addEventListener('click', () => {
+            const code = document.getElementById('code-editor-1').value;
+            runCode(
+                code,
+                document.getElementById('output-1'),
+                document.getElementById('fix-suggestion-1'),
+                document.getElementById('fix-text-1')
+            );
+        });
+
+        // Check authentication on page load
+        window.onload = checkAuth;
+    </script>
+</body>
+</html>

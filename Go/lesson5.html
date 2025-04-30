@@ -1,0 +1,369 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Урок 5: Пакеты и модули - Go - CodeMaster</title>
+    <link rel="stylesheet" href="../styles.css">
+    <style>
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 40px 20px;
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+        h1 {
+            color: #333;
+            font-size: 2.5em;
+            margin-bottom: 20px;
+            text-align: center;
+            border-bottom: 2px solid #8a9635;
+            padding-bottom: 10px;
+        }
+        h2 {
+            color: #8a9635;
+            font-size: 1.8em;
+            margin: 30px 0 15px;
+        }
+        h3 {
+            color: #555;
+            font-size: 1.5em;
+            margin: 20px 0 10px;
+        }
+        p {
+            line-height: 1.6;
+            font-size: 1.1em;
+            color: #555;
+            margin-bottom: 15px;
+        }
+        p a, li a {
+            color: #8a9635;
+            text-decoration: none;
+            font-weight: 500;
+        }
+        p a:hover, li a:hover {
+            text-decoration: underline;
+        }
+        pre {
+            background-color: #f5f5f5;
+            padding: 15px;
+            border-radius: 5px;
+            overflow-x: auto;
+            margin: 15px 0;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+        }
+        code {
+            font-family: 'Courier New', Courier, monospace;
+            color: #333;
+        }
+        ul, ol {
+            margin-bottom: 15px;
+            padding-left: 20px;
+        }
+        li {
+            line-height: 1.6;
+            font-size: 1.1em;
+            color: #555;
+        }
+        .terminal {
+            background: #1e1e1e;
+            border-radius: 5px;
+            margin: 20px 0;
+            color: #fff;
+            font-family: 'Courier New', monospace;
+        }
+        .terminal-header {
+            padding: 10px;
+            background: #323233;
+            border-radius: 5px 5px 0 0;
+        }
+        .terminal-controls {
+            display: flex;
+            gap: 5px;
+        }
+        .terminal-circle {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+        }
+        .red { background: #ff5f56; }
+        .yellow { background: #ffbd2e; }
+        .green { background: #27c93f; }
+        .terminal-body {
+            padding: 15px;
+            min-height: 100px;
+            max-height: 300px;
+            overflow-y: auto;
+        }
+        .terminal-line {
+            white-space: pre-wrap;
+            margin: 5px 0;
+            color: #d4d4d4;
+        }
+        .terminal-input {
+            border-top: 1px solid #333;
+            padding: 10px;
+        }
+        #code-input {
+            width: 100%;
+            background: #252526;
+            border: none;
+            color: #fff;
+            padding: 10px;
+            margin-bottom: 10px;
+            resize: vertical;
+        }
+        .terminal-input button {
+            background: #8a9635;
+            color: white;
+            border: none;
+            padding: 8px 20px;
+            border-radius: 3px;
+            cursor: pointer;
+        }
+        .terminal-input button:hover {
+            background: #6e7a25;
+        }
+        /* Стили для навигации */
+        .lesson-nav {
+            display: flex;
+            justify-content: flex-start;
+            margin-top: 30px;
+        }
+        .prev-lesson {
+            display: inline-flex;
+            align-items: center;
+            padding: 12px 24px;
+            background-color: #8a9635;
+            color: white;
+            text-decoration: none;
+            border-radius: 4px;
+            font-weight: 500;
+            transition: background-color 0.3s, transform 0.3s;
+        }
+        .prev-lesson:hover {
+            background-color: #768131;
+            transform: translateX(-5px);
+        }
+        .prev-lesson svg {
+            margin-right: 8px;
+            fill: white;
+            width: 20px;
+            height: 20px;
+        }
+        @media (max-width: 768px) {
+            .container {
+                padding: 20px 15px;
+            }
+            h1 {
+                font-size: 2em;
+            }
+            h2 {
+                font-size: 1.5em;
+            }
+            h3 {
+                font-size: 1.3em;
+            }
+            p, li {
+                font-size: 1em;
+            }
+            .prev-lesson {
+                padding: 10px 20px;
+                font-size: 0.9em;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container container-header-container">
+            <a href="../index.html" class="logo">
+                <img src="../logo.png" alt="CodeMaster Logo" class="logo-img">
+                <span class="logo-text">CodeMaster</span>
+            </a>
+            <nav class="nav-menu">
+                <a href="../index.html" class="nav-link">Главная</a>
+                <a href="../intro.html" class="nav-link">Введение</a>
+                <a href="../languages.html" class="nav-link">Языки</a>
+                <a href="../tutorials.html" class="nav-link">Уроки</a>
+                <a href="../resources.html" class="nav-link">Ресурсы</a>
+                <a href="#" class="nav-link" onclick="logout()">Выход</a>
+            </nav>
+        </div>
+    </header>
+
+    <section class="container">
+        <h1>Урок 5: Пакеты и модули - Go</h1>
+
+        <h2>Введение</h2>
+        <p>Пакеты и модули в Go позволяют организовывать код для повторного использования и масштабируемости. Пакеты группируют связанные функции и типы, а модули управляют зависимостями. В этом уроке вы научитесь создавать пакеты, использовать структуры (<code>struct</code>) и работать с модулями.</p>
+
+        <h2>Создание пакета</h2>
+        <p>Пакет — это каталог с Go-файлами. Создайте структуру директорий:</p>
+        <pre>
+myapp/
+├── main.go
+└── person/
+    └── person.go
+        </pre>
+        <p>В <code>person/person.go</code> добавьте код:</p>
+        <pre>
+package person
+
+type Person struct {
+    Name string
+    Age  int
+}
+
+func (p Person) Greet() string {
+    return fmt.Sprintf("Привет, я %s!", p.Name)
+}
+        </pre>
+        <p>В <code>main.go</code> используйте пакет:</p>
+        <pre>
+package main
+
+import (
+    "fmt"
+    "myapp/person"
+)
+
+func main() {
+    p := person.Person{Name: "Алексей", Age: 25}
+    fmt.Println(p.Name) // Вывод: Алексей
+    fmt.Println(p.Greet()) // Вывод: Привет, я Алексей!
+}
+        </pre>
+        <p>Разберём код:</p>
+        <ul>
+            <li><code>package person</code>: Объявление пакета.</li>
+            <li><code>type Person struct</code>: Структура с полями.</li>
+            <li><code>Greet</code>: Метод структуры.</li>
+            <li><code>import "myapp/person"</code>: Импорт пакета.</li>
+        </ul>
+
+        <h2>Работа с модулями</h2>
+        <p>Модули управляют зависимостями. Инициализируйте модуль:</p>
+        <ol>
+            <li>В корне проекта выполните:
+                <pre>
+go mod init myapp
+                </pre>
+            </li>
+            <li>Запустите программу:
+                <pre>
+go run .
+                </pre>
+            </li>
+        </ol>
+        <p>Для использования внешних пакетов добавьте их с помощью <code>go get</code>.</p>
+
+        <h2>Запуск кода</h2>
+        <p>Для выполнения:</p>
+        <ol>
+            <li>Создайте структуру директорий и файлы.</li>
+            <li>Инициализируйте модуль (<code>go mod init myapp</code>).</li>
+            <li>Запустите:
+                <pre>
+go run .
+                </pre>
+            </li>
+        </ol>
+
+        <h2>Практика</h2>
+        <p>Выполните задания:</p>
+        <ol>
+            <li>Создайте пакет <code>book</code> с структурой <code>Book</code> (поля <code>Title</code>, <code>Year</code>) и методом <code>Description</code>.</li>
+            <li>Используйте пакет <code>book</code> в <code>main.go</code> для вывода описания книги.</li>
+            <li>Создайте пакет <code>car</code> с структурой <code>Car</code> и методом <code>Accelerate</code>.</li>
+            <li>Инициализируйте модуль и запустите программу с использованием пакета <code>car</code>.</li>
+            <li>Создайте пакет <code>point</code> с структурой <code>Point</code> (координаты) и методом <code>Distance</code>.</li>
+            <li>Создайте пакет <code>team</code> с структурой <code>Team</code> и методом для подсчёта участников.</li>
+            <li>Напишите программу, использующую два пакета для моделирования студентов и их оценок.</li>
+        </ol>
+        <p>Подробности о пакетах читайте в <a href="https://go.dev/doc/">документации Go</a>.</p>
+
+        <h2>Интерактивный терминал (демо)</h2>
+        <div class="terminal">
+            <div class="terminal-header">
+                <div class="terminal-controls">
+                    <span class="terminal-circle red"></span>
+                    <span class="terminal-circle yellow"></span>
+                    <span class="terminal-circle green"></span>
+                </div>
+            </div>
+            <div class="terminal-body" id="terminal-output">
+                <div class="terminal-line">Добро пожаловать в CodeMaster Go терминал!</div>
+                <div class="terminal-line">Введите код и нажмите "Выполнить".</div>
+                <div class="terminal-line">Пример: fmt.Println("Hello World")</div>
+            </div>
+            <div class="terminal-input">
+                <textarea id="code-input" rows="4" placeholder="Введите ваш Go код здесь..."></textarea>
+                <button onclick="executeGoCode()">Выполнить</button>
+            </div>
+        </div>
+
+        <!-- Навигация по урокам -->
+        <div class="lesson-nav">
+            <a href="lesson4.html" class="prev-lesson">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                    <path d="M19 12H5M12 19l-7-7 7-7"/>
+                </svg>
+                Урок 4
+            </a>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container footer-bottom">
+            <p>© 2025 <a href="https://nikitos23133.github.io">CodeMaster</a>. Все права защищены.</p>
+        </div>
+    </footer>
+
+    <script>
+function executeGoCode() {
+    const codeInput = document.getElementById('code-input').value;
+    const outputDiv = document.getElementById('terminal-output');
+    
+    // Очистка предыдущего вывода
+    outputDiv.innerHTML = '';
+    
+    // Эмуляция выполнения кода
+    const addOutput = (text) => {
+        const line = document.createElement('div');
+        line.className = 'terminal-line';
+        line.textContent = text;
+        outputDiv.appendChild(line);
+    };
+
+    try {
+        // Примеры для демонстрации
+        if (codeInput.includes('fmt.Println("Hello, World!")')) {
+            addOutput('Hello, World!');
+        }
+        else if (codeInput.includes('fmt.Println("Welcome to Go!")')) {
+            addOutput('Welcome to Go!');
+        }
+        else if (codeInput.includes('fmt.Println("Ваше имя")')) {
+            addOutput('Ваше имя');
+        }
+        else if (codeInput.includes('go version')) {
+            addOutput('go version go1.21.3 linux/amd64');
+        }
+        else {
+            addOutput('Результат выполнения:');
+            addOutput('(Для реального выполнения Go кода требуется установленный компилятор)');
+        }
+    } catch (error) {
+        addOutput(`Ошибка: ${error.message}`);
+    }
+    
+    // Прокрутка к последнему выводу
+    outputDiv.scrollTop = outputDiv.scrollHeight;
+}
+    </script>
+    <script src="../script.js"></script>
+</body>
+</html>

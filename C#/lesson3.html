@@ -1,0 +1,560 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Урок 3: Условия, циклы и методы - C# - CodeMaster</title>
+    <link rel="stylesheet" href="../styles.css">
+    <style>
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 40px 20px;
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+        h1 {
+            color: #333;
+            font-size: 2.5em;
+            margin-bottom: 20px;
+            text-align: center;
+            border-bottom: 2px solid #8a9635;
+            padding-bottom: 10px;
+        }
+        h2 {
+            color: #8a9635;
+            font-size: 1.8em;
+            margin: 30px 0 15px;
+        }
+        h3 {
+            color: #555;
+            font-size: 1.5em;
+            margin: 20px 0 10px;
+        }
+        p {
+            line-height: 1.6;
+            font-size: 1.1em;
+            color: #555;
+            margin-bottom: 15px;
+        }
+        p a, li a {
+            color: #8a9635;
+            text-decoration: none;
+            font-weight: 500;
+        }
+        p a:hover, li a:hover {
+            text-decoration: underline;
+        }
+        pre {
+            background-color: #f5f5f5;
+            padding: 15px;
+            border-radius: 5px;
+            overflow-x: auto;
+            margin: 15px 0;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+        }
+        code {
+            font-family: 'Courier New', Courier, monospace;
+            color: #333;
+        }
+        ul, ol {
+            margin-bottom: 15px;
+            padding-left: 20px;
+        }
+        li {
+            line-height: 1.6;
+            font-size: 1.1em;
+            color: #555;
+        }
+        .code-editor {
+            width: 100%;
+            height: 200px;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-family: monospace;
+            font-size: 16px;
+            resize: vertical;
+            box-sizing: border-box;
+        }
+        .output, .fix-suggestion {
+            margin-top: 20px;
+            padding: 10px;
+            border: 1px solid #eee;
+            border-radius: 5px;
+            background-color: #f5f5f5;
+            min-height: 50px;
+            white-space: pre-wrap;
+            word-wrap: break-word;
+        }
+        .fix-suggestion h3 {
+            margin: 0 0 10px;
+            color: #8a9635;
+        }
+        /* Стили для стрелок навигации */
+        .lesson-nav {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 30px;
+        }
+        .prev-lesson, .next-lesson {
+            display: inline-flex;
+            align-items: center;
+            padding: 12px 24px;
+            background-color: #8a9635;
+            color: white;
+            text-decoration: none;
+            border-radius: 4px;
+            font-weight: 500;
+            transition: background-color 0.3s, transform 0.3s;
+        }
+        .prev-lesson:hover {
+            background-color: #768131;
+            transform: translateX(-5px);
+        }
+        .next-lesson:hover {
+            background-color: #768131;
+            transform: translateX(5px);
+        }
+        .prev-lesson svg {
+            margin-right: 8px;
+            fill: white;
+            width: 20px;
+            height: 20px;
+        }
+        .next-lesson svg {
+            margin-left: 8px;
+            fill: white;
+            width: 20px;
+            height: 20px;
+        }
+        /* Стили для загрузчика */
+        .loader-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 9999;
+            transition: opacity 1s ease;
+        }
+        .loader-container.hidden {
+            opacity: 0;
+            pointer-events: none;
+        }
+        .loader {
+            width: 65px;
+            height: 117px;
+            position: relative;
+            animation: rotate 2s linear infinite;
+        }
+        .loader:before,
+        .loader:after {
+            content: "";
+            position: absolute;
+            inset: 0;
+            background: #8a9635;
+            box-shadow: 0 0 0 50px;
+            clip-path: polygon(100% 0, 23% 46%, 46% 44%, 15% 69%, 38% 67%, 0 100%, 76% 57%, 53% 58%, 88% 33%, 60% 37%);
+        }
+        .loader:after {
+            animation: l8 2s infinite;
+            transform: perspective(300px) translateZ(0px);
+        }
+        @keyframes l8 {
+            to {
+                transform: perspective(300px) translateZ(180px);
+                opacity: 0;
+            }
+        }
+        @keyframes rotate {
+            to {
+                transform: rotate(360deg);
+            }
+        }
+        @media (max-width: 768px) {
+            .container {
+                padding: 20px 15px;
+            }
+            h1 {
+                font-size: 2em;
+            }
+            h2 {
+                font-size: 1.5em;
+            }
+            h3 {
+                font-size: 1.3em;
+            }
+            p, li {
+                font-size: 1em;
+            }
+            .code-editor {
+                height: 150px;
+            }
+            .loader {
+                width: 40px;
+                height: 72px;
+            }
+            .prev-lesson, .next-lesson {
+                padding: 10px 20px;
+                font-size: 0.9em;
+            }
+            .lesson-nav {
+                flex-direction: column;
+                gap: 15px;
+                align-items: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Контейнер загрузчика -->
+    <div class="loader-container">
+        <div class="loader"></div>
+    </div>
+
+    <header>
+        <div class="container container-header-container">
+            <a href="../index.html" class="logo">
+                <img src="../logo.png" alt="CodeMaster Logo" class="logo-img">
+                <span class="logo-text">CodeMaster</span>
+            </a>
+            <nav class="nav-menu" id="nav-menu">
+                <a href="../index.html" class="nav-link">Главная</a>
+                <a href="../intro.html" class="nav-link">Введение</a>
+                <a href="../languages.html" class="nav-link">Языки</a>
+                <a href="../tutorials.html" class="nav-link">Уроки</a>
+                <a href="../resources.html" class="nav-link">Ресурсы</a>
+                <a href="../register.html" class="nav-link">Регистрация</a>
+                <a href="../login.html" class="nav-link">Вход</a>
+            </nav>
+        </div>
+    </header>
+
+    <div id="content" style="display: none;">
+        <section class="container">
+            <h1>Урок 3: Условия, циклы и методы - C#</h1>
+
+            <h2>Введение</h2>
+            <p>Условия, циклы и методы в C# позволяют создавать структурированные программы. Условия управляют выполнением кода, циклы повторяют действия, а методы организуют код в переиспользуемые блоки. В этом уроке вы изучите эти концепции.</p>
+
+            <h2>Условные операторы</h2>
+            <p>C# использует <code>if</code>, <code>else if</code>, <code>else</code> и тернарный оператор.</p>
+            <pre><code>
+using System;
+
+class Program {
+    static void Main(string[] args) {
+        int age = 20;
+        if (age >= 18) {
+            Console.WriteLine("Вы взрослый");
+        } else if (age >= 13) {
+            Console.WriteLine("Вы подросток");
+        } else {
+            Console.WriteLine("Вы ребёнок");
+        }
+    }
+}
+            </code></pre>
+            <p>Тернарный оператор:</p>
+            <pre><code>
+string status = age >= 18 ? "Взрослый" : "Ребёнок";
+Console.WriteLine(status);
+            </code></pre>
+
+            <h2>Циклы</h2>
+            <p>C# поддерживает несколько типов циклов.</p>
+            <h3>Цикл for</h3>
+            <pre><code>
+using System;
+
+class Program {
+    static void Main(string[] args) {
+        for (int i = 1; i <= 5; i++) {
+            Console.WriteLine($"Итерация {i}");
+        }
+    }
+}
+            </code></pre>
+            <h3>Цикл while</h3>
+            <pre><code>
+using System;
+
+class Program {
+    static void Main(string[] args) {
+        int count = 1;
+        while (count <= 5) {
+            Console.WriteLine($"Итерация {count}");
+            count++;
+        }
+    }
+}
+            </code></pre>
+            <h3>Цикл foreach</h3>
+            <pre><code>
+using System;
+using System.Collections.Generic;
+
+class Program {
+    static void Main(string[] args) {
+        List<int> numbers = new List<int> {1, 2, 3, 4, 5};
+        foreach (int num in numbers) {
+            Console.WriteLine($"Число {num}");
+        }
+    }
+}
+            </code></pre>
+
+            <h2>Методы</h2>
+            <p>Методы в C# объявляются внутри классов и могут возвращать значения.</p>
+            <pre><code>
+using System;
+
+class Program {
+    static string Greet(string name) {
+        return $"Привет, {name}!";
+    }
+
+    static void Main(string[] args) {
+        Console.WriteLine(Greet("Алиса")); // Привет, Алиса!
+    }
+}
+            </code></pre>
+            <p>Методы с параметрами по умолчанию:</p>
+            <pre><code>
+using System;
+
+class Program {
+    static void Introduce(string name, int age = 18) {
+        Console.WriteLine($"Меня зовут {name}, мне {age} лет.");
+    }
+
+    static void Main(string[] args) {
+        Introduce("Боб");      // Меня зовут Боб, мне 18 лет.
+        Introduce("Алиса", 25); // Меня зовут Алиса, мне 25 лет.
+    }
+}
+            </code></pre>
+
+            <h2>Практика</h2>
+            <p>Попробуйте выполнить следующие задания в редакторе кода ниже:</p>
+            <ol>
+                <li>Напишите программу, которая проверяет, является ли число чётным, и выводит результат.</li>
+                <li>Создайте цикл, который выводит числа от 1 до 10.</li>
+                <li>Напишите метод, который принимает два числа и возвращает их сумму.</li>
+                <li>Создайте список строк и используйте <code>foreach</code> для их вывода.</li>
+                <li>Напишите программу, которая определяет категорию возраста (ребёнок, подросток, взрослый) с помощью <code>if-else</code>.</li>
+            </ol>
+            <p>Введите код в редактор, нажмите "Запустить код" и проверьте результат. Если возникнет ошибка, наш помощник предложит исправление. Если сервер недоступен, скопируйте код и запустите локально с помощью <code>dotnet run</code>.</p>
+            <textarea id="code-editor-1" class="code-editor">
+using System;
+using System.Collections.Generic;
+
+class Program {
+    static void Main(string[] args) {
+        // Задание 1: Проверка чётности
+        int number = 6;
+        Console.WriteLine(number % 2 == 0 ? "Чётное" : "Нечётное");
+
+        // Задание 4: Список строк
+        List<string> names = new List<string> {"Алиса", "Боб", "Чарли"};
+        foreach (string name in names) {
+            Console.WriteLine($"Имя: {name}");
+        }
+    }
+}
+            </textarea>
+            <button id="run-code-1" class="btn btn-hero-primary" style="margin: 10px 0;">Запустить код</button>
+            <div id="output-1" class="output"></div>
+            <div id="fix-suggestion-1" class="fix-suggestion" style="display: none;">
+                <h3>Предложенное исправление:</h3>
+                <p id="fix-text-1"></p>
+            </div>
+            <p>Попробуйте изменить код для других заданий (например, цикл или метод для суммы) или введите свои варианты.</p>
+
+            <!-- Навигация по урокам -->
+            <div class="lesson-nav">
+                <a href="lesson2.html" class="prev-lesson">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                        <path d="M19 12H5M12 19l-7-7 7-7"/>
+                    </svg>
+                    Урок 2
+                </a>
+                <a href="lesson4.html" class="next-lesson">
+                    Урок 4
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                        <path d="M5 12h14M12 5l7 7-7 7"/>
+                    </svg>
+                </a>
+            </div>
+        </section>
+    </div>
+
+    <div id="restricted" style="display: none; text-align: center; padding: 80px 20px;">
+        <div class="container">
+            <h1>Доступ ограничен</h1>
+            <p>Пожалуйста, зарегистрируйтесь или войдите, чтобы получить доступ к содержимому сайта.</p>
+            <div class="hero-buttons">
+                <a href="../register.html" class="nav-link btn btn-hero-primary">Регистрация</a>
+                <a href="../login.html" class="nav-link btn btn-hero-secondary">Вход</a>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <div class="container footer-bottom">
+            <p>© 2025 <a href="https://nikitos23133.github.io">CodeMaster</a>. Все права защищены.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Настройка: замените на актуальный URL вашего сервера
+        const SERVER_URL = 'http://localhost:3000'; // Например, 'https://your-server.com'
+
+        function checkAuth() {
+            const isAuthenticated = localStorage.getItem('isAuthenticated') === 'true';
+            const content = document.getElementById('content');
+            const restricted = document.getElementById('restricted');
+            const navMenu = document.getElementById('nav-menu');
+
+            if (isAuthenticated) {
+                content.style.display = 'block';
+                restricted.style.display = 'none';
+                navMenu.innerHTML = `
+                    <a href="../index.html" class="nav-link">Главная</a>
+                    <a href="../intro.html" class="nav-link">Введение</a>
+                    <a href="../languages.html" class="nav-link">Языки</a>
+                    <a href="../tutorials.html" class="nav-link">Уроки</a>
+                    <a href="../resources.html" class="nav-link">Ресурсы</a>
+                    <a href="#" class="nav-link btn btn-nav" onclick="logout()">Выход</a>
+                `;
+            } else {
+                content.style.display = 'none';
+                restricted.style.display = 'block';
+            }
+        }
+
+        function logout() {
+            localStorage.removeItem('isAuthenticated');
+            window.location.href = '../index.html';
+        }
+
+        async function runCode(code, outputElement, fixSuggestionElement, fixTextElement) {
+            if (!localStorage.getItem('isAuthenticated')) {
+                outputElement.textContent = 'Пожалуйста, войдите, чтобы использовать редактор кода.';
+                return;
+            }
+
+            outputElement.textContent = ''; // Очистка предыдущего вывода
+            fixSuggestionElement.style.display = 'none'; // Скрытие предыдущего исправления
+
+            // Простая проверка синтаксиса (резервный вариант)
+            if (!code.includes('Main')) {
+                outputElement.textContent = 'Ошибка: Код должен содержать метод Main. Попробуйте локально с dotnet run.';
+                fixTextElement.textContent = 'Добавьте static void Main(string[] args) в класс Program.';
+                fixSuggestionElement.style.display = 'block';
+                return;
+            }
+
+            try {
+                const response = await fetch(`${SERVER_URL}/run-csharp`, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                        code,
+                        isAuthenticated: localStorage.getItem('isAuthenticated') === 'true',
+                    }),
+                });
+                if (!response.ok) {
+                    throw new Error(`Сервер ответил ошибкой: ${response.status} ${response.statusText}`);
+                }
+                const data = await response.json();
+                if (data.error) {
+                    throw new Error(data.error);
+                }
+                outputElement.textContent = data.output || 'Код выполнен, но вывода нет.';
+            } catch (error) {
+                console.error('Ошибка C#:', error);
+                let userMessage = 'Ошибка выполнения кода.';
+                if (error.message.includes('Failed to fetch')) {
+                    userMessage = 'Не удалось подключиться к серверу. Скопируйте код и запустите локально с dotnet run.';
+                } else if (error.message.includes('401')) {
+                    userMessage = 'Ошибка авторизации. Пожалуйста, войдите снова.';
+                } else {
+                    userMessage = `Ошибка: ${error.message}`;
+                }
+                outputElement.textContent = userMessage;
+
+                // Резерв: статические исправления для частых ошибок C#
+                let staticFix = '';
+                if (error.message.includes('CS1002')) {
+                    staticFix = 'Добавьте точку с запятой (;) в конце строки.';
+                } else if (error.message.includes('CS0246')) {
+                    staticFix = 'Проверьте правильность имени класса или пространства имен.';
+                } else if (error.message.includes('CS0103')) {
+                    staticFix = 'Проверьте, определена ли переменная или метод.';
+                }
+
+                if (staticFix) {
+                    fixTextElement.textContent = staticFix;
+                    fixSuggestionElement.style.display = 'block';
+                    return;
+                }
+
+                // Попытка получить исправление от ИИ, если сервер доступен
+                const sanitizedMessage = error.message.replace(/sensitiveInfo|apiKey|token/gi, '***');
+                try {
+                    const fixResponse = await fetch(`${SERVER_URL}/fix-error`, {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify({
+                            errorMessage: sanitizedMessage,
+                            isAuthenticated: localStorage.getItem('isAuthenticated') === 'true',
+                        }),
+                    });
+                    if (!fixResponse.ok) {
+                        throw new Error(`Ошибка фикса: ${fixResponse.status} ${fixResponse.statusText}`);
+                    }
+                    const fixData = await fixResponse.json();
+                    fixTextElement.textContent = fixData.fix || 'Не удалось получить исправление.';
+                    fixSuggestionElement.style.display = 'block';
+                } catch (apiError) {
+                    console.error('Не удалось получить исправление от сервера:', apiError);
+                    fixTextElement.textContent = staticFix || 'Ошибка связи с сервером для исправлений. Попробуйте локально.';
+                    fixSuggestionElement.style.display = 'block';
+                }
+            }
+        }
+
+        // Привязка обработчика к кнопке запуска кода
+        document.getElementById('run-code-1').addEventListener('click', () => {
+            const code = document.getElementById('code-editor-1').value;
+            runCode(
+                code,
+                document.getElementById('output-1'),
+                document.getElementById('fix-suggestion-1'),
+                document.getElementById('fix-text-1')
+            );
+        });
+
+        // Управление загрузчиком
+        window.addEventListener('load', () => {
+            const loaderContainer = document.querySelector('.loader-container');
+            // Проверка авторизации
+            checkAuth();
+            // Задержка перед началом скрытия для более "погрузочного" эффекта
+            setTimeout(() => {
+                loaderContainer.style.opacity = '0';
+                setTimeout(() => {
+                    loaderContainer.classList.add('hidden');
+                }, 1000); // Время совпадает с transition в CSS (1s)
+            }, 1000); // Минимальная задержка 1s перед скрытием
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,467 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Урок 4: Наследование и полиморфизм - CodeMaster</title>
+    <link rel="stylesheet" href="../styles.css">
+    <style>
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 40px 20px;
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+        h1 {
+            color: #333;
+            font-size: 2.5em;
+            margin-bottom: 20px;
+            text-align: center;
+            border-bottom: 2px solid #8a9635;
+            padding-bottom: 10px;
+        }
+        h2 {
+            color: #8a9635;
+            font-size: 1.8em;
+            margin: 30px 0 15px;
+        }
+        h3 {
+            color: #555;
+            font-size: 1.5em;
+            margin: 20px 0 10px;
+        }
+        p {
+            line-height: 1.6;
+            font-size: 1.1em;
+            color: #555;
+            margin-bottom: 15px;
+        }
+        p a, li a {
+            color: #8a9635;
+            text-decoration: none;
+            font-weight: 500;
+        }
+        p a:hover, li a:hover {
+            text-decoration: underline;
+        }
+        pre {
+            background-color: #f5f5f5;
+            padding: 15px;
+            border-radius: 5px;
+            overflow-x: auto;
+            margin: 15px 0;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+        }
+        code {
+            font-family: 'Courier New', Courier, monospace;
+            color: #333;
+        }
+        ul {
+            margin-bottom: 15px;
+            padding-left: 20px;
+        }
+        li {
+            line-height: 1.6;
+            font-size: 1.1em;
+            color: #555;
+        }
+        @media (max-width: 768px) {
+            .container {
+                padding: 20px 15px;
+            }
+            h1 {
+                font-size: 2em;
+            }
+            h2 {
+                font-size: 1.5em;
+            }
+            h3 {
+                font-size: 1.3em;
+            }
+            p, li {
+                font-size: 1em;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container container-header-container">
+            <a href="../index.html" class="logo">
+                <img src="../logo.png" alt="CodeMaster Logo" class="logo-img">
+                <span class="logo-text">CodeMaster</span>
+            </a>
+            <nav class="nav-menu">
+                <a href="../index.html" class="nav-link">Главная</a>
+                <a href="../intro.html" class="nav-link">Введение</a>
+                <a href="../languages.html" class="nav-link">Языки</a>
+                <a href="../tutorials.html" class="nav-link">Уроки</a>
+                <a href="../resources.html" class="nav-link">Ресурсы</a>
+                <a href="#" class="nav-link" onclick="logout()">Выход</a>
+                
+            </nav>
+        </div>
+    </header>
+
+    <section class="container">
+        <h1>Урок 4: Наследование и полиморфизм</h1>
+
+        <h2>Введение</h2>
+        <p>Наследование и полиморфизм — ключевые концепции объектно-ориентированного программирования в Java. Наследование позволяет создавать новые классы на основе существующих, а полиморфизм обеспечивает гибкость в вызове методов. В этом уроке вы изучите, как использовать наследование, переопределять методы и применять полиморфизм.</p>
+
+        <h2>Наследование</h2>
+        <p>Наследование позволяет классу (подклассу) унаследовать поля и методы другого класса (суперкласса) с помощью ключевого слова <code>extends</code>.</p>
+        <pre>
+public class Animal {
+    String name;
+
+    public Animal(String name) {
+        this.name = name;
+    }
+
+    void makeSound() {
+        System.out.println("Какой-то звук");
+    }
+}
+
+public class Dog extends Animal {
+    public Dog(String name) {
+        super(name);
+    }
+
+    @Override
+    void makeSound() {
+        System.out.println(name + " говорит: Гав!");
+    }
+}
+
+public class Main {
+    public static void main(String[] args) {
+        Dog dog = new Dog("Бобик");
+        dog.makeSound(); // Вывод: Бобик говорит: Гав!
+    }
+}
+        </pre>
+        <p>В этом примере класс <code>Dog</code> наследует от <code>Animal</code> и переопределяет метод <code>makeSound</code>. Ключевое слово <code>super</code> вызывает конструктор суперкласса.</p>
+
+        <h2>Переопределение методов</h2>
+        <p>Аннотация <code>@Override</code> указывает, что метод переопределяет метод суперкласса. Это улучшает читаемость и предотвращает ошибки.</p>
+        <pre>
+public class Cat extends Animal {
+    public Cat(String name) {
+        super(name);
+    }
+
+    @Override
+    void makeSound() {
+        System.out.println(name + " говорит: Мяу!");
+    }
+}
+        </pre>
+
+        <h2>Полиморфизм</h2>
+        <p>Полиморфизм позволяет использовать объекты подклассов там, где ожидается суперкласс. Это достигается через динамическое связывание:</p>
+        <pre>
+public class Main {
+    public static void main(String[] args) {
+        Animal animal1 = new Dog("Бобик");
+        Animal animal2 = new Cat("Мурка");
+        animal1.makeSound(); // Вывод: Бобик говорит: Гав!
+        animal2.makeSound(); // Вывод: Мурка говорит: Мяу!
+    }
+}
+        </pre>
+        <p>Переменные типа <code>Animal</code> могут ссылаться на объекты <code>Dog</code> или <code>Cat</code>, а вызов метода определяется типом объекта.</p>
+
+        <h2>Абстрактные классы</h2>
+        <p>Абстрактные классы не могут быть инстанцированы и используются как шаблоны для подклассов:</p>
+        <pre>
+public abstract class Animal {
+    String name;
+
+    public Animal(String name) {
+        this.name = name;
+    }
+
+    abstract void makeSound();
+}
+
+public class Dog extends Animal {
+    public Dog(String name) {
+        super(name);
+    }
+
+    @Override
+    void makeSound() {
+        System.out.println(name + " говорит: Гав!");
+    }
+}
+        </pre>
+        <p>Метод <code>makeSound</code> объявлен как <code>abstract</code>, и подкласс обязан его реализовать.</p>
+
+        <h2>Интерфейсы</h2>
+        <p>Интерфейсы определяют контракт, который классы должны реализовать с помощью ключевого слова <code>implements</code>:</p>
+        <pre>
+public interface Speakable {
+    void speak();
+}
+
+public class Dog extends Animal implements Speakable {
+    public Dog(String name) {
+        super(name);
+    }
+
+    @Override
+    void makeSound() {
+        System.out.println(name + " говорит: Гав!");
+    }
+
+    @Override
+    public void speak() {
+        makeSound();
+    }
+}
+        </pre>
+
+        <h2>Практика</h2>
+        <p>1. Создайте класс <code>Vehicle</code> и подкласс <code>Car</code>, переопределив метод для вывода типа транспортного средства.</p>
+        <p>2. Создайте абстрактный класс <code>Shape</code> с абстрактным методом <code>getArea</code>. Реализуйте его в подклассах <code>Circle</code> и <code>Rectangle</code>.</p>
+        <p>3. Напишите программу, демонстрирующую полиморфизм с массивом объектов разных подклассов.</p>
+        <p>4. Создайте интерфейс <code>Printable</code> с методом <code>print</code> и реализуйте его в классе <code>Book</code>.</p>
+   <!-- Добавьте этот код в раздел "Попробуйте сами" перед закрывающим </section> -->
+
+<h2>Интерактивный терминал (демо)</h2>
+<div class="terminal">
+    <div class="terminal-header">
+        <div class="terminal-controls">
+            <span class="terminal-circle red"></span>
+            <span class="terminal-circle yellow"></span>
+            <span class="terminal-circle green"></span>
+        </div>
+    </div>
+    <div class="terminal-body" id="terminal-output">
+        <div class="terminal-line">Добро пожаловать в CodeMaster Java терминал!</div>
+        <div class="terminal-line">Введите код и нажмите "Выполнить".</div>
+        <div class="terminal-line">Пример: System.out.println("Hello World");</div>
+    </div>
+    <div class="terminal-input">
+        <textarea id="code-input" rows="4" placeholder="Введите ваш Java код здесь..."></textarea>
+        <button onclick="executeJavaCode()">Выполнить</button>
+    </div>
+</div>
+
+<style>
+    .terminal {
+        background: #1e1e1e;
+        border-radius: 5px;
+        margin: 20px 0;
+        color: #fff;
+        font-family: 'Courier New', monospace;
+    }
+    
+    .terminal-header {
+        padding: 10px;
+        background: #323233;
+        border-radius: 5px 5px 0 0;
+    }
+    
+    .terminal-controls {
+        display: flex;
+        gap: 5px;
+    }
+    
+    .terminal-circle {
+        width: 12px;
+        height: 12px;
+        border-radius: 50%;
+    }
+    
+    .red { background: #ff5f56; }
+    .yellow { background: #ffbd2e; }
+    .green { background: #27c93f; }
+    
+    .terminal-body {
+        padding: 15px;
+        min-height: 100px;
+        max-height: 300px;
+        overflow-y: auto;
+    }
+    
+    .terminal-line {
+        white-space: pre-wrap;
+        margin: 5px 0;
+        color: #d4d4d4;
+    }
+    
+    .terminal-input {
+        border-top: 1px solid #333;
+        padding: 10px;
+    }
+    
+    #code-input {
+        width: 100%;
+        background: #252526;
+        border: none;
+        color: #fff;
+        padding: 10px;
+        margin-bottom: 10px;
+        resize: vertical;
+    }
+    
+    .terminal-input button {
+        background: #8a9635;
+        color: white;
+        border: none;
+        padding: 8px 20px;
+        border-radius: 3px;
+        cursor: pointer;
+    }
+    
+    .terminal-input button:hover {
+        background: #6e7a25;
+    }
+</style>
+
+<script>
+function executeJavaCode() {
+    const codeInput = document.getElementById('code-input').value;
+    const outputDiv = document.getElementById('terminal-output');
+    
+    // Очистка предыдущего вывода
+    outputDiv.innerHTML = '';
+    
+    // Эмуляция выполнения кода
+    const addOutput = (text) => {
+        const line = document.createElement('div');
+        line.className = 'terminal-line';
+        line.textContent = text;
+        outputDiv.appendChild(line);
+    };
+
+    try {
+        // Примеры для демонстрации
+        if (codeInput.includes('System.out.println("Hello, World!")')) {
+            addOutput('Hello, World!');
+        }
+        else if (codeInput.includes('"Имя: " + name + ", Возраст: " + age')) {
+            addOutput('Имя: Боб, Возраст: 25');
+        }
+        else if (codeInput.includes('x + y')) {
+            addOutput('Сумма: 15.7');
+            addOutput('Разность: 5.3');
+            addOutput('Произведение: 54.6');
+        }
+        else if (codeInput.includes('javac -version')) {
+            addOutput('javac 17.0.5');
+        }
+        else if (codeInput.includes('boolean')) {
+            addOutput('true');
+        }
+        else {
+            addOutput('Результат выполнения:');
+            addOutput('(Для реального выполнения Java кода требуется установленный JDK)');
+        }
+    } catch (error) {
+        addOutput(`Ошибка: ${error.message}`);
+    }
+    
+    // Прокрутка к последнему выводу
+    outputDiv.scrollTop = outputDiv.scrollHeight;
+}
+</script>
+<div class="lesson-navigation">
+    <a href="lesson3.html" class="nav-button">Предыдущий урок</a>
+    <a href="lesson5.html" class="nav-button">Следующий урок</a>
+</div>
+
+<style>
+    .lesson-navigation {
+        display: flex;
+        justify-content: space-between;
+        margin: 50px 0 20px;
+        padding: 20px 0;
+        border-top: 1px solid #eaeaea;
+        border-bottom: 1px solid #eaeaea;
+    }
+    
+    .nav-button {
+        display: inline-flex;
+        align-items: center;
+        background-color: #8a9635;
+        color: white;
+        padding: 12px 20px;
+        border-radius: 6px;
+        text-decoration: none;
+        font-weight: 600;
+        transition: all 0.3s ease;
+        font-size: 0.95em;
+        max-width: 48%;
+        text-align: center;
+        box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    }
+    
+    .nav-button:hover {
+        background-color: #6e7a25;
+        transform: translateY(-2px);
+        box-shadow: 0 4px 8px rgba(0,0,0,0.15);
+    }
+    
+    .nav-button::before,
+    .nav-button::after {
+        content: "";
+        display: inline-block;
+        width: 8px;
+        height: 8px;
+        border: 2px solid white;
+        margin: 0 5px;
+    }
+    
+    .nav-button::before {
+        border-right: 0;
+        border-top: 0;
+        transform: rotate(45deg);
+    }
+    
+    .nav-button::after {
+        border-left: 0;
+        border-bottom: 0;
+        transform: rotate(45deg);
+    }
+    
+    .nav-button:first-child::before {
+        margin-right: 10px;
+    }
+    
+    .nav-button:last-child::after {
+        margin-left: 10px;
+    }
+
+    @media (max-width: 768px) {
+        .lesson-navigation {
+            flex-direction: column;
+            gap: 15px;
+        }
+        
+        .nav-button {
+            max-width: 100%;
+            justify-content: center;
+        }
+        
+        .nav-button:first-child {
+            margin-bottom: 10px;
+        }
+    }
+</style>  
+</section>
+
+    <footer>
+        <div class="container footer-bottom">
+            <p>© 2025 <a href="https://nikitos23133.github.io">CodeMaster</a>. Все права защищены.</p>
+        </div>
+    </footer>
+
+    <script src="../script.js"></script>
+</body>
+</html>

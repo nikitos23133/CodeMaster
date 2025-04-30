@@ -1,0 +1,450 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Урок 5: События и обработчики событий - CodeMaster</title>
+    <link rel="stylesheet" href="../styles.css">
+    <style>
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 40px 20px;
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+        h1 {
+            color: #333;
+            font-size: 2.5em;
+            margin-bottom: 20px;
+            text-align: center;
+            border-bottom: 2px solid #8a9635;
+            padding-bottom: 10px;
+        }
+        h2 {
+            color: #8a9635;
+            font-size: 1.8em;
+            margin: 30px 0 15px;
+        }
+        h3 {
+            color: #555;
+            font-size: 1.5em;
+            margin: 20px 0 10px;
+        }
+        p {
+            line-height: 1.6;
+            font-size: 1.1em;
+            color: #555;
+            margin-bottom: 15px;
+        }
+        p a, li a {
+            color: #8a9635;
+            text-decoration: none;
+            font-weight: 500;
+        }
+        p a:hover, li a:hover {
+            text-decoration: underline;
+        }
+        pre {
+            background-color: #f5f5f5;
+            padding: 15px;
+            border-radius: 5px;
+            overflow-x: auto;
+            margin: 15px 0;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+        }
+        code {
+            font-family: 'Courier New', Courier, monospace;
+            color: #333;
+        }
+        ul {
+            margin-bottom: 15px;
+            padding-left: 20px;
+        }
+        li {
+            line-height: 1.6;
+            font-size: 1.1em;
+            color: #555;
+        }
+        @media (max-width: 768px) {
+            .container {
+                padding: 20px 15px;
+            }
+            h1 {
+                font-size: 2em;
+            }
+            h2 {
+                font-size: 1.5em;
+            }
+            h3 {
+                font-size: 1.3em;
+            }
+            p, li {
+                font-size: 1em;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container container-header-container">
+            <a href="../index.html" class="logo">
+                <img src="../logo.png" alt="CodeMaster Logo" class="logo-img">
+                <span class="logo-text">CodeMaster</span>
+            </a>
+            <nav class="nav-menu">
+                <a href="../index.html" class="nav-link">Главная</a>
+                <a href="../intro.html" class="nav-link">Введение</a>
+                <a href="../languages.html" class="nav-link">Языки</a>
+                <a href="../tutorials.html" class="nav-link">Уроки</a>
+                <a href="../resources.html" class="nav-link">Ресурсы</a>
+                <a href="#" class="nav-link" onclick="logout()">Выход</a>
+                
+            </nav>
+        </div>
+    </header>
+
+    <section class="container">
+        <h1>Урок 5: События и обработчики событий</h1>
+
+        <h2>Введение</h2>
+        <p>События в JavaScript — это действия пользователя или браузера, такие как клики, ввод текста или наведение мыши. Обработчики событий позволяют вашему коду реагировать на эти действия, делая веб-страницы интерактивными. В этом уроке вы научитесь добавлять обработчики событий, работать с объектом события и создавать динамические интерфейсы.</p>
+
+        <h2>Что такое события?</h2>
+        <p>События — это сигналы, которые генерируются, когда пользователь взаимодействует со страницей (например, нажимает кнопку) или происходят изменения в браузере (например, страница загрузилась). JavaScript может "слушать" эти события и выполнять код в ответ.</p>
+        <p>Пример простого события:</p>
+        <pre>
+<!-- HTML -->
+<button id="myButton">Нажми меня</button>
+
+<!-- JavaScript -->
+const button = document.getElementById("myButton");
+button.addEventListener("click", () => {
+    alert("Кнопка нажата!");
+});
+        </pre>
+        <p>В этом примере при клике на кнопку отображается всплывающее окно.</p>
+
+        <h2>Добавление обработчиков событий</h2>
+        <p>Есть два основных способа добавления обработчиков событий:</p>
+        <ul>
+            <li><code>addEventListener</code>: Современный и гибкий метод.</li>
+            <li>Атрибуты <code>on...</code>: Например, <code>onclick</code> в HTML (менее рекомендуемый).</li>
+        </ul>
+        <p>Пример с <code>addEventListener</code>:</p>
+        <pre>
+const button = document.getElementById("myButton");
+button.addEventListener("click", () => {
+    console.log("Клик!");
+});
+        </pre>
+        <p>Пример с атрибутом <code>onclick</code>:</p>
+        <pre>
+<!-- HTML -->
+<button onclick="handleClick()">Нажми меня</button>
+
+<!-- JavaScript -->
+function handleClick() {
+    console.log("Клик через onclick!");
+}
+        </pre>
+        <p><code>addEventListener</code> предпочтительнее, так как позволяет добавлять несколько обработчиков для одного события.</p>
+
+        <h2>Типы событий</h2>
+        <p>JavaScript поддерживает множество типов событий. Вот несколько популярных:</p>
+        <ul>
+            <li><code>click</code>: Клик мышью.</li>
+            <li><code>input</code>: Изменение значения в поле ввода.</li>
+            <li><code>mouseover</code>: Наведение мыши на элемент.</li>
+            <li><code>mouseout</code>: Уход курсора с элемента.</li>
+            <li><code>submit</code>: Отправка формы.</li>
+            <li><code>keydown</code>: Нажатие клавиши.</li>
+        </ul>
+        <p>Пример с <code>mouseover</code> и <code>mouseout</code>:</p>
+        <pre>
+const div = document.getElementById("myDiv");
+div.addEventListener("mouseover", () => {
+    div.style.backgroundColor = "lightblue";
+});
+div.addEventListener("mouseout", () => {
+    div.style.backgroundColor = "";
+});
+        </pre>
+        <p>Этот код меняет цвет фона элемента при наведении мыши и возвращает исходный цвет при уходе курсора.</p>
+
+        <h2>Объект события</h2>
+        <p>Каждый обработчик события получает объект <code>event</code>, содержащий информацию о событии, например, какой элемент вызвал событие или какая клавиша была нажата.</p>
+        <pre>
+const input = document.getElementById("myInput");
+input.addEventListener("input", (event) => {
+    console.log(`Введено: ${event.target.value}`);
+});
+        </pre>
+        <p>Свойство <code>event.target</code> указывает на элемент, вызвавший событие, а <code>event.target.value</code> возвращает текущее значение поля ввода.</p>
+        <p>Пример с <code>keydown</code>:</p>
+        <pre>
+document.addEventListener("keydown", (event) => {
+    console.log(`Нажата клавиша: ${event.key}`);
+});
+        </pre>
+        <p>Этот код выводит в консоль нажатую клавишу.</p>
+
+        <h2>Предотвращение стандартного поведения</h2>
+        <p>Некоторые события, такие как отправка формы, имеют стандартное поведение (например, перезагрузка страницы). Метод <code>preventDefault</code> позволяет отменить это поведение.</p>
+        <pre>
+<!-- HTML -->
+<form id="myForm">
+    <input type="text" name="username">
+    <button type="submit">Отправить</button>
+</form>
+
+<!-- JavaScript -->
+const form = document.getElementById("myForm");
+form.addEventListener("submit", (event) => {
+    event.preventDefault();
+    console.log("Форма отправлена, но страница не перезагружена!");
+});
+        </pre>
+        <p>Этот код предотвращает перезагрузку страницы при отправке формы.</p>
+
+        <h2>Практика</h2>
+        <p>1. Создайте кнопку, которая при клике меняет текст другого элемента на странице.</p>
+        <p>2. Добавьте обработчик события <code>input</code> для поля ввода, чтобы отображать введённый текст в реальном времени в другом элементе.</p>
+        <p>3. Создайте элемент, который меняет цвет фона при наведении мыши и возвращает исходный цвет при уходе курсора.</p>
+        <p>4. Создайте форму, которая при отправке выводит введённые данные в консоль и предотвращает перезагрузку страницы.</p>
+        <p>5. Напишите обработчик события <code>keydown</code>, который выводит сообщение, если пользователь нажимает клавишу Enter.</p>
+    <!-- Добавьте этот код в раздел "Попробуйте сами" перед закрывающим </section> -->
+
+<h2>Интерактивный терминал (демо)</h2>
+<div class="terminal">
+    <div class="terminal-header">
+        <div class="terminal-controls">
+            <span class="terminal-circle red"></span>
+            <span class="terminal-circle yellow"></span>
+            <span class="terminal-circle green"></span>
+        </div>
+    </div>
+    <div class="terminal-body" id="terminal-output">
+        <div class="terminal-line">Добро пожаловать в CodeMaster JavaScript терминал!</div>
+        <div class="terminal-line">Введите код и нажмите "Выполнить".</div>
+        <div class="terminal-line">Пример: console.log("Hello World");</div>
+    </div>
+    <div class="terminal-input">
+        <textarea id="code-input" rows="4" placeholder="Введите ваш JavaScript код здесь..."></textarea>
+        <button onclick="executeJSCode()">Выполнить</button>
+    </div>
+</div>
+
+<style>
+    .terminal {
+        background: #1e1e1e;
+        border-radius: 5px;
+        margin: 20px 0;
+        color: #fff;
+        font-family: 'Courier New', monospace;
+    }
+    
+    .terminal-header {
+        padding: 10px;
+        background: #323233;
+        border-radius: 5px 5px 0 0;
+    }
+    
+    .terminal-controls {
+        display: flex;
+        gap: 5px;
+    }
+    
+    .terminal-circle {
+        width: 12px;
+        height: 12px;
+        border-radius: 50%;
+    }
+    
+    .red { background: #ff5f56; }
+    .yellow { background: #ffbd2e; }
+    .green { background: #27c93f; }
+    
+    .terminal-body {
+        padding: 15px;
+        min-height: 100px;
+        max-height: 300px;
+        overflow-y: auto;
+    }
+    
+    .terminal-line {
+        white-space: pre-wrap;
+        margin: 5px 0;
+        color: #d4d4d4;
+    }
+    
+    .terminal-input {
+        border-top: 1px solid #333;
+        padding: 10px;
+    }
+    
+    #code-input {
+        width: 100%;
+        background: #252526;
+        border: none;
+        color: #fff;
+        padding: 10px;
+        margin-bottom: 10px;
+        resize: vertical;
+    }
+    
+    .terminal-input button {
+        background: #8a9635;
+        color: white;
+        border: none;
+        padding: 8px 20px;
+        border-radius: 3px;
+        cursor: pointer;
+    }
+    
+    .terminal-input button:hover {
+        background: #6e7a25;
+    }
+</style>
+
+<script>
+function executeJSCode() {
+    const codeInput = document.getElementById('code-input').value;
+    const outputDiv = document.getElementById('terminal-output');
+    
+    // Очистка предыдущего вывода
+    outputDiv.innerHTML = '';
+    
+    // Эмуляция выполнения кода
+    const addOutput = (text) => {
+        const line = document.createElement('div');
+        line.className = 'terminal-line';
+        line.textContent = text;
+        outputDiv.appendChild(line);
+    };
+
+    try {
+        // Примеры для демонстрации
+        if (codeInput.includes('console.log("Hello, World!")')) {
+            addOutput('Hello, World!');
+        }
+        else if (codeInput.includes('a + b')) {
+            addOutput('Сумма: 15');
+            addOutput('Разность: -5');
+            addOutput('Произведение: 50');
+        }
+        else if (codeInput.includes('Привет, [ваше имя]!')) {
+            addOutput('Привет, Алиса!');
+        }
+        else if (codeInput.includes('node -v')) {
+            addOutput('v18.12.1');
+        }
+        else if (codeInput.includes('let name =')) {
+            addOutput('Алиса');
+        }
+        else {
+            addOutput('Результат выполнения:');
+            addOutput('(Для реального выполнения используйте консоль браузера или Node.js)');
+        }
+    } catch (error) {
+        addOutput(`Ошибка: ${error.message}`);
+    }
+    
+    // Прокрутка к последнему выводу
+    outputDiv.scrollTop = outputDiv.scrollHeight;
+}
+</script>
+<div class="lesson-navigation">
+    <a href="lesson4.html" class="nav-button">Предыдущий урок</a>
+</div>
+
+<style>
+    .lesson-navigation {
+        display: flex;
+        justify-content: space-between;
+        margin: 50px 0 20px;
+        padding: 20px 0;
+        border-top: 1px solid #eaeaea;
+        border-bottom: 1px solid #eaeaea;
+    }
+    
+    .nav-button {
+        display: inline-flex;
+        align-items: center;
+        background-color: #8a9635;
+        color: white;
+        padding: 12px 20px;
+        border-radius: 6px;
+        text-decoration: none;
+        font-weight: 600;
+        transition: all 0.3s ease;
+        font-size: 0.95em;
+        max-width: 48%;
+        text-align: center;
+        box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    }
+    
+    .nav-button:hover {
+        background-color: #6e7a25;
+        transform: translateY(-2px);
+        box-shadow: 0 4px 8px rgba(0,0,0,0.15);
+    }
+    
+    .nav-button::before,
+    .nav-button::after {
+        content: "";
+        display: inline-block;
+        width: 8px;
+        height: 8px;
+        border: 2px solid white;
+        margin: 0 5px;
+    }
+    
+    .nav-button::before {
+        border-right: 0;
+        border-top: 0;
+        transform: rotate(45deg);
+    }
+    
+    .nav-button::after {
+        border-left: 0;
+        border-bottom: 0;
+        transform: rotate(45deg);
+    }
+    
+    .nav-button:first-child::before {
+        margin-right: 10px;
+    }
+    
+    .nav-button:last-child::after {
+        margin-left: 10px;
+    }
+
+    @media (max-width: 768px) {
+        .lesson-navigation {
+            flex-direction: column;
+            gap: 15px;
+        }
+        
+        .nav-button {
+            max-width: 100%;
+            justify-content: center;
+        }
+        
+        .nav-button:first-child {
+            margin-bottom: 10px;
+        }
+    }
+</style>      
+</section>
+
+    <footer>
+        <div class="container footer-bottom">
+            <p>© 2025 <a href="https://nikitos23133.github.io">CodeMaster</a>. Все права защищены.</p>
+        </div>
+    </footer>
+
+    <script src="../script.js"></script>
+</body>
+</html>

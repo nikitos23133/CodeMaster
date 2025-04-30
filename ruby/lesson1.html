@@ -1,0 +1,451 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Урок 1: Введение и первая программа - Ruby - CodeMaster</title>
+    <link rel="stylesheet" href="../styles.css">
+    <style>
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 40px 20px;
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+        h1 {
+            color: #333;
+            font-size: 2.5em;
+            margin-bottom: 20px;
+            text-align: center;
+            border-bottom: 2px solid #8a9635;
+            padding-bottom: 10px;
+        }
+        h2 {
+            color: #8a9635;
+            font-size: 1.8em;
+            margin: 30px 0 15px;
+        }
+        h3 {
+            color: #555;
+            font-size: 1.5em;
+            margin: 20px 0 10px;
+        }
+        p {
+            line-height: 1.6;
+            font-size: 1.1em;
+            color: #555;
+            margin-bottom: 15px;
+        }
+        p a, li a {
+            color: #8a9635;
+            text-decoration: none;
+            font-weight: 500;
+        }
+        p a:hover, li a:hover {
+            text-decoration: underline;
+        }
+        pre {
+            background-color: #f5f5f5;
+            padding: 15px;
+            border-radius: 5px;
+            overflow-x: auto;
+            margin: 15px 0;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+        }
+        code {
+            font-family: 'Courier New', Courier, monospace;
+            color: #333;
+        }
+        ul, ol {
+            margin-bottom: 15px;
+            padding-left: 20px;
+        }
+        li {
+            line-height: 1.6;
+            font-size: 1.1em;
+            color: #555;
+        }
+        @media (max-width: 768px) {
+            .container {
+                padding: 20px 15px;
+            }
+            h1 {
+                font-size: 2em;
+            }
+            h2 {
+                font-size: 1.5em;
+            }
+            h3 {
+                font-size: 1.3em;
+            }
+            p, li {
+                font-size: 1em;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container container-header-container">
+            <a href="../index.html" class="logo">
+                <img src="../logo.png" alt="CodeMaster Logo" class="logo-img">
+                <span class="logo-text">CodeMaster</span>
+            </a>
+            <nav class="nav-menu">
+                <a href="../index.html" class="nav-link">Главная</a>
+                <a href="../intro.html" class="nav-link">Введение</a>
+                <a href="../languages.html" class="nav-link">Языки</a>
+                <a href="../tutorials.html" class="nav-link">Уроки</a>
+                <a href="../resources.html" class="nav-link">Ресурсы</a>
+                <a href="../login.html" class="nav-link">Вход</a>
+                <a href="#" class="nav-link" onclick="logout()">Выход</a>
+                
+            </nav>
+        </div>
+    </header>
+
+    <section class="container">
+        <h1>Урок 1: Введение и первая программа - Ruby</h1>
+
+        <h2>Введение</h2>
+        <p>Ruby — это элегантный и простой в освоении язык программирования, ориентированный на продуктивность разработчиков. Он широко используется для веб-разработки (например, с фреймворком Ruby on Rails), скриптов и автоматизации. В этом уроке вы установите Ruby, настроите среду разработки, напишете свою первую программу и познакомитесь с базовым синтаксисом.</p>
+
+        <h2>Установка Ruby</h2>
+        <p>Для работы с Ruby необходимо установить интерпретатор. Следуйте этим шагам:</p>
+        <ol>
+            <li>Перейдите на <a href="https://www.ruby-lang.org/en/downloads/">официальный сайт Ruby</a> или используйте менеджер версий, такой как <a href="https://rvm.io/">RVM</a> (для Linux/macOS) или <a href="https://rubyinstaller.org/">RubyInstaller</a> (для Windows).</li>
+            <li>Скачайте и установите последнюю версию Ruby (например, 3.2 или новее).</li>
+            <li>Проверьте установку, открыв терминал и выполнив:
+                <pre>
+ruby -v
+                </pre>
+                Вы должны увидеть версию Ruby, например: <code>ruby 3.2.2</code>.
+            </li>
+        </ol>
+        <p>Рекомендуется использовать текстовый редактор, такой как <a href="https://code.visualstudio.com/">VS Code</a>, для написания кода.</p>
+
+        <h2>Первая программа</h2>
+        <p>Создайте файл <code>hello.rb</code> с следующим кодом:</p>
+        <pre>
+puts "Hello, World!"
+        </pre>
+        <p>Разберём код:</p>
+        <ul>
+            <li><code>puts</code>: Метод, который выводит текст в консоль с добавлением новой строки.</li>
+            <li><code>"Hello, World!"</code>: Строка, которая будет выведена.</li>
+        </ul>
+
+        <h2>Запуск программы</h2>
+        <p>Чтобы запустить программу:</p>
+        <ol>
+            <li>Сохраните файл <code>hello.rb</code>.</li>
+            <li>Откройте терминал в папке с файлом.</li>
+            <li>Выполните:
+                <pre>
+ruby hello.rb
+                </pre>
+                Вывод: <code>Hello, World!</code>
+            </li>
+        </ol>
+        <p>В VS Code вы можете использовать встроенный терминал для запуска (Ctrl+`).</p>
+
+        <h2>Интерактивная оболочка IRB</h2>
+        <p>Ruby поставляется с интерактивной оболочкой IRB (Interactive Ruby), которая позволяет тестировать код в реальном времени.</p>
+        <ol>
+            <li>Откройте терминал и введите:
+                <pre>
+irb
+                </pre>
+            </li>
+            <li>Попробуйте ввести следующий код:
+                <pre>
+puts "Hello from IRB!"
+                </pre>
+                Нажмите Enter, и вы увидите вывод: <code>Hello from IRB!</code>.
+            </li>
+            <li>Для выхода из IRB введите:
+                <pre>
+exit
+                </pre>
+            </li>
+        </ol>
+        <p>IRB полезен для экспериментов с небольшими фрагментами кода и изучения возможностей Ruby.</p>
+
+        <h2>Основы синтаксиса Ruby</h2>
+        <p>Давайте познакомимся с базовыми элементами синтаксиса Ruby, которые пригодятся в дальнейшем:</p>
+        <h3>Комментарии</h3>
+        <p>Комментарии используются для пояснений в коде и игнорируются интерпретатором.</p>
+        <pre>
+# Это однострочный комментарий
+puts "Это выполнится" # Комментарий после кода
+
+=begin
+Это многострочный комментарий.
+Он может занимать несколько строк.
+=end
+        </pre>
+
+        <h3>Переменные</h3>
+        <p>Переменные в Ruby не требуют явного объявления типа. Пример:</p>
+        <pre>
+name = "Программист"
+puts "Привет, #{name}!" # Интерполяция строки
+        </pre>
+        <p><code>#{...}</code> позволяет вставлять значения переменных в строки.</p>
+
+        <h3>Базовые операторы</h3>
+        <p>Ruby поддерживает арифметические и другие операторы:</p>
+        <pre>
+a = 10
+b = 5
+sum = a + b
+puts "Сумма: #{sum}" # Вывод: Сумма: 15
+        </pre>
+        <p>Попробуйте другие операторы: <code>-</code>, <code>*</code>, <code>/</code>, <code>%</code> (остаток от деления).</p>
+
+        <h2>Программа с вводом данных</h2>
+        <p>Давайте создадим программу, которая запрашивает имя пользователя и выводит персонализированное приветствие.</p>
+        <p>Создайте файл <code>greet.rb</code> с кодом:</p>
+        <pre>
+print "Введите ваше имя: "
+name = gets.chomp
+puts "Привет, #{name}!"
+        </pre>
+        <p>Разберём код:</p>
+        <ul>
+            <li><code>print</code>: Выводит текст без новой строки.</li>
+            <li><code>gets</code>: Считывает ввод пользователя (включая символ новой строки).</li>
+            <li><code>chomp</code>: Удаляет символ новой строки из ввода.</li>
+            <li><code>puts</code>: Выводит приветствие с использованием интерполяции.</li>
+        </ul>
+        <p>Запустите программу:
+            <pre>
+ruby greet.rb
+            </pre>
+            Введите имя, например "Алексей", и увидите: <code>Привет, Алексей!</code>.
+        </p>
+
+        <h2>Практика</h2>
+        <p>Выполните следующие задания, чтобы закрепить материал:</p>
+        <ol>
+            <li>Установите Ruby и проверьте его версию в терминале (<code>ruby -v</code>).</li>
+            <li>Установите текстовый редактор, например <a href="https://code.visualstudio.com/">VS Code</a>.</li>
+            <li>Напишите программу, которая выводит ваше имя в консоль.</li>
+            <li>Создайте программу, которая выводит "Welcome to Ruby!" и запустите её.</li>
+            <li>В IRB выполните команду <code>puts "Тестирую IRB!"</code> и проверьте вывод.</li>
+            <li>Напишите программу, которая запрашивает ваше имя и возраст, затем выводит: "Привет, [имя]! Тебе [возраст] лет."</li>
+            <li>Создайте программу, которая запрашивает два числа и выводит их сумму.</li>
+        </ol>
+   <!-- Добавьте этот код в раздел "Практика" перед закрывающим </section> -->
+
+<h2>Интерактивный терминал Ruby (демо)</h2>
+<div class="terminal">
+    <div class="terminal-header">
+        <div class="terminal-controls">
+            <span class="terminal-circle red"></span>
+            <span class="terminal-circle yellow"></span>
+            <span class="terminal-circle green"></span>
+        </div>
+        <span class="terminal-title">IRB - Interactive Ruby</span>
+    </div>
+    <div class="terminal-body" id="terminal-output">
+        <div class="terminal-line">Добро пожаловать в CodeMaster Ruby терминал!</div>
+        <div class="terminal-line">Введите код и нажмите "Выполнить".</div>
+        <div class="terminal-line">Пример: puts "Hello World"</div>
+    </div>
+    <div class="terminal-input">
+        <textarea id="code-input" rows="4" placeholder="Введите ваш Ruby код здесь..."></textarea>
+        <button onclick="executeRubyCode()">Выполнить</button>
+    </div>
+</div>
+
+<style>
+    .terminal {
+        background: #1e1e1e;
+        border-radius: 5px;
+        margin: 20px 0;
+        color: #fff;
+        font-family: 'Courier New', monospace;
+    }
+    
+    .terminal-header {
+        padding: 10px;
+        background: #323233;
+        border-radius: 5px 5px 0 0;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+    }
+    
+    .terminal-controls {
+        display: flex;
+        gap: 5px;
+    }
+    
+    .terminal-circle {
+        width: 12px;
+        height: 12px;
+        border-radius: 50%;
+    }
+    
+    .red { background: #ff5f56; }
+    .yellow { background: #ffbd2e; }
+    .green { background: #27c93f; }
+    
+    .terminal-title {
+        color: #aaa;
+        font-size: 0.9em;
+    }
+    
+    .terminal-body {
+        padding: 15px;
+        min-height: 100px;
+        max-height: 300px;
+        overflow-y: auto;
+    }
+    
+    .terminal-line {
+        white-space: pre-wrap;
+        margin: 5px 0;
+        color: #d4d4d4;
+    }
+    
+    .terminal-input {
+        border-top: 1px solid #333;
+        padding: 10px;
+    }
+    
+    #code-input {
+        width: 100%;
+        background: #252526;
+        border: none;
+        color: #fff;
+        padding: 10px;
+        margin-bottom: 10px;
+        resize: vertical;
+        font-family: 'Courier New', monospace;
+    }
+    
+    .terminal-input button {
+        background: #8a9635;
+        color: white;
+        border: none;
+        padding: 8px 20px;
+        border-radius: 3px;
+        cursor: pointer;
+    }
+    
+    .terminal-input button:hover {
+        background: #6e7a25;
+    }
+    
+    .irb-prompt {
+        color: #8a9635;
+    }
+    
+    .irb-output {
+        color: #d4d4d4;
+    }
+</style>
+
+<script>
+function executeRubyCode() {
+    const codeInput = document.getElementById('code-input').value;
+    const outputDiv = document.getElementById('terminal-output');
+    
+    // Очистка предыдущего вывода
+    outputDiv.innerHTML = '';
+    
+    // Эмуляция выполнения кода
+    const addOutput = (text, isPrompt = false) => {
+        const line = document.createElement('div');
+        line.className = isPrompt ? 'terminal-line irb-prompt' : 'terminal-line irb-output';
+        line.textContent = text;
+        outputDiv.appendChild(line);
+    };
+
+    try {
+        // Добавляем приглашение IRB
+        addOutput('irb(main):001:0> ' + codeInput, true);
+        
+        // Примеры для демонстрации
+        if (codeInput.includes('puts "Hello, World!"')) {
+            addOutput('Hello, World!');
+            addOutput('=> nil');
+        }
+        else if (codeInput.includes('name = "Программист"')) {
+            addOutput('=> "Программист"');
+        }
+        else if (codeInput.includes('puts "Привет, #{name}!"')) {
+            addOutput('Привет, Программист!');
+            addOutput('=> nil');
+        }
+        else if (codeInput.includes('a = 10') && codeInput.includes('b = 5') && codeInput.includes('sum = a + b')) {
+            addOutput('=> 15');
+        }
+        else if (codeInput.includes('print "Введите ваше имя: "') || codeInput.includes('name = gets.chomp')) {
+            addOutput('Введите ваше имя: Алексей');
+            addOutput('Привет, Алексей!');
+            addOutput('=> nil');
+        }
+        else if (codeInput.includes('ruby -v')) {
+            addOutput('ruby 3.2.2 (2023-03-30 revision e51014f9c0) [x86_64-linux]');
+        }
+        else {
+            addOutput('(Вывод эмуляции IRB)');
+            addOutput('=> nil');
+        }
+    } catch (error) {
+        addOutput(`Ошибка: ${error.message}`);
+    }
+    
+    // Прокрутка к последнему выводу
+    outputDiv.scrollTop = outputDiv.scrollHeight;
+}
+</script>
+<div class="lesson-navigation">
+    <a href="lesson2.html" class="nav-button">Следующий урок</a>
+</div>
+
+<style>
+    .lesson-navigation {
+        display: flex;
+        justify-content: space-between;
+        margin-top: 40px;
+        padding-top: 20px;
+        border-top: 1px solid #eee;
+    }
+    
+    .nav-button {
+        background-color: #8a9635;
+        color: white;
+        padding: 10px 20px;
+        border-radius: 5px;
+        text-decoration: none;
+        font-weight: bold;
+        transition: background-color 0.3s;
+    }
+    
+    .nav-button:hover {
+        background-color: #6e7a25;
+    }
+    
+    .disabled {
+        background-color: #cccccc;
+        cursor: not-allowed;
+        pointer-events: none;
+    }
+</style>    
+</section>
+
+    <footer>
+        <div class="container footer-bottom">
+            <p>© 2025 <a href="https://nikitos23133.github.io">CodeMaster</a>. Все права защищены.</p>
+        </div>
+    </footer>
+
+    <script src="../script.js"></script>
+</body>
+</html>

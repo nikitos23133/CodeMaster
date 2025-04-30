@@ -1,0 +1,482 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Урок 1: Введение и первая программа - C# - CodeMaster</title>
+    <link rel="stylesheet" href="../styles.css">
+    <style>
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 40px 20px;
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+        h1 {
+            color: #333;
+            font-size: 2.5em;
+            margin-bottom: 20px;
+            text-align: center;
+            border-bottom: 2px solid #8a9635;
+            padding-bottom: 10px;
+        }
+        h2 {
+            color: #8a9635;
+            font-size: 1.8em;
+            margin: 30px 0 15px;
+        }
+        h3 {
+            color: #555;
+            font-size: 1.5em;
+            margin: 20px 0 10px;
+        }
+        p {
+            line-height: 1.6;
+            font-size: 1.1em;
+            color: #555;
+            margin-bottom: 15px;
+        }
+        p a, li a {
+            color: #8a9635;
+            text-decoration: none;
+            font-weight: 500;
+        }
+        p a:hover, li a:hover {
+            text-decoration: underline;
+        }
+        pre {
+            background-color: #f5f5f5;
+            padding: 15px;
+            border-radius: 5px;
+            overflow-x: auto;
+            margin: 15px 0;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+        }
+        code {
+            font-family: 'Courier New', Courier, monospace;
+            color: #333;
+        }
+        ul, ol {
+            margin-bottom: 15px;
+            padding-left: 20px;
+        }
+        li {
+            line-height: 1.6;
+            font-size: 1.1em;
+            color: #555;
+        }
+        .code-editor {
+            width: 100%;
+            height: 200px;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-family: monospace;
+            font-size: 16px;
+            resize: vertical;
+            box-sizing: border-box;
+        }
+        .output, .fix-suggestion {
+            margin-top: 20px;
+            padding: 10px;
+            border: 1px solid #eee;
+            border-radius: 5px;
+            background-color: #f5f5f5;
+            min-height: 50px;
+            white-space: pre-wrap;
+            word-wrap: break-word;
+        }
+        .fix-suggestion h3 {
+            margin: 0 0 10px;
+            color: #8a9635;
+        }
+        /* Стили для стрелки навигации */
+        .next-lesson {
+            display: inline-flex;
+            align-items: center;
+            margin-top: 30px;
+            padding: 12px 24px;
+            background-color: #8a9635;
+            color: white;
+            text-decoration: none;
+            border-radius: 4px;
+            font-weight: 500;
+            transition: background-color 0.3s, transform 0.3s;
+        }
+        .next-lesson:hover {
+            background-color: #768131;
+            transform: translateX(5px); /* Лёгкое смещение вправо при наведении */
+        }
+        .next-lesson svg {
+            margin-left: 8px;
+            fill: white;
+            width: 20px;
+            height: 20px;
+        }
+        /* Стили для загрузчика */
+        .loader-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 9999;
+            transition: opacity 1s ease;
+        }
+        .loader-container.hidden {
+            opacity: 0;
+            pointer-events: none;
+        }
+        .loader {
+            width: 65px;
+            height: 117px;
+            position: relative;
+            animation: rotate 2s linear infinite;
+        }
+        .loader:before,
+        .loader:after {
+            content: "";
+            position: absolute;
+            inset: 0;
+            background: #8a9635;
+            box-shadow: 0 0 0 50px;
+            clip-path: polygon(100% 0, 23% 46%, 46% 44%, 15% 69%, 38% 67%, 0 100%, 76% 57%, 53% 58%, 88% 33%, 60% 37%);
+        }
+        .loader:after {
+            animation: l8 2s infinite;
+            transform: perspective(300px) translateZ(0px);
+        }
+        @keyframes l8 {
+            to {
+                transform: perspective(300px) translateZ(180px);
+                opacity: 0;
+            }
+        }
+        @keyframes rotate {
+            to {
+                transform: rotate(360deg);
+            }
+        }
+        @media (max-width: 768px) {
+            .container {
+                padding: 20px 15px;
+            }
+            h1 {
+                font-size: 2em;
+            }
+            h2 {
+                font-size: 1.5em;
+            }
+            h3 {
+                font-size: 1.3em;
+            }
+            p, li {
+                font-size: 1em;
+            }
+            .code-editor {
+                height: 150px;
+            }
+            .loader {
+                width: 40px;
+                height: 72px;
+            }
+            .next-lesson {
+                padding: 10px 20px;
+                font-size: 0.9em;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Контейнер загрузчика -->
+    <div class="loader-container">
+        <div class="loader"></div>
+    </div>
+
+    <header>
+        <div class="container container-header-container">
+            <a href="../index.html" class="logo">
+                <img src="../logo.png" alt="CodeMaster Logo" class="logo-img">
+                <span class="logo-text">CodeMaster</span>
+            </a>
+            <nav class="nav-menu" id="nav-menu">
+                <a href="../index.html" class="nav-link">Главная</a>
+                <a href="../intro.html" class="nav-link">Введение</a>
+                <a href="../languages.html" class="nav-link">Языки</a>
+                <a href="../tutorials.html" class="nav-link">Уроки</a>
+                <a href="../resources.html" class="nav-link">Ресурсы</a>
+                <a href="../register.html" class="nav-link">Регистрация</a>
+                <a href="../login.html" class="nav-link">Вход</a>
+            </nav>
+        </div>
+    </header>
+
+    <div id="content" style="display: none;">
+        <section class="container">
+            <h1>Урок 1: Введение и первая программа - C#</h1>
+
+            <h2>Введение</h2>
+            <p>C# — это универсальный язык программирования от Microsoft, используемый для разработки приложений, веб-сервисов, игр (с Unity) и многого другого. Он сочетает мощь и простоту. В этом уроке вы установите .NET SDK, настроите среду разработки и напишете свою первую программу.</p>
+
+            <h2>Установка .NET SDK</h2>
+            <p>Для работы с C# необходимо установить .NET SDK:</p>
+            <ol>
+                <li>Перейдите на <a href="https://dotnet.microsoft.com/download">официальный сайт .NET</a>.</li>
+                <li>Скачайте и установите .NET SDK (например, .NET 8 или новее).</li>
+                <li>Проверьте установку, открыв терминал и выполнив:
+                    <pre><code>
+dotnet --version
+                    </code></pre>
+                    Вывод: <code>8.0.x</code> или другая версия.
+                </li>
+            </ol>
+            <p>Рекомендуется установить <a href="https://visualstudio.microsoft.com/">Visual Studio Community</a> (Windows/macOS) или VS Code с расширением C# для разработки.</p>
+
+            <h2>Первая программа</h2>
+            <p>Ниже пример программы, которая выводит "Hello, World!":</p>
+            <pre><code>
+using System;
+
+class Program {
+    static void Main(string[] args) {
+        Console.WriteLine("Hello, World!");
+    }
+}
+            </code></pre>
+            <p>Разберём код:</p>
+            <ul>
+                <li><code>using System;</code>: Импортирует базовые функции .NET.</li>
+                <li><code>class Program</code>: Определяет класс программы.</li>
+                <li><code>static void Main</code>: Точка входа программы.</li>
+                <li><code>Console.WriteLine</code>: Выводит текст в консоль.</li>
+            </ul>
+
+            <h2>Компиляция и запуск</h2>
+            <p>В редакторе ниже вы можете писать и запускать C# код. Для локальной разработки:</p>
+            <ol>
+                <li>Сохраните код в файл <code>HelloWorld.cs</code>.</li>
+                <li>Откройте терминал в папке с файлом.</li>
+                <li>Выполните:
+                    <pre><code>
+dotnet new console -o HelloWorld
+                    </code></pre>
+                    Переместите <code>HelloWorld.cs</code> в папку <code>HelloWorld</code>.
+                </li>
+                <li>Перейдите в папку:
+                    <pre><code>
+cd HelloWorld
+                    </code></pre>
+                </li>
+                <li>Запустите:
+                    <pre><code>
+dotnet run
+                    </code></pre>
+                    Вывод: <code>Hello, World!</code>
+                </li>
+            </ol>
+            <p>В Visual Studio создайте новый проект "Console App" и запустите с помощью "Run".</p>
+
+            <h2>Практика</h2>
+            <p>Попробуйте выполнить следующие задания. Задания 1–2 выполняются локально, задания 3–4 можно проверить в редакторе ниже:</p>
+            <ol>
+                <li>Установите .NET SDK и проверьте его версию в терминале.</li>
+                <li>Установите Visual Studio или VS Code с расширением C#.</li>
+                <li>Напишите программу, которая выводит ваше имя в консоль.</li>
+                <li>Создайте программу, которая выводит "Welcome to C#!" и запустите её.</li>
+            </ol>
+            <p>Введите код в редактор, нажмите "Запустить код" и проверьте результат. Если возникнет ошибка, наш AI-помощник предложит исправление. Если сервер недоступен, скопируйте код и запустите локально с помощью <code>dotnet run</code>.</p>
+            <textarea id="code-editor-1" class="code-editor">
+using System;
+
+class Program {
+    static void Main(string[] args) {
+        Console.WriteLine("Ваше_имя"); // Задание 3
+        Console.WriteLine("Welcome to C#!"); // Задание 4
+    }
+}
+            </textarea>
+            <button id="run-code-1" class="btn btn-hero-primary" style="margin: 10px 0;">Запустить код</button>
+            <div id="output-1" class="output"></div>
+            <div id="fix-suggestion-1" class="fix-suggestion" style="display: none;">
+                <h3>Предложенное исправление:</h3>
+                <p id="fix-text-1"></p>
+            </div>
+            <p>Попробуйте изменить код для заданий 3–4 или добавить свои варианты.</p>
+
+            <!-- Стрелка для перехода на следующий урок -->
+            <a href="lesson2.html" class="next-lesson">
+                Перейти к Уроку 2
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                    <path d="M5 12h14M12 5l7 7-7 7"/>
+                </svg>
+            </a>
+        </section>
+    </div>
+
+    <div id="restricted" style="display: none; text-align: center; padding: 80px 20px;">
+        <div class="container">
+            <h1>Доступ ограничен</h1>
+            <p>Пожалуйста, зарегистрируйтесь или войдите, чтобы получить доступ к содержимому сайта.</p>
+            <div class="hero-buttons">
+                <a href="../register.html" class="nav-link btn btn-hero-primary">Регистрация</a>
+                <a href="../login.html" class="nav-link btn btn-hero-secondary">Вход</a>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <div class="container footer-bottom">
+            <p>© 2025 <a href="https://nikitos23133.github.io">CodeMaster</a>. Все права защищены.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Configuration: Replace with your server's actual URL
+        const SERVER_URL = 'http://localhost:3000'; // Update to your server (e.g., 'https://your-server.com')
+
+        function checkAuth() {
+            const isAuthenticated = localStorage.getItem('isAuthenticated') === 'true';
+            const content = document.getElementById('content');
+            const restricted = document.getElementById('restricted');
+            const navMenu = document.getElementById('nav-menu');
+
+            if (isAuthenticated) {
+                content.style.display = 'block';
+                restricted.style.display = 'none';
+                navMenu.innerHTML = `
+                    <a href="../index.html" class="nav-link">Главная</a>
+                    <a href="../intro.html" class="nav-link">Введение</a>
+                    <a href="../languages.html" class="nav-link">Языки</a>
+                    <a href="../tutorials.html" class="nav-link">Уроки</a>
+                    <a href="../resources.html" class="nav-link">Ресурсы</a>
+                    <a href="#" class="nav-link btn btn-nav" onclick="logout()">Выход</a>
+                `;
+            } else {
+                content.style.display = 'none';
+                restricted.style.display = 'block';
+            }
+        }
+
+        function logout() {
+            localStorage.removeItem('isAuthenticated');
+            window.location.href = '../index.html';
+        }
+
+        async function runCode(code, outputElement, fixSuggestionElement, fixTextElement) {
+            if (!localStorage.getItem('isAuthenticated')) {
+                outputElement.textContent = 'Пожалуйста, войдите, чтобы использовать редактор кода.';
+                return;
+            }
+
+            outputElement.textContent = ''; // Clear previous output
+            fixSuggestionElement.style.display = 'none'; // Hide previous fix
+
+            // Basic syntax validation (client-side fallback)
+            if (!code.includes('Main')) {
+                outputElement.textContent = 'Ошибка: Код должен содержать метод Main. Попробуйте локально с dotnet run.';
+                fixTextElement.textContent = 'Добавьте static void Main(string[] args) в класс Program.';
+                fixSuggestionElement.style.display = 'block';
+                return;
+            }
+
+            try {
+                const response = await fetch(`${SERVER_URL}/run-csharp`, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                        code,
+                        isAuthenticated: localStorage.getItem('isAuthenticated') === 'true',
+                    }),
+                });
+                if (!response.ok) {
+                    throw new Error(`Сервер ответил ошибкой: ${response.status} ${response.statusText}`);
+                }
+                const data = await response.json();
+                if (data.error) {
+                    throw new Error(data.error);
+                }
+                outputElement.textContent = data.output || 'Код выполнен, но вывода нет.';
+            } catch (error) {
+                console.error('C# Error:', error);
+                let userMessage = 'Ошибка выполнения кода.';
+                if (error.message.includes('Failed to fetch')) {
+                    userMessage = 'Не удалось подключиться к серверу. Скопируйте код и запустите локально с dotnet run.';
+                } else if (error.message.includes('401')) {
+                    userMessage = 'Ошибка авторизации. Пожалуйста, войдите снова.';
+                } else {
+                    userMessage = `Ошибка: ${error.message}`;
+                }
+                outputElement.textContent = userMessage;
+
+                // Fallback: Static error fixes for common C# errors
+                let staticFix = '';
+                if (error.message.includes('CS1002')) {
+                    staticFix = 'Добавьте точку с запятой (;) в конце строки.';
+                } else if (error.message.includes('CS0246')) {
+                    staticFix = 'Проверьте правильность имени класса или пространства имен.';
+                }
+
+                if (staticFix) {
+                    fixTextElement.textContent = staticFix;
+                    fixSuggestionElement.style.display = 'block';
+                    return;
+                }
+
+                // Try AI fix if server is available
+                const sanitizedMessage = error.message.replace(/sensitiveInfo|apiKey|token/gi, '***');
+                try {
+                    const fixResponse = await fetch(`${SERVER_URL}/fix-error`, {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify({
+                            errorMessage: sanitizedMessage,
+                            isAuthenticated: localStorage.getItem('isAuthenticated') === 'true',
+                        }),
+                    });
+                    if (!fixResponse.ok) {
+                        throw new Error(`Ошибка фикса: ${fixResponse.status} ${fixResponse.statusText}`);
+                    }
+                    const fixData = await fixResponse.json();
+                    fixTextElement.textContent = fixData.fix || 'Не удалось получить исправление.';
+                    fixSuggestionElement.style.display = 'block';
+                } catch (apiError) {
+                    console.error('Failed to get fix from server:', apiError);
+                    fixTextElement.textContent = staticFix || 'Ошибка связи с сервером для исправлений. Попробуйте локально.';
+                    fixSuggestionElement.style.display = 'block';
+                }
+            }
+        }
+
+        // Attach event listener to run code button
+        document.getElementById('run-code-1').addEventListener('click', () => {
+            const code = document.getElementById('code-editor-1').value;
+            runCode(
+                code,
+                document.getElementById('output-1'),
+                document.getElementById('fix-suggestion-1'),
+                document.getElementById('fix-text-1')
+            );
+        });
+
+        // Управление загрузчиком
+        window.addEventListener('load', () => {
+            const loaderContainer = document.querySelector('.loader-container');
+            // Проверка авторизации
+            checkAuth();
+            // Задержка перед началом скрытия для более "погрузочного" эффекта
+            setTimeout(() => {
+                loaderContainer.style.opacity = '0';
+                setTimeout(() => {
+                    loaderContainer.classList.add('hidden');
+                }, 1000); // Время совпадает с transition в CSS (1s)
+            }, 1000); // Минимальная задержка 1s перед скрытием
+        });
+    </script>
+</body>
+</html>

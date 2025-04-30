@@ -1,0 +1,373 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Урок 1: Введение и первая программа - Swift - CodeMaster</title>
+    <link rel="stylesheet" href="../styles.css">
+    <style>
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 40px 20px;
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+        h1 {
+            color: #333;
+            font-size: 2.5em;
+            margin-bottom: 20px;
+            text-align: center;
+            border-bottom: 2px solid #8a9635;
+            padding-bottom: 10px;
+        }
+        h2 {
+            color: #8a9635;
+            font-size: 1.8em;
+            margin: 30px 0 15px;
+        }
+        h3 {
+            color: #555;
+            font-size: 1.5em;
+            margin: 20px 0 10px;
+        }
+        p {
+            line-height: 1.6;
+            font-size: 1.1em;
+            color: #555;
+            margin-bottom: 15px;
+        }
+        p a, li a {
+            color: #8a9635;
+            text-decoration: none;
+            font-weight: 500;
+        }
+        p a:hover, li a:hover {
+            text-decoration: underline;
+        }
+        pre {
+            background-color: #f5f5f5;
+            padding: 15px;
+            border-radius: 5px;
+            overflow-x: auto;
+            margin: 15px 0;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+        }
+        code {
+            font-family: 'Courier New', Courier, monospace;
+            color: #333;
+        }
+        ul, ol {
+            margin-bottom: 15px;
+            padding-left: 20px;
+        }
+        li {
+            line-height: 1.6;
+            font-size: 1.1em;
+            color: #555;
+        }
+        @media (max-width: 768px) {
+            .container {
+                padding: 20px 15px;
+            }
+            h1 {
+                font-size: 2em;
+            }
+            h2 {
+                font-size: 1.5em;
+            }
+            h3 {
+                font-size: 1.3em;
+            }
+            p, li {
+                font-size: 1em;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container container-header-container">
+            <a href="../index.html" class="logo">
+                <img src="../logo.png" alt="CodeMaster Logo" class="logo-img">
+                <span class="logo-text">CodeMaster</span>
+            </a>
+            <nav class="nav-menu">
+                <a href="../index.html" class="nav-link">Главная</a>
+                <a href="../intro.html" class="nav-link">Введение</a>
+                <a href="../languages.html" class="nav-link">Языки</a>
+                <a href="../tutorials.html" class="nav-link">Уроки</a>
+                <a href="../resources.html" class="nav-link">Ресурсы</a>
+                <a href="../login.html" class="nav-link">Вход</a>
+                <a href="#" class="nav-link" onclick="logout()">Выход</a>
+            </nav>
+        </div>
+    </header>
+
+    <section class="container">
+        <h1>Урок 1: Введение и первая программа - Swift</h1>
+
+        <h2>Введение</h2>
+        <p>Swift — это мощный и интуитивно понятный язык программирования от Apple, используемый для разработки приложений для iOS, macOS, watchOS и tvOS. Он сочетает производительность и безопасность. В этом уроке вы установите Xcode, настроите среду разработки и напишете свою первую программу на Swift.</p>
+
+        <h2>Установка Xcode</h2>
+        <p>Swift лучше всего разрабатывать в Xcode, который доступен только на macOS:</p>
+        <ol>
+            <li>Откройте App Store на macOS и найдите <a href="https://developer.apple.com/xcode/">Xcode</a>.</li>
+            <li>Скачайте и установите Xcode (версия 15 или новее).</li>
+            <li>Запустите Xcode и согласитесь с условиями лицензии.</li>
+            <li>Проверьте установку Swift, создав новый проект или выполнив в терминале:
+                <pre>
+swift --version
+                </pre>
+                Вывод: <code>Swift version 5.x</code>.
+            </li>
+        </ol>
+        <p>Для написания кода можно также использовать VS Code с расширением Swift, но Xcode предпочтительнее для начинающих.</p>
+
+        <h2>Первая программа</h2>
+        <p>Создайте файл <code>hello.swift</code> или используйте Xcode для создания новой программы:</p>
+        <pre>
+print("Hello, World!")
+        </pre>
+        <p>Разберём код:</p>
+        <ul>
+            <li><code>print</code>: Функция, которая выводит текст в консоль.</li>
+            <li><code>"Hello, World!"</code>: Строка для вывода.</li>
+        </ul>
+
+        <h2>Запуск программы</h2>
+        <p>Варианты запуска:</p>
+        <ol>
+            <li><strong>Через терминал</strong>:
+                <ul>
+                    <li>Сохраните файл <code>hello.swift</code>.</li>
+                    <li>Откройте терминал в папке с файлом.</li>
+                    <li>Выполните:
+                        <pre>
+swift hello.swift
+                        </pre>
+                        Вывод: <code>Hello, World!</code>
+                    </li>
+                </ul>
+            </li>
+            <li><strong>Через Xcode</strong>:
+                <ul>
+                    <li>Откройте Xcode и создайте новый проект ("Command Line Tool").</li>
+                    <li>В файле <code>main.swift</code> напишите код.</li>
+                    <li>Нажмите "Run" (Cmd+R) для запуска.</li>
+                </ul>
+            </li>
+        </ol>
+
+        <h2>Практика</h2>
+        <p>1. Установите Xcode и проверьте версию Swift в терминале.</p>
+        <p>2. Создайте новый проект в Xcode для Command Line Tool.</p>
+        <p>3. Напишите программу, которая выводит ваше имя в консоль.</p>
+        <p>4. Создайте программу, которая выводит "Welcome to Swift!" и запустите её через терминал или Xcode.</p>
+   <!-- Добавьте этот код в раздел "Практика" перед закрывающим </section> -->
+
+<h2>Интерактивный терминал Swift (демо)</h2>
+<div class="terminal">
+    <div class="terminal-header">
+        <div class="terminal-controls">
+            <span class="terminal-circle red"></span>
+            <span class="terminal-circle yellow"></span>
+            <span class="terminal-circle green"></span>
+        </div>
+        <span class="terminal-title">Swift REPL</span>
+    </div>
+    <div class="terminal-body" id="terminal-output">
+        <div class="terminal-line">Добро пожаловать в CodeMaster Swift терминал!</div>
+        <div class="terminal-line">Введите код и нажмите "Выполнить".</div>
+        <div class="terminal-line">Пример: print("Hello World")</div>
+    </div>
+    <div class="terminal-input">
+        <textarea id="code-input" rows="4" placeholder="Введите ваш Swift код здесь..."></textarea>
+        <button onclick="executeSwiftCode()">Выполнить</button>
+    </div>
+</div>
+
+<style>
+    .terminal {
+        background: #1e1e1e;
+        border-radius: 5px;
+        margin: 20px 0;
+        color: #fff;
+        font-family: 'Courier New', monospace;
+    }
+    
+    .terminal-header {
+        padding: 10px;
+        background: #323233;
+        border-radius: 5px 5px 0 0;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+    }
+    
+    .terminal-controls {
+        display: flex;
+        gap: 5px;
+    }
+    
+    .terminal-circle {
+        width: 12px;
+        height: 12px;
+        border-radius: 50%;
+    }
+    
+    .red { background: #ff5f56; }
+    .yellow { background: #ffbd2e; }
+    .green { background: #27c93f; }
+    
+    .terminal-title {
+        color: #aaa;
+        font-size: 0.9em;
+    }
+    
+    .terminal-body {
+        padding: 15px;
+        min-height: 100px;
+        max-height: 300px;
+        overflow-y: auto;
+    }
+    
+    .terminal-line {
+        white-space: pre-wrap;
+        margin: 5px 0;
+        color: #d4d4d4;
+    }
+    
+    .terminal-input {
+        border-top: 1px solid #333;
+        padding: 10px;
+    }
+    
+    #code-input {
+        width: 100%;
+        background: #252526;
+        border: none;
+        color: #fff;
+        padding: 10px;
+        margin-bottom: 10px;
+        resize: vertical;
+        font-family: 'Courier New', monospace;
+    }
+    
+    .terminal-input button {
+        background: #8a9635;
+        color: white;
+        border: none;
+        padding: 8px 20px;
+        border-radius: 3px;
+        cursor: pointer;
+    }
+    
+    .terminal-input button:hover {
+        background: #6e7a25;
+    }
+    
+    .swift-prompt {
+        color: #ffac45;
+    }
+    
+    .swift-output {
+        color: #d4d4d4;
+    }
+</style>
+
+<script>
+function executeSwiftCode() {
+    const codeInput = document.getElementById('code-input').value;
+    const outputDiv = document.getElementById('terminal-output');
+    
+    // Очистка предыдущего вывода
+    outputDiv.innerHTML = '';
+    
+    // Эмуляция выполнения кода
+    const addOutput = (text, isPrompt = false) => {
+        const line = document.createElement('div');
+        line.className = isPrompt ? 'terminal-line swift-prompt' : 'terminal-line swift-output';
+        line.textContent = text;
+        outputDiv.appendChild(line);
+    };
+
+    try {
+        // Добавляем приглашение Swift REPL
+        addOutput('  1> ' + codeInput, true);
+        
+        // Примеры для демонстрации
+        if (codeInput.includes('print("Hello, World!")')) {
+            addOutput('Hello, World!');
+        }
+        else if (codeInput.includes('print("Welcome to Swift!")')) {
+            addOutput('Welcome to Swift!');
+        }
+        else if (codeInput.includes('print("Ваше имя")')) {
+            addOutput('Ваше имя');
+        }
+        else if (codeInput.includes('swift --version')) {
+            addOutput('swift-driver version: 1.75.2 Apple Swift version 5.8');
+            addOutput('Target: arm64-apple-macosx13.0');
+        }
+        else if (codeInput.includes('let name = "Алексей"') && codeInput.includes('print("Привет, \\(name)!"')) {
+            addOutput('Привет, Алексей!');
+        }
+        else {
+            addOutput('(Вывод эмуляции Swift REPL)');
+            addOutput('Для реального выполнения установите Xcode и используйте терминал');
+        }
+    } catch (error) {
+        addOutput(`Ошибка: ${error.message}`);
+    }
+    
+    // Прокрутка к последнему выводу
+    outputDiv.scrollTop = outputDiv.scrollHeight;
+}
+</script>
+<div class="lesson-navigation">
+    <a href="lesson2.html" class="nav-button">Следующий урок</a>
+</div>
+
+<style>
+    .lesson-navigation {
+        display: flex;
+        justify-content: space-between;
+        margin-top: 40px;
+        padding-top: 20px;
+        border-top: 1px solid #eee;
+    }
+    
+    .nav-button {
+        background-color: #8a9635;
+        color: white;
+        padding: 10px 20px;
+        border-radius: 5px;
+        text-decoration: none;
+        font-weight: bold;
+        transition: background-color 0.3s;
+    }
+    
+    .nav-button:hover {
+        background-color: #6e7a25;
+    }
+    
+    .disabled {
+        background-color: #cccccc;
+        cursor: not-allowed;
+        pointer-events: none;
+    }
+</style>    
+</section>
+
+    <footer>
+        <div class="container footer-bottom">
+            <p>© 2025 <a href="https://nikitos23133.github.io">CodeMaster</a>. Все права защищены.</p>
+        </div>
+    </footer>
+
+    <script src="../script.js"></script>
+</body>
+</html>

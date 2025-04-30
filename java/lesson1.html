@@ -1,0 +1,428 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Урок 1: Установка JDK и первая программа - CodeMaster</title>
+    <link rel="stylesheet" href="../styles.css">
+    <style>
+        /* Контейнер для содержимого урока */
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 40px 20px;
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Заголовки */
+        h1 {
+            color: #333;
+            font-size: 2.5em;
+            margin-bottom: 20px;
+            text-align: center;
+            border-bottom: 2px solid #8a9635;
+            padding-bottom: 10px;
+        }
+
+        h2 {
+            color: #8a9635;
+            font-size: 1.8em;
+            margin: 30px 0 15px;
+        }
+
+        h3 {
+            color: #555;
+            font-size: 1.5em;
+            margin: 20px 0 10px;
+        }
+
+        /* Параграфы */
+        p {
+            line-height: 1.6;
+            font-size: 1.1em;
+            color: #555;
+            margin-bottom: 15px;
+        }
+
+        /* Ссылки внутри текста */
+        p a, li a {
+            color: #8a9635;
+            text-decoration: none;
+            font-weight: 500;
+        }
+
+        p a:hover, li a:hover {
+            text-decoration: underline;
+        }
+
+        /* Блоки кода */
+        pre {
+            background-color: #f5f5f5;
+            padding: 15px;
+            border-radius: 5px;
+            overflow-x: auto;
+            margin: 15px 0;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+        }
+
+        code {
+            font-family: 'Courier New', Courier, monospace;
+            color: #333;
+        }
+
+        /* Списки */
+        ul {
+            margin-bottom: 15px;
+            padding-left: 20px;
+        }
+
+        li {
+            line-height: 1.6;
+            font-size: 1.1em;
+            color: #555;
+        }
+
+        /* Адаптивность */
+        @media (max-width: 768px) {
+            .container {
+                padding: 20px 15px;
+            }
+
+            h1 {
+                font-size: 2em;
+            }
+
+            h2 {
+                font-size: 1.5em;
+            }
+
+            h3 {
+                font-size: 1.3em;
+            }
+
+            p, li {
+                font-size: 1em;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container container-header-container">
+            <a href="../index.html" class="logo">
+                <img src="../logo.png" alt="CodeMaster Logo" class="logo-img">
+                <span class="logo-text">CodeMaster</span>
+            </a>
+            <nav class="nav-menu">
+                <a href="../index.html" class="nav-link">Главная</a>
+                <a href="../intro.html" class="nav-link">Введение</a>
+                <a href="../languages.html" class="nav-link">Языки</a>
+                <a href="../tutorials.html" class="nav-link">Уроки</a>
+                <a href="../resources.html" class="nav-link">Ресурсы</a>
+                <a href="#" class="nav-link" onclick="logout()">Выход</a>
+            
+            </nav>
+        </div>
+    </header>
+
+    <section class="container">
+        <h1>Урок 1: Установка JDK и первая программа</h1>
+
+        <h2>Что такое Java?</h2>
+        <p>Java — это объектно-ориентированный язык программирования, разработанный в 1995 году компанией Sun Microsystems (ныне часть Oracle). Он широко используется для создания надежных и масштабируемых приложений, включая веб-приложения, мобильные приложения для Android, корпоративные системы и многое другое. Java известна своей платформонезависимостью благодаря Java Virtual Machine (JVM), которая позволяет запускать программы на любой платформе.</p>
+
+        <h2>Установка JDK</h2>
+        <p>Для начала вам нужно установить Java Development Kit (JDK) на ваш компьютер. Перейдите на официальный сайт <a href="https://www.oracle.com/java/technologies/javase-downloads.html">Oracle</a> или используйте OpenJDK с сайта <a href="https://openjdk.java.net">OpenJDK</a>.</p>
+        <p>Выберите версию JDK, подходящую для вашей операционной системы (Windows, macOS, Linux), и следуйте инструкциям по установке. Убедитесь, что вы добавили JDK в переменную PATH вашей системы.</p>
+        <p>После установки проверьте, что Java работает. Откройте терминал или командную строку и введите:</p>
+        <pre>
+        javac -version
+        java -version
+        </pre>
+        <p>Если JDK установлен правильно, вы увидите версии <code>javac</code> и <code>java</code>.</p>
+
+        <h2>Как запустить Java-код</h2>
+        <p>Существует несколько способов запустить Java-код, в зависимости от ваших инструментов.</p>
+
+        <h3>1. Через командную строку</h3>
+        <p>Как описано ниже, создайте файл с расширением <code>.java</code>, скомпилируйте его с помощью <code>javac</code> и запустите с помощью <code>java</code>.</p>
+
+        <h3>2. Используя IDE</h3>
+        <p>Интегрированные среды разработки (IDE) упрощают написание и запуск кода. Популярные IDE для Java:</p>
+        <ul>
+            <li><a href="https://www.jetbrains.com/idea">IntelliJ IDEA</a> — мощная IDE для профессиональной разработки.</li>
+            <li><a href="https://www.eclipse.org">Eclipse</a> — бесплатная и популярная IDE для Java.</li>
+            <li><a href="https://netbeans.apache.org">NetBeans</a> — еще одна бесплатная IDE с поддержкой Java.</li>
+        </ul>
+        <p>Эти IDE позволяют создавать проекты, компилировать и запускать код с помощью встроенных инструментов.</p>
+
+        <h3>3. Онлайн-интерпретаторы</h3>
+        <p>Для тестирования кода без установки JDK используйте онлайн-интерпретаторы:</p>
+        <ul>
+            <li><a href="https://replit.com">Replit</a> — онлайн-редактор для Java и других языков.</li>
+            <li><a href="https://www.jdoodle.com/online-java-compiler">JDoodle</a> — онлайн-компилятор для Java.</li>
+        </ul>
+
+        <h2>Первая программа на Java</h2>
+        <p>Теперь давайте напишем нашу первую программу на Java. Создайте новый файл с помощью текстового редактора, например, <a href="https://code.visualstudio.com">Visual Studio Code</a>, и назовите его <code>Hello.java</code>.</p>
+        <p>В файле напишите следующий код:</p>
+        <pre>
+        public class Hello {
+            public static void main(String[] args) {
+                System.out.println("Hello, World!");
+            }
+        }
+        </pre>
+        <p>Сохраните файл, откройте терминал, перейдите в директорию с файлом и выполните:</p>
+        <pre>
+        javac Hello.java
+        java Hello
+        </pre>
+        <p>Вы увидите вывод:</p>
+        <pre>
+        Hello, World!
+        </pre>
+        <p>Поздравляем, вы написали свою первую программу на Java!</p>
+
+        <h2>Структура программы на Java</h2>
+        <p>Каждая программа на Java должна быть частью класса. В примере выше мы определили класс с именем <code>Hello</code>. Каждый класс в Java должен содержать метод <code>main</code>, который является точкой входа в программу. Метод <code>main</code> всегда имеет следующую сигнатуру:</p>
+        <pre>
+        public static void main(String[] args)
+        </pre>
+        <p>Это означает, что метод <code>main</code> является публичным (<code>public</code>), статическим (<code>static</code>), не возвращает значения (<code>void</code>) и принимает массив строк (<code>String[] args</code>) в качестве аргументов.</p>
+
+        <h2>Переменные и типы данных</h2>
+        <p>В Java переменные должны быть объявлены с указанием их типа данных, так как Java — это статически типизированный язык. Основные типы данных включают:</p>
+        <ul>
+            <li><strong>int</strong>: Целые числа, например, 42.</li>
+            <li><strong>double</strong>: Числа с плавающей точкой, например, 3.14.</li>
+            <li><strong>String</strong>: Строки, например, "Привет".</li>
+            <li><strong>boolean</strong>: Булевы значения, <code>true</code> или <code>false</code>.</li>
+        </ul>
+        <p>Пример:</p>
+        <pre>
+        public class Variables {
+            public static void main(String[] args) {
+                int age = 25;
+                String name = "Боб";
+                System.out.println("Имя: " + name + ", Возраст: " + age);
+            }
+        }
+        </pre>
+        <p>В этом примере мы объявили переменные <code>age</code> типа <code>int</code> и <code>name</code> типа <code>String</code> и вывели их значения.</p>
+
+        <h2>Пример с числами</h2>
+        <p>Создадим программу, которая выполняет арифметические операции с числами:</p>
+        <pre>
+        public class Calculator {
+            public static void main(String[] args) {
+                double x = 10.5;
+                double y = 5.2;
+                System.out.println("Сумма: " + (x + y));
+                System.out.println("Разность: " + (x - y));
+                System.out.println("Произведение: " + (x * y));
+            }
+        }
+        </pre>
+        <p>Скомпилируйте и запустите программу:</p>
+        <pre>
+        javac Calculator.java
+        java Calculator
+        </pre>
+        <p>Вывод будет:</p>
+        <pre>
+        Сумма: 15.7
+        Разность: 5.3
+        Произведение: 54.6
+        </pre>
+
+        <h2>Попробуйте сами</h2>
+        <p>Измените значения переменных <code>x</code> и <code>y</code> в примере выше и добавьте операцию деления (<code>/</code>). Посмотрите, как изменится вывод.</p>
+        <p>Создайте новую переменную типа <code>boolean</code> и выведите её значение.</p>
+   <!-- Добавьте этот код в раздел "Попробуйте сами" перед закрывающим </section> -->
+
+<h2>Интерактивный терминал (демо)</h2>
+<div class="terminal">
+    <div class="terminal-header">
+        <div class="terminal-controls">
+            <span class="terminal-circle red"></span>
+            <span class="terminal-circle yellow"></span>
+            <span class="terminal-circle green"></span>
+        </div>
+    </div>
+    <div class="terminal-body" id="terminal-output">
+        <div class="terminal-line">Добро пожаловать в CodeMaster Java терминал!</div>
+        <div class="terminal-line">Введите код и нажмите "Выполнить".</div>
+        <div class="terminal-line">Пример: System.out.println("Hello World");</div>
+    </div>
+    <div class="terminal-input">
+        <textarea id="code-input" rows="4" placeholder="Введите ваш Java код здесь..."></textarea>
+        <button onclick="executeJavaCode()">Выполнить</button>
+    </div>
+</div>
+
+<style>
+    .terminal {
+        background: #1e1e1e;
+        border-radius: 5px;
+        margin: 20px 0;
+        color: #fff;
+        font-family: 'Courier New', monospace;
+    }
+    
+    .terminal-header {
+        padding: 10px;
+        background: #323233;
+        border-radius: 5px 5px 0 0;
+    }
+    
+    .terminal-controls {
+        display: flex;
+        gap: 5px;
+    }
+    
+    .terminal-circle {
+        width: 12px;
+        height: 12px;
+        border-radius: 50%;
+    }
+    
+    .red { background: #ff5f56; }
+    .yellow { background: #ffbd2e; }
+    .green { background: #27c93f; }
+    
+    .terminal-body {
+        padding: 15px;
+        min-height: 100px;
+        max-height: 300px;
+        overflow-y: auto;
+    }
+    
+    .terminal-line {
+        white-space: pre-wrap;
+        margin: 5px 0;
+        color: #d4d4d4;
+    }
+    
+    .terminal-input {
+        border-top: 1px solid #333;
+        padding: 10px;
+    }
+    
+    #code-input {
+        width: 100%;
+        background: #252526;
+        border: none;
+        color: #fff;
+        padding: 10px;
+        margin-bottom: 10px;
+        resize: vertical;
+    }
+    
+    .terminal-input button {
+        background: #8a9635;
+        color: white;
+        border: none;
+        padding: 8px 20px;
+        border-radius: 3px;
+        cursor: pointer;
+    }
+    
+    .terminal-input button:hover {
+        background: #6e7a25;
+    }
+</style>
+
+<script>
+function executeJavaCode() {
+    const codeInput = document.getElementById('code-input').value;
+    const outputDiv = document.getElementById('terminal-output');
+    
+    // Очистка предыдущего вывода
+    outputDiv.innerHTML = '';
+    
+    // Эмуляция выполнения кода
+    const addOutput = (text) => {
+        const line = document.createElement('div');
+        line.className = 'terminal-line';
+        line.textContent = text;
+        outputDiv.appendChild(line);
+    };
+
+    try {
+        // Примеры для демонстрации
+        if (codeInput.includes('System.out.println("Hello, World!")')) {
+            addOutput('Hello, World!');
+        }
+        else if (codeInput.includes('"Имя: " + name + ", Возраст: " + age')) {
+            addOutput('Имя: Боб, Возраст: 25');
+        }
+        else if (codeInput.includes('x + y')) {
+            addOutput('Сумма: 15.7');
+            addOutput('Разность: 5.3');
+            addOutput('Произведение: 54.6');
+        }
+        else if (codeInput.includes('javac -version')) {
+            addOutput('javac 17.0.5');
+        }
+        else if (codeInput.includes('boolean')) {
+            addOutput('true');
+        }
+        else {
+            addOutput('Результат выполнения:');
+            addOutput('(Для реального выполнения Java кода требуется установленный JDK)');
+        }
+    } catch (error) {
+        addOutput(`Ошибка: ${error.message}`);
+    }
+    
+    // Прокрутка к последнему выводу
+    outputDiv.scrollTop = outputDiv.scrollHeight;
+}
+</script>
+<div class="lesson-navigation">
+    <a href="lesson2.html" class="nav-button">Следующий урок →</a>
+</div>
+
+<style>
+    .lesson-navigation {
+        display: flex;
+        justify-content: space-between;
+        margin-top: 40px;
+        padding-top: 20px;
+        border-top: 1px solid #eee;
+    }
+    
+    .nav-button {
+        background-color: #8a9635;
+        color: white;
+        padding: 10px 20px;
+        border-radius: 5px;
+        text-decoration: none;
+        font-weight: bold;
+        transition: background-color 0.3s;
+    }
+    
+    .nav-button:hover {
+        background-color: #6e7a25;
+    }
+    
+    .disabled {
+        background-color: #cccccc;
+        cursor: not-allowed;
+        pointer-events: none;
+    }
+</style>    
+</section>
+
+    <footer>
+        <div class="container footer-bottom">
+            <p>© 2025 <a href="https://nikitos23133.github.io">CodeMaster</a>. Все права защищены.</p>
+        </div>
+    </footer>
+
+    <script src="../script.js"></script>
+</body>
+</html>

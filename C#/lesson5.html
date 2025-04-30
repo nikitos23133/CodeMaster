@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Урок 5: Классы и объекты - C# - CodeMaster</title>
+    <link rel="stylesheet" href="../styles.css">
+    <style>
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 40px 20px;
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+        h1 {
+            color: #333;
+            font-size: 2.5em;
+            margin-bottom: 20px;
+            text-align: center;
+            border-bottom: 2px solid #8a9635;
+            padding-bottom: 10px;
+        }
+        h2 {
+            color: #8a9635;
+            font-size: 1.8em;
+            margin: 30px 0 15px;
+        }
+        h3 {
+            color: #555;
+            font-size: 1.5em;
+            margin: 20px 0 10px;
+        }
+        p {
+            line-height: 1.6;
+            font-size: 1.1em;
+            color: #555;
+            margin-bottom: 15px;
+        }
+        p a, li a {
+            color: #8a9635;
+            text-decoration: none;
+            font-weight: 500;
+        }
+        p a:hover, li a:hover {
+            text-decoration: underline;
+        }
+        pre {
+            background-color: #f5f5f5;
+            padding: 15px;
+            border-radius: 5px;
+            overflow-x: auto;
+            margin: 15px 0;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+        }
+        code {
+            font-family: 'Courier New', Courier, monospace;
+            color: #333;
+        }
+        ul, ol {
+            margin-bottom: 15px;
+            padding-left: 20px;
+        }
+        li {
+            line-height: 1.6;
+            font-size: 1.1em;
+            color: #555;
+        }
+        /* Стили для навигации */
+        .lesson-nav {
+            display: flex;
+            justify-content: flex-start;
+            margin-top: 30px;
+        }
+        .prev-lesson {
+            display: inline-flex;
+            align-items: center;
+            padding: 12px 24px;
+            background-color: #8a9635;
+            color: white;
+            text-decoration: none;
+            border-radius: 4px;
+            font-weight: 500;
+            transition: background-color 0.3s, transform 0.3s;
+        }
+        .prev-lesson:hover {
+            background-color: #768131;
+            transform: translateX(-5px);
+        }
+        .prev-lesson svg {
+            margin-right: 8px;
+            fill: white;
+            width: 20px;
+            height: 20px;
+        }
+        @media (max-width: 768px) {
+            .container {
+                padding: 20px 15px;
+            }
+            h1 {
+                font-size: 2em;
+            }
+            h2 {
+                font-size: 1.5em;
+            }
+            h3 {
+                font-size: 1.3em;
+            }
+            p, li {
+                font-size: 1em;
+            }
+            .prev-lesson {
+                padding: 10px 20px;
+                font-size: 0.9em;
+            }
+            .lesson-nav {
+                justify-content: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container container-header-container">
+            <a href="../index.html" class="logo">
+                <img src="../logo.png" alt="CodeMaster Logo" class="logo-img">
+                <span class="logo-text">CodeMaster</span>
+            </a>
+            <nav class="nav-menu">
+                <a href="../index.html" class="nav-link">Главная</a>
+                <a href="../intro.html" class="nav-link">Введение</a>
+                <a href="../languages.html" class="nav-link">Языки</a>
+                <a href="../tutorials.html" class="nav-link">Уроки</a>
+                <a href="../resources.html" class="nav-link">Ресурсы</a>
+                <a href="#" class="nav-link" onclick="logout()">Выход</a>
+            </nav>
+        </div>
+    </header>
+
+    <section class="container">
+        <h1>Урок 5: Классы и объекты - C#</h1>
+
+        <h2>Введение</h2>
+        <p>Классы и объекты — основа объектно-ориентированного программирования (ООП) в C#. Классы определяют шаблон для объектов, которые содержат данные (поля) и поведение (методы). В этом уроке вы научитесь создавать классы, экземпляры и методы для моделирования реальных сущностей.</p>
+
+        <h2>Создание класса</h2>
+        <p>Класс определяет свойства и методы. Создайте файл <code>Classes.cs</code> с кодом:</p>
+        <pre><code>
+using System;
+
+class Person {
+    public string Name { get; set; }
+    public int Age { get; set; }
+
+    public Person(string name, int age) {
+        Name = name;
+        Age = age;
+    }
+
+    public string Greet() {
+        return $"Привет, я {Name}!";
+    }
+}
+
+class Program {
+    static void Main() {
+        Person person = new Person("Алексей", 25);
+        Console.WriteLine(person.Name); // Вывод: Алексей
+        Console.WriteLine(person.Greet()); // Вывод: Привет, я Алексей!
+
+        person.Age = 26;
+        Console.WriteLine(person.Age); // Вывод: 26
+    }
+}
+        </code></pre>
+        <p>Разберём код:</p>
+        <ul>
+            <li><code>class Person</code>: Определение класса.</li>
+            <li><code>public string Name { get; set; }</code>: Свойство с геттером и сеттером.</li>
+            <li><code>Person</code>: Конструктор для инициализации.</li>
+            <li><code>Greet</code>: Метод, возвращающий приветствие.</li>
+        </ul>
+
+        <h2>Использование объектов</h2>
+        <p>Объекты — экземпляры классов. Попробуйте код в <code>Students.cs</code>:</p>
+        <pre><code>
+using System;
+using System.Collections.Generic;
+
+class Student {
+    public string Name { get; set; }
+    public List<int> Grades { get; set; }
+
+    public Student(string name, List<int> grades) {
+        Name = name;
+        Grades = grades;
+    }
+
+    public double AverageGrade() {
+        int sum = 0;
+        foreach (int grade in Grades) {
+            sum += grade;
+        }
+        return (double)sum / Grades.Count;
+    }
+}
+
+class Program {
+    static void Main() {
+        Student student = new Student("Мария", new List<int> { 85, 90, 78 });
+        Console.WriteLine(student.Name); // Вывод: Мария
+        Console.WriteLine(student.AverageGrade()); // Вывод: 84.33333333333333
+    }
+}
+        </code></pre>
+        <p>Разберём код:</p>
+        <ul>
+            <li><code>Student</code>: Класс с полем для списка оценок.</li>
+            <li><code>AverageGrade</code>: Метод для вычисления среднего.</li>
+            <li><code>new Student</code>: Создание объекта.</li>
+        </ul>
+
+        <h2>Запуск кода</h2>
+        <p>Для выполнения кода используйте .NET SDK или Visual Studio:</p>
+        <ol>
+            <li>Создайте файл (<code>Classes.cs</code> или <code>Students.cs</code>).</li>
+            <li>В терминале выполните:
+                <pre><code>
+dotnet run Classes.cs
+                </code></pre>
+            </li>
+            <li>Или откройте в Visual Studio и запустите (F5).</li>
+        </ol>
+
+        <h2>Практика</h2>
+        <p>Выполните задания:</p>
+        <ol>
+            <li>Создайте класс <code>Book</code> с полями <code>Title</code> и <code>Year</code>. Добавьте метод <code>Description</code>.</li>
+            <li>Создайте объект <code>Book</code> и выведите его описание.</li>
+            <li>Создайте класс <code>Car</code> с полями <code>Model</code> и <code>Speed</code>. Добавьте метод <code>Accelerate</code>.</li>
+            <li>Создайте объект <code>Car</code>, увеличьте скорость и выведите результат.</li>
+            <li>Создайте класс <code>Rectangle</code> с полями <code>Width</code> и <code>Height</code>. Добавьте метод <code>Area</code>.</li>
+            <li>Создайте класс <code>Team</code> с полем <code>Members</code> (список имён) и методом для вывода их количества.</li>
+            <li>Напишите программу с классом <code>Employee</code>, хранящим имя и зарплату, и методом для повышения зарплаты.</li>
+        </ol>
+        <p>Подробности о классах читайте в <a href="https://learn.microsoft.com/dotnet/csharp/">документации C#</a>.</p>
+
+        <!-- Навигация по урокам -->
+        <div class="lesson-nav">
+            <a href="lesson4.html" class="prev-lesson">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                    <path d="M19 12H5M12 19l-7-7 7-7"/>
+                </svg>
+                Урок 4
+            </a>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container footer-bottom">
+            <p>© 2025 <a href="https://nikitos23133.github.io">CodeMaster</a>. Все права защищены.</p>
+        </div>
+    </footer>
+
+    <script src="../script.js"></script>
+</body>
+</html>

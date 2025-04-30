@@ -1,0 +1,450 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Урок 5: Структуры и классы - Swift - CodeMaster</title>
+    <link rel="stylesheet" href="../styles.css">
+    <style>
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 40px 20px;
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+        h1 {
+            color: #333;
+            font-size: 2.5em;
+            margin-bottom: 20px;
+            text-align: center;
+            border-bottom: 2px solid #8a9635;
+            padding-bottom: 10px;
+        }
+        h2 {
+            color: #8a9635;
+            font-size: 1.8em;
+            margin: 30px 0 15px;
+        }
+        h3 {
+            color: #555;
+            font-size: 1.5em;
+            margin: 20px 0 10px;
+        }
+        p {
+            line-height: 1.6;
+            font-size: 1.1em;
+            color: #555;
+            margin-bottom: 15px;
+        }
+        p a, li a {
+            color: #8a9635;
+            text-decoration: none;
+            font-weight: 500;
+        }
+        p a:hover, li a:hover {
+            text-decoration: underline;
+        }
+        pre {
+            background-color: #f5f5f5;
+            padding: 15px;
+            border-radius: 5px;
+            overflow-x: auto;
+            margin: 15px 0;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+        }
+        code {
+            font-family: 'Courier New', Courier, monospace;
+            color: #333;
+        }
+        ul, ol {
+            margin-bottom: 15px;
+            padding-left: 20px;
+        }
+        li {
+            line-height: 1.6;
+            font-size: 1.1em;
+            color: #555;
+        }
+        @media (max-width: 768px) {
+            .container {
+                padding: 20px 15px;
+            }
+            h1 {
+                font-size: 2em;
+            }
+            h2 {
+                font-size: 1.5em;
+            }
+            h3 {
+                font-size: 1.3em;
+            }
+            p, li {
+                font-size: 1em;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container container-header-container">
+            <a href="../index.html" class="logo">
+                <img src="../logo.png" alt="CodeMaster Logo" class="logo-img">
+                <span class="logo-text">CodeMaster</span>
+            </a>
+            <nav class="nav-menu">
+                <a href="../index.html" class="nav-link">Главная</a>
+                <a href="../intro.html" class="nav-link">Введение</a>
+                <a href="../languages.html" class="nav-link">Языки</a>
+                <a href="../tutorials.html" class="nav-link">Уроки</a>
+                <a href="../resources.html" class="nav-link">Ресурсы</a>
+                <a href="../login.html" class="nav-link">Вход</a>
+                <a href="#" class="nav-link" onclick="logout()">Выход</a>
+            </nav>
+        </div>
+    </header>
+
+    <section class="container">
+        <h1>Урок 5: Структуры и классы - Swift</h1>
+
+        <h2>Введение</h2>
+        <p>Структуры (`struct`) и классы (`class`) в Swift позволяют создавать пользовательские типы данных с свойствами и методами. Структуры подходят для простых данных, а классы поддерживают наследование и используются для сложной логики. В этом уроке вы научитесь определять структуры и классы, создавать экземпляры и добавлять методы для работы с данными.</p>
+
+        <h2>Работа со структурами</h2>
+        <p>Структуры — это значения, которые копируются при передаче. Создайте файл <code>structs.swift</code> с кодом:</p>
+        <pre>
+struct Person {
+    var name: String
+    var age: Int
+    
+    func greet() -> String {
+        return "Привет, я \(name)!"
+    }
+}
+
+var person = Person(name: "Алексей", age: 25)
+print(person.name) // Вывод: Алексей
+print(person.greet()) // Вывод: Привет, я Алексей!
+
+// Изменение свойства
+person.age = 26
+print(person.age) // Вывод: 26
+        </pre>
+        <p>Разберём код:</p>
+        <ul>
+            <li><code>struct Person</code>: Определение структуры с двумя свойствами.</li>
+            <li><code>func greet</code>: Метод, возвращающий приветствие.</li>
+            <li><code>var person</code>: Создание экземпляра структуры.</li>
+            <li>Свойства изменяются, если структура объявлена как `var`.</li>
+        </ul>
+
+        <h2>Работа с классами</h2>
+        <p>Классы — это ссылочные типы, которые поддерживают наследование. Попробуйте код в <code>classes.swift</code>:</p>
+        <pre>
+class Student {
+    var name: String
+    var grades: [Int]
+    
+    init(name: String, grades: [Int]) {
+        self.name = name
+        self.grades = grades
+    }
+    
+    func averageGrade() -> Double {
+        let sum = grades.reduce(0, +)
+        return Double(sum) / Double(grades.count)
+    }
+}
+
+let student = Student(name: "Мария", grades: [85, 90, 78])
+print(student.name) // Вывод: Мария
+print(student.averageGrade()) // Вывод: 84.33333333333333
+        </pre>
+        <p>Разберём код:</p>
+        <ul>
+            <li><code>class Student</code>: Определение класса с свойствами.</li>
+            <li><code>init</code>: Инициализатор для установки начальных значений.</li>
+            <li><code>averageGrade</code>: Метод для вычисления средней оценки.</li>
+            <li><code>let student</code>: Экземпляр класса (свойства можно менять, если они `var`).</li>
+        </ul>
+
+        <h2>Запуск кода</h2>
+        <p>Для выполнения кода используйте Xcode:</p>
+        <ol>
+            <li>Создайте Playground или проект в Xcode.</li>
+            <li>Скопируйте код из примеров.</li>
+            <li>Запустите (Cmd+R) и проверьте вывод.</li>
+            <li>Для файлов используйте терминал:
+                <pre>
+swift structs.swift
+                </pre>
+            </li>
+        </ol>
+
+        <h2>Практика</h2>
+        <p>Выполните задания для закрепления:</p>
+        <ol>
+            <li>Создайте структуру `Book` с полями `title` и `year`. Добавьте метод `description`, возвращающий строку с информацией о книге.</li>
+            <li>Создайте экземпляр `Book` и выведите его описание.</li>
+            <li>Создайте класс `Car` с полями `model` и `speed`. Добавьте метод `accelerate`, увеличивающий скорость на 10.</li>
+            <li>Создайте экземпляр `Car`, вызовите `accelerate` и выведите новую скорость.</li>
+            <li>Создайте структуру `Point` с координатами `x` и `y`. Добавьте метод `distance(to:)` для вычисления расстояния до другой точки.</li>
+            <li>Создайте класс `Team` с массивом имён участников и методом для вывода их количества.</li>
+            <li>Напишите программу, использующую структуру и класс для моделирования студента и его оценок.</li>
+        </ol>
+        <p>Подробности о структурах и классах читайте в <a href="https://swift.org/documentation/">документации Swift</a>.</p>
+    <!-- Добавьте этот код в раздел "Практика" перед закрывающим </section> -->
+
+<h2>Интерактивный терминал Swift (демо)</h2>
+<div class="terminal">
+    <div class="terminal-header">
+        <div class="terminal-controls">
+            <span class="terminal-circle red"></span>
+            <span class="terminal-circle yellow"></span>
+            <span class="terminal-circle green"></span>
+        </div>
+        <span class="terminal-title">Swift REPL</span>
+    </div>
+    <div class="terminal-body" id="terminal-output">
+        <div class="terminal-line">Добро пожаловать в CodeMaster Swift терминал!</div>
+        <div class="terminal-line">Введите код и нажмите "Выполнить".</div>
+        <div class="terminal-line">Пример: print("Hello World")</div>
+    </div>
+    <div class="terminal-input">
+        <textarea id="code-input" rows="4" placeholder="Введите ваш Swift код здесь..."></textarea>
+        <button onclick="executeSwiftCode()">Выполнить</button>
+    </div>
+</div>
+
+<style>
+    .terminal {
+        background: #1e1e1e;
+        border-radius: 5px;
+        margin: 20px 0;
+        color: #fff;
+        font-family: 'Courier New', monospace;
+    }
+    
+    .terminal-header {
+        padding: 10px;
+        background: #323233;
+        border-radius: 5px 5px 0 0;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+    }
+    
+    .terminal-controls {
+        display: flex;
+        gap: 5px;
+    }
+    
+    .terminal-circle {
+        width: 12px;
+        height: 12px;
+        border-radius: 50%;
+    }
+    
+    .red { background: #ff5f56; }
+    .yellow { background: #ffbd2e; }
+    .green { background: #27c93f; }
+    
+    .terminal-title {
+        color: #aaa;
+        font-size: 0.9em;
+    }
+    
+    .terminal-body {
+        padding: 15px;
+        min-height: 100px;
+        max-height: 300px;
+        overflow-y: auto;
+    }
+    
+    .terminal-line {
+        white-space: pre-wrap;
+        margin: 5px 0;
+        color: #d4d4d4;
+    }
+    
+    .terminal-input {
+        border-top: 1px solid #333;
+        padding: 10px;
+    }
+    
+    #code-input {
+        width: 100%;
+        background: #252526;
+        border: none;
+        color: #fff;
+        padding: 10px;
+        margin-bottom: 10px;
+        resize: vertical;
+        font-family: 'Courier New', monospace;
+    }
+    
+    .terminal-input button {
+        background: #8a9635;
+        color: white;
+        border: none;
+        padding: 8px 20px;
+        border-radius: 3px;
+        cursor: pointer;
+    }
+    
+    .terminal-input button:hover {
+        background: #6e7a25;
+    }
+    
+    .swift-prompt {
+        color: #ffac45;
+    }
+    
+    .swift-output {
+        color: #d4d4d4;
+    }
+</style>
+
+<script>
+function executeSwiftCode() {
+    const codeInput = document.getElementById('code-input').value;
+    const outputDiv = document.getElementById('terminal-output');
+    
+    // Очистка предыдущего вывода
+    outputDiv.innerHTML = '';
+    
+    // Эмуляция выполнения кода
+    const addOutput = (text, isPrompt = false) => {
+        const line = document.createElement('div');
+        line.className = isPrompt ? 'terminal-line swift-prompt' : 'terminal-line swift-output';
+        line.textContent = text;
+        outputDiv.appendChild(line);
+    };
+
+    try {
+        // Добавляем приглашение Swift REPL
+        addOutput('  1> ' + codeInput, true);
+        
+        // Примеры для демонстрации
+        if (codeInput.includes('print("Hello, World!")')) {
+            addOutput('Hello, World!');
+        }
+        else if (codeInput.includes('print("Welcome to Swift!")')) {
+            addOutput('Welcome to Swift!');
+        }
+        else if (codeInput.includes('print("Ваше имя")')) {
+            addOutput('Ваше имя');
+        }
+        else if (codeInput.includes('swift --version')) {
+            addOutput('swift-driver version: 1.75.2 Apple Swift version 5.8');
+            addOutput('Target: arm64-apple-macosx13.0');
+        }
+        else if (codeInput.includes('let name = "Алексей"') && codeInput.includes('print("Привет, \\(name)!"')) {
+            addOutput('Привет, Алексей!');
+        }
+        else {
+            addOutput('(Вывод эмуляции Swift REPL)');
+            addOutput('Для реального выполнения установите Xcode и используйте терминал');
+        }
+    } catch (error) {
+        addOutput(`Ошибка: ${error.message}`);
+    }
+    
+    // Прокрутка к последнему выводу
+    outputDiv.scrollTop = outputDiv.scrollHeight;
+}
+</script>
+<div class="lesson-navigation">
+    <a href="lesson4.html" class="nav-button">Предыдущий урок</a>
+</div>
+
+<style>
+    .lesson-navigation {
+        display: flex;
+        justify-content: space-between;
+        margin: 50px 0 20px;
+        padding: 20px 0;
+        border-top: 1px solid #eaeaea;
+        border-bottom: 1px solid #eaeaea;
+    }
+    
+    .nav-button {
+        display: inline-flex;
+        align-items: center;
+        background-color: #8a9635;
+        color: white;
+        padding: 12px 20px;
+        border-radius: 6px;
+        text-decoration: none;
+        font-weight: 600;
+        transition: all 0.3s ease;
+        font-size: 0.95em;
+        max-width: 48%;
+        text-align: center;
+        box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    }
+    
+    .nav-button:hover {
+        background-color: #6e7a25;
+        transform: translateY(-2px);
+        box-shadow: 0 4px 8px rgba(0,0,0,0.15);
+    }
+    
+    .nav-button::before,
+    .nav-button::after {
+        content: "";
+        display: inline-block;
+        width: 8px;
+        height: 8px;
+        border: 2px solid white;
+        margin: 0 5px;
+    }
+    
+    .nav-button::before {
+        border-right: 0;
+        border-top: 0;
+        transform: rotate(45deg);
+    }
+    
+    .nav-button::after {
+        border-left: 0;
+        border-bottom: 0;
+        transform: rotate(45deg);
+    }
+    
+    .nav-button:first-child::before {
+        margin-right: 10px;
+    }
+    
+    .nav-button:last-child::after {
+        margin-left: 10px;
+    }
+
+    @media (max-width: 768px) {
+        .lesson-navigation {
+            flex-direction: column;
+            gap: 15px;
+        }
+        
+        .nav-button {
+            max-width: 100%;
+            justify-content: center;
+        }
+        
+        .nav-button:first-child {
+            margin-bottom: 10px;
+        }
+    }
+</style>      
+</section>
+
+    <footer>
+        <div class="container footer-bottom">
+            <p>© 2025 <a href="https://nikitos23133.github.io">CodeMaster</a>. Все права защищены.</p>
+        </div>
+    </footer>
+
+    <script src="../script.js"></script>
+</body>
+</html>

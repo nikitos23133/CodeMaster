@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Вход - CodeMaster</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+        <div class="container container-header-container">
+            <a href="index.html" class="logo">
+                <img src="logo.png" alt="CodeMaster Logo" class="logo-img">
+                <span class="logo-text">CodeMaster</span>
+            </a>
+            <nav class="nav-menu" id="nav-menu">
+                <a href="index.html" class="nav-link">Главная</a>
+                <a href="intro.html" class="nav-link">Введение</a>
+                <a href="languages.html" class="nav-link">Языки</a>
+                <a href="tutorials.html" class="nav-link">Уроки</a>
+                <a href="resources.html" class="nav-link">Ресурсы</a>
+                <a href="register.html" class="nav-link">Регистрация</a>
+                <a href="login.html" class="nav-link">Вход</a>
+            </nav>
+        </div>
+    </header>
+
+    <section class="hero">
+        <div class="container">
+            <h1>Вход</h1>
+            <p>Войдите в свою учетную запись, чтобы получить доступ к урокам и ресурсам.</p>
+        </div>
+    </section>
+
+    <section class="container" style="padding: 40px 20px;">
+        <div style="max-width: 500px; margin: 0 auto;">
+            <form id="login-form" style="display: flex; flex-direction: column; gap: 20px;">
+                <div>
+                    <label for="username" style="display: block; margin-bottom: 5px;">Имя пользователя</label>
+                    <input type="text" id="username" name="username" required style="width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 5px;">
+                </div>
+                <div>
+                    <label for="password" style="display: block; margin-bottom: 5px;">Пароль</label>
+                    <input type="password" id="password" name="password" required style="width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 5px;">
+                </div>
+                <button type="submit" class="btn btn-hero-primary" style="padding: 10px; cursor: pointer;">Войти</button>
+            </form>
+            <p id="login-error" style="color: red; margin-top: 10px; display: none;">Неверное имя пользователя или пароль.</p>
+            <p style="margin-top: 20px; text-align: center;">
+                Нет аккаунта? <a href="register.html" style="color: #8a9635; text-decoration: none;">Зарегистрируйтесь</a>
+            </p>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container footer-bottom">
+            <p>© 2025 <a href="https://nikitos23133.github.io">CodeMaster</a>. Все права защищены.</p>
+        </div>
+    </footer>
+
+    <script>
+        function checkAuth() {
+            const isAuthenticated = localStorage.getItem('isAuthenticated') === 'true';
+            const navMenu = document.getElementById('nav-menu');
+
+            if (isAuthenticated) {
+                // Update nav menu to show logout button
+                navMenu.innerHTML = `
+                    <a href="index.html" class="nav-link">Главная</a>
+                    <a href="intro.html" class="nav-link">Введение</a>
+                    <a href="languages.html" class="nav-link">Языки</a>
+                    <a href="tutorials.html" class="nav-link">Уроки</a>
+                    <a href="resources.html" class="nav-link">Ресурсы</a>
+                    <a href="#" class="nav-link" onclick="logout()">Выход</a>
+                `;
+            }
+        }
+
+        function logout() {
+            localStorage.removeItem('isAuthenticated');
+            window.location.href = 'index.html';
+        }
+
+        document.getElementById('login-form').addEventListener('submit', function(event) {
+            event.preventDefault();
+            const username = document.getElementById('username').value;
+            const password = document.getElementById('password').value;
+            const error = document.getElementById('login-error');
+
+            // Check credentials
+            const users = JSON.parse(localStorage.getItem('users') || '{}');
+            if (users[username] && users[username] === password) {
+                localStorage.setItem('isAuthenticated', 'true');
+                error.style.display = 'none';
+                window.location.href = 'index.html'; // Redirect to homepage
+            } else {
+                error.style.display = 'block';
+            }
+        });
+
+        // Check authentication on page load
+        window.onload = checkAuth;
+    </script>
+</body>
+</html>
