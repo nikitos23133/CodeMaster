@@ -3,339 +3,131 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Языки программирования - CodeMaster</title>
+    <title>Изучение программирования с CodeWave</title>
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
     <header>
         <div class="container container-header-container">
             <a href="index.html" class="logo">
-                <img src="logo.png" alt="CodeMaster Logo" class="logo-img">
+                <img src="logo.png" alt="CodeWave Logo" class="logo-img">
                 <span class="logo-text">CodeMaster</span>
             </a>
-            <nav class="nav-menu" id="nav-menu">
+            <nav class="nav-menu">
                 <a href="index.html" class="nav-link">Главная</a>
                 <a href="intro.html" class="nav-link">Введение</a>
                 <a href="languages.html" class="nav-link">Языки</a>
                 <a href="tutorials.html" class="nav-link">Уроки</a>
                 <a href="resources.html" class="nav-link">Ресурсы</a>
-                <a href="register.html" class="nav-link">Регистрация</a>
-                <a href="login.html" class="nav-link">Вход</a>
             </nav>
         </div>
     </header>
 
-    <div id="content" style="display: none;">
-        <section class="hero">
-            <div class="container">
-                <h1>Языки программирования</h1>
-                <p>Изучите различные языки программирования и выберите тот, который подходит для ваших целей.</p>
-            </div>
-        </section>
-
-        <section id="languages" class="container" style="padding: 40px 20px;">
-            <div style="max-width: 1000px; margin: 0 auto;">
-                <h2 style="margin-bottom: 40px; text-align: center;">Популярные языки программирования</h2>
-
-                <div id="python" style="margin-bottom: 60px; border-bottom: 1px solid #eee; padding-bottom: 40px;">
-                    <h3 style="margin-bottom: 20px; color: #8a9635;">Python</h3>
-                    <div style="display: flex; flex-wrap: wrap; gap: 20px;">
-                        <div style="flex: 1; min-width: 300px;">
-                            <p style="line-height: 1.6; margin-bottom: 15px;">
-                                Python известен своей простотой и универсальностью. Отлично подходит для начинающих и для научных вычислений.
-                            </p>
-                            <p style="line-height: 1.6; margin-bottom: 15px;">
-                                <strong>Преимущества:</strong>
-                            </p>
-                            <ul style="margin-bottom: 15px; padding-left: 20px; line-height: 1.6;">
-                                <li>Понятный и читаемый синтаксис</li>
-                                <li>Богатая стандартная библиотека</li>
-                                <li>Большое сообщество и множество ресурсов</li>
-                                <li>Используется в науке о данных, веб-разработке, ИИ и многих других областях</li>
-                            </ul>
-                            <a href="python/lesson1.html" class="btn btn-hero-primary" style="display: inline-block; margin-top: 10px;">Начать изучение Python</a>
-                        </div>
-                        <div style="flex: 1; min-width: 300px;">
-                            <div style="background-color: #f5f5f5; padding: 15px; border-radius: 5px;">
-                                <pre style="margin: 0; overflow-x: auto;"><code># Пример кода на Python
-def greet(name):
-    """Простая функция для приветствия"""
-    return f"Привет, {name}!"
-
-# Вывод приветствия
-print(greet("Программист"))</code></pre>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div id="javascript" style="margin-bottom: 60px; border-bottom: 1px solid #eee; padding-bottom: 40px;">
-                    <h3 style="margin-bottom: 20px; color: #8a9635;">JavaScript</h3>
-                    <div style="display: flex; flex-wrap: wrap; gap: 20px;">
-                        <div style="flex: 1; min-width: 300px;">
-                            <p style="line-height: 1.6; margin-bottom: 15px;">
-                                JavaScript - это язык веб-разработки. Позволяет создавать интерактивные веб-сайты и веб-приложения.
-                            </p>
-                            <p style="line-height: 1.6; margin-bottom: 15px;">
-                                <strong>Преимущества:</strong>
-                            </p>
-                            <ul style="margin-bottom: 15px; padding-left: 20px; line-height: 1.6;">
-                                <li>Работает во всех современных браузерах</li>
-                                <li>Может использоваться как на фронтенде, так и на бэкенде (Node.js)</li>
-                                <li>Обширная экосистема библиотек и фреймворков</li>
-                                <li>Востребован на рынке труда</li>
-                            </ul>
-                            <a href="javascript/lesson1.html" class="btn btn-hero-primary" style="display: inline-block; margin-top: 10px;">Начать изучение JavaScript</a>
-                        </div>
-                        <div style="flex: 1; min-width: 300px;">
-                            <div style="background-color: #f5f5f5; padding: 15px; border-radius: 5px;">
-                                <pre style="margin: 0; overflow-x: auto;"><code>// Пример кода на JavaScript
-function greet(name) {
-    // Простая функция для приветствия
-    return `Привет, ${name}!`;
-}
-
-// Вывод приветствия
-console.log(greet("Программист"));</code></pre>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div id="java" style="margin-bottom: 60px; border-bottom: 1px solid #eee; padding-bottom: 40px;">
-                    <h3 style="margin-bottom: 20px; color: #8a9635;">Java</h3>
-                    <div style="display: flex; flex-wrap: wrap; gap: 20px;">
-                        <div style="flex: 1; min-width: 300px;">
-                            <p style="line-height: 1.6; margin-bottom: 15px;">
-                                Java - это объектно-ориентированный язык программирования, который позволяет создавать надежные, масштабируемые приложения для различных платформ.
-                            </p>
-                            <p style="line-height: 1.6; margin-bottom: 15px;">
-                                <strong>Преимущества:</strong>
-                            </p>
-                            <ul style="margin-bottom: 15px; padding-left: 20px; line-height: 1.6;">
-                                <li>Кроссплатформенность (WORA - Write Once, Run Anywhere)</li>
-                                <li>Строгая типизация, что помогает избегать ошибок</li>
-                                <li>Хорошая производительность</li>
-                                <li>Широко используется в корпоративной разработке</li>
-                            </ul>
-                            <a href="java/lesson1.html" class="btn btn-hero-primary" style="display: inline-block; margin-top: 10px;">Начать изучение Java</a>
-                        </div>
-                        <div style="flex: 1; min-width: 300px;">
-                            <div style="background-color: #f5f5f5; padding: 15px; border-radius: 5px;">
-                                <pre style="margin: 0; overflow-x: auto;"><code>// Пример кода на Java
-public class Greeting {
-    // Простая функция для приветствия
-    public static String greet(String name) {
-        return "Привет, " + name + "!";
-    }
-
-    public static void main(String[] args) {
-        // Вывод приветствия
-        System.out.println(greet("Программист"));
-    }
-}</code></pre>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div id="ruby" style="margin-bottom: 60px; border-bottom: 1px solid #eee; padding-bottom: 40px;">
-                    <h3 style="margin-bottom: 20px; color: #8a9635;">Ruby</h3>
-                    <div style="display: flex; flex-wrap: wrap; gap: 20px;">
-                        <div style="flex: 1; min-width: 300px;">
-                            <p style="line-height: 1.6; margin-bottom: 15px;">
-                                Ruby известен своим элегантным синтаксисом, ориентированным на простоту и продуктивность. Широко используется в веб-разработке, особенно с фреймворком Ruby on Rails.
-                            </p>
-                            <p style="line-height: 1.6; margin-bottom: 15px;">
-                                <strong>Преимущества:</strong>
-                            </p>
-                            <ul style="margin-bottom: 15px; padding-left: 20px; line-height: 1.6;">
-                                <li>Интуитивно понятный и читаемый код</li>
-                                <li>Мощный фреймворк Ruby on Rails для веб-разработки</li>
-                                <li>Гибкость и динамическая типизация</li>
-                                <li>Активное сообщество и множество библиотек (гемов)</li>
-                            </ul>
-                            <a href="ruby/lesson1.html" class="btn btn-hero-primary" style="display: inline-block; margin-top: 10px;">Начать изучение Ruby</a>
-                        </div>
-                        <div style="flex: 1; min-width: 300px;">
-                            <div style="background-color: #f5f5f5; padding: 15px; border-radius: 5px;">
-                                <pre style="margin: 0; overflow-x: auto;"><code># Пример кода на Ruby
-def greet(name)
-  # Простая функция для приветствия
-  "Привет, #{name}!"
-end
-
-# Вывод приветствия
-puts greet("Программист")
-</code></pre>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div id="go" style="margin-bottom: 60px; border-bottom: 1px solid #eee; padding-bottom: 40px;">
-                    <h3 style="margin-bottom: 20px; color: #8a9635;">Go</h3>
-                    <div style="display: flex; flex-wrap: wrap; gap: 20px;">
-                        <div style="flex: 1; min-width: 300px;">
-                            <p style="line-height: 1.6; margin-bottom: 15px;">
-                                Go разработан для простоты, надежности и эффективности. Идеально подходит для высокопроизводительных серверных приложений и облачных систем.
-                            </p>
-                            <p style="line-height: 1.6; margin-bottom: 15px;">
-                                <strong>Преимущества:</strong>
-                            </p>
-                            <ul style="margin-bottom: 15px; padding-left: 20px; line-height: 1.6;">
-                                <li>Простой и минималистичный синтаксис</li>
-                                <li>Высокая производительность благодаря компиляции</li>
-                                <li>Встроенные инструменты для конкурентности (goroutines)</li>
-                                <li>Широко используется в облачных технологиях</li>
-                            </ul>
-                            <a href="go/lesson1.html" class="btn btn-hero-primary" style="display: inline-block; margin-top: 10px;">Начать изучение Go</a>
-                        </div>
-                        <div style="flex: 1; min-width: 300px;">
-                            <div style="background-color: #f5f5f5; padding: 15px; border-radius: 5px;">
-                                <pre style="margin: 0; overflow-x: auto;"><code>package main
-
-import "fmt"
-
-// Простая функция для приветствия
-func greet(name string) string {
-    return "Привет, " + name + "!"
-}
-
-func main() {
-    // Вывод приветствия
-    fmt.Println(greet("Программист"))
-}
-</code></pre>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div id="csharp" style="margin-bottom: 60px; border-bottom: 1px solid #eee; padding-bottom: 40px;">
-                    <h3 style="margin-bottom: 20px; color: #8a9635;">C#</h3>
-                    <div style="display: flex; flex-wrap: wrap; gap: 20px;">
-                        <div style="flex: 1; min-width: 300px;">
-                            <p style="line-height: 1.6; margin-bottom: 15px;">
-                                C# - универсальный язык для разработки приложений, веб-сервисов и игр. Широко используется в экосистеме Microsoft и для разработки под Unity.
-                            </p>
-                            <p style="line-height: 1.6; margin-bottom: 15px;">
-                                <strong>Преимущества:</strong>
-                            </p>
-                            <ul style="margin-bottom: 15px; padding-left: 20px; line-height: 1.6;">
-                                <li>Мощная интеграция с .NET для веб и десктоп-приложений</li>
-                                <li>Популярен в игровой разработке (Unity)</li>
-                                <li>Строгая типизация и современные возможности языка</li>
-                                <li>Большое сообщество и поддержка Microsoft</li>
-                            </ul>
-                            <a href="csharp/lesson1.html" class="btn btn-hero-primary" style="display: inline-block; margin-top: 10px;">Начать изучение C#</a>
-                        </div>
-                        <div style="flex: 1; min-width: 300px;">
-                            <div style="background-color: #f5f5f5; padding: 15px; border-radius: 5px;">
-                                <pre style="margin: 0; overflow-x: auto;"><code>using System;
-
-// Простая функция для приветствия
-class Program {
-    static string Greet(string name) {
-        return $"Привет, {name}!";
-    }
-
-    static void Main(string[] args) {
-        // Вывод приветствия
-        Console.WriteLine(Greet("Программист"));
-    }
-}
-</code></pre>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div id="swift" style="margin-bottom: 60px; padding-bottom: 40px;">
-                    <h3 style="margin-bottom: 20px; color: #8a9635;">Swift</h3>
-                    <div style="display: flex; flex-wrap: wrap; gap: 20px;">
-                        <div style="flex: 1; min-width: 300px;">
-                            <p style="line-height: 1.6; margin-bottom: 15px;">
-                                Swift - язык от Apple для разработки iOS и macOS приложений. Мощный, безопасный и современный.
-                            </p>
-                            <p style="line-height: 1.6; margin-bottom: 15px;">
-                                <strong>Преимущества:</strong>
-                            </p>
-                            <ul style="margin-bottom: 15px; padding-left: 20px; line-height: 1.6;">
-                                <li>Высокая производительность и безопасность типов</li>
-                                <li>Идеально подходит для разработки под платформы Apple</li>
-                                <li>Современный синтаксис и поддержка функционального программирования</li>
-                                <li>Открытый исходный код и активное сообщество</li>
-                            </ul>
-                            <a href="swift/lesson1.html" class="btn btn-hero-primary" style="display: inline-block; margin-top: 10px;">Начать изучение Swift</a>
-                        </div>
-                        <div style="flex: 1; min-width: 300px;">
-                            <div style="background-color: #f5f5f5; padding: 15px; border-radius: 5px;">
-                                <pre style="margin: 0; overflow-x: auto;"><code>// Простая функция для приветствия
-func greet(name: String) -> String {
-    return "Привет, \(name)!"
-}
-
-// Вывод приветствия
-print(greet(name: "Программист"))
-</code></pre>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-    </div>
-
-    <div id="restricted" style="display: none; text-align: center; padding: 80px 20px;">
+    <section class="hero">
         <div class="container">
-            <h1>Доступ ограничен</h1>
-            <p>Пожалуйста, зарегистрируйтесь или войдите, чтобы получить доступ к содержимому сайта.</p>
+            <h1>Изучайте программирование с CodeMaster</h1>
+            <p>Погрузитесь в мир кодирования с помощью наших руководств, курсов и ресурсов для начинающих.</p>
             <div class="hero-buttons">
-                <a href="register.html" class="nav-link">Регистрация</a>
-                <a href="login.html" class="nav-link">Вход</a>
+                <a href="languages.html" class="btn btn-hero-primary">Изучить языки</a>
+                <a href="resources.html" class="btn btn-hero-secondary">Просмотреть ресурсы</a>
             </div>
         </div>
-    </div>
+    </section>
+
+    <section id="languages" class="languages">
+        <div class="container">
+            <h2>Популярные языки программирования</h2>
+            <div class="languages-grid">
+                <div class="language-card">
+                    <div class="card-content">
+                        <h3>Python</h3>
+                        <p>Известен своей простотой и универсальностью. Отлично подходит для начинающих и для научных вычислений.</p>
+                        <a href="languages.html#python" class="card-button">Изучать Python</a>
+                    </div>
+                </div>
+                <div class="language-card">
+                    <div class="card-content">
+                        <h3>JavaScript</h3>
+                        <p>Язык веб-разработки. Создавайте интерактивные веб-сайты и веб-приложения.</p>
+                        <a href="languages.html#javascript" class="card-button">Изучать JavaScript</a>
+                    </div>
+                </div>
+                <div class="language-card">
+                    <div class="card-content">
+                        <h3>Java</h3>
+                        <p>Создавайте надежные, масштабируемые приложения для различных платформ.</p>
+                        <a href="languages.html#java" class="card-button">Изучать Java</a>
+                    </div>
+                </div>
+                <div class="language-card">
+                    <div class="card-content">
+                        <h3>Ruby</h3>
+                        <p>Элегантный синтаксис, ориентированный на простоту и продуктивность.</p>
+                        <a href="languages.html#ruby" class="card-button">Изучать Ruby</a>
+                    </div>
+                </div>
+                <div class="language-card">
+                    <div class="card-content">
+                        <h3>Go</h3>
+                        <p>Разработан для простоты, надежности и эффективности.</p>
+                        <a href="languages.html#go" class="card-button">Изучать Go</a>
+                    </div>
+                </div>
+                <div class="language-card">
+                    <div class="card-content">
+                        <h3>C#</h3>
+                        <p>Универсальный язык для приложений, веб-сервисов и игр.</p>
+                        <a href="languages.html#csharp" class="card-button">Изучать C#</a>
+                    </div>
+                </div>
+                <div class="language-card">
+                    <div class="card-content">
+                        <h3>Swift</h3>
+                        <p>Язык от Apple для iOS и macOS приложений.</p>
+                        <a href="languages.html#swift" class="card-button">Изучать Swift</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="about" class="about">
+        <div class="container">
+            <h2>О нас</h2>
+            <p>Мы - сообщество энтузиастов, стремящихся сделать программирование доступным для всех. Наша цель - предоставить качественные материалы для обучения. На нашем сайте вы найдете тщательно отобранные курсы, статьи и советы, которые помогут вам уверенно двигаться вперед в мире программирования.</p>
+        </div>
+    </section>
+
+    <section id="contact" class="contact courses-section">
+        <div class="container">
+            <h2>Свяжитесь с нами</h2>
+            <p style="text-align: center; margin-bottom: 30px; color: #666;">У нас есть вопросы или отзывы? Мы будем рады услышать от вас.</p>
+            <div class="contact-form">
+                <form id="contact-form">
+                    <div class="form-group">
+                        <label for="name" class="form-label">Ваше имя</label>
+                        <input type="text" id="name" class="form-input" placeholder="Ваше имя">
+                    </div>
+                    <div class="form-group">
+                        <label for="email" class="form-label">Email</label>
+                        <input type="email" id="email" class="form-input" placeholder="Ваш email@example.com">
+                    </div>
+                    <div class="form-group">
+                        <label for="message" class="form-label">Сообщение</label>
+                        <textarea id="message" class="form-input" placeholder="Ваше сообщение"></textarea>
+                    </div>
+                    <button type="submit" class="btn btn-primary" style="width: 100%;">Отправить сообщение</button>
+                </form>
+            </div>
+        </div>
+    </section>
 
     <footer>
         <div class="container footer-bottom">
-            <p>© 2025 <a href="https://nikitos23133.github.io">CodeMaster</a>. Все права защищены.</p>
+            <p>© 2025 <a href="https://nikitos23133.github.io">CodeWave</a>. Все права защищены.</p>
         </div>
     </footer>
 
-    <script>
-        function checkAuth() {
-            const isAuthenticated = localStorage.getItem('isAuthenticated') === 'true';
-            const content = document.getElementById('content');
-            const restricted = document.getElementById('restricted');
-            const navMenu = document.getElementById('nav-menu');
-
-            if (isAuthenticated) {
-                content.style.display = 'block';
-                restricted.style.display = 'none';
-                // Update nav menu to show logout button
-                navMenu.innerHTML = `
-                    <a href="index.html" class="nav-link">Главная</a>
-                    <a href="intro.html" class="nav-link">Введение</a>
-                    <a href="languages.html" class="nav-link">Языки</a>
-                    <a href="tutorials.html" class="nav-link">Уроки</a>
-                    <a href="resources.html" class="nav-link">Ресурсы</a>
-                    <a href="#" class="nav-link" onclick="logout()">Выход</a>
-                `;
-            } else {
-                content.style.display = 'none';
-                restricted.style.display = 'block';
-            }
-        }
-
-        function logout() {
-            localStorage.removeItem('isAuthenticated');
-            window.location.href = 'index.html';
-        }
-
-        // Check authentication on page load
-        window.onload = checkAuth;
-    </script>
+    <script src="script.js"></script>
 </body>
 </html>
